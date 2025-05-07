@@ -8,7 +8,7 @@
 </head>
 <body class="bg-black flex flex-col h-screen text-white">
 
-  <!-- 1. Camera viewport + scan guides (unchanged) -->
+  <!-- camera viewport (unchanged) -->
   <div class="relative flex-1 overflow-hidden">
     <video id="video" autoplay playsinline class="w-full h-full object-cover"></video>
     <div class="absolute inset-0 pointer-events-none">
@@ -20,21 +20,13 @@
     </div>
   </div>
 
-  <!-- 2. Bottom navigation -->
+  <!-- bottom navigation (unchanged) -->
   <nav class="h-16 bg-white flex justify-around items-center text-black">
-    <button class="flex flex-col items-center text-gray-500">
-      <svg class="w-6 h-6 mb-1"></svg>
-      <span class="text-xs">Home</span>
-    </button>
-    <button class="flex flex-col items-center text-blue-600">
-      <svg class="w-6 h-6 mb-1"></svg>
-      <span class="text-xs">Scan</span>
-    </button>
-    <button class="flex flex-col items-center text-gray-500">
-      <svg class="w-6 h-6 mb-1"></svg>
-      <span class="text-xs">Profile</span>
-    </button>
+    <button class="flex flex-col items-center text-gray-500"><svg class="w-6 h-6 mb-1"></svg><span class="text-xs">Home</span></button>
+    <button class="flex flex-col items-center text-blue-600"><svg class="w-6 h-6 mb-1"></svg><span class="text-xs">Scan</span></button>
+    <button class="flex flex-col items-center text-gray-500"><svg class="w-6 h-6 mb-1"></svg><span class="text-xs">Profile</span></button>
   </nav>
 
+  <script src="scan.js"></script>
 </body>
 </html>
