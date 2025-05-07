@@ -7,6 +7,22 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black flex flex-col h-screen text-white">
-  <!-- content will be added in later commits -->
+
+  <!-- 1. Camera viewport + scan guides -->
+  <div class="relative flex-1 overflow-hidden">
+    <video id="video" autoplay playsinline class="w-full h-full object-cover"></video>
+
+    <!-- four white corner guides -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-10  left-10  border-4 border-white w-8 h-8"></div>
+      <div class="absolute top-10  right-10 border-4 border-white w-8 h-8"></div>
+      <div class="absolute bottom-10 left-10  border-4 border-white w-8 h-8"></div>
+      <div class="absolute bottom-10 right-10 border-4 border-white w-8 h-8"></div>
+
+      <!-- detected barcode bounding box -->
+      <div id="barcode-box" class="absolute border-2 border-green-400 hidden"></div>
+    </div>
+  </div>
+
 </body>
 </html>
