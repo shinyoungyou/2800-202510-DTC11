@@ -1,3 +1,21 @@
+/* -------- Optional: allergen → icon URL map -------- */
+const allergenIcons = {
+    celery: "icons/celery.png",
+    crustaceans: "icons/shrimp.png",
+    eggs: "icons/egg.png",
+    fish: "icons/fish.png",
+    gluten: "icons/wheat.png",
+    lupin: "icons/lupin.png",
+    milk: "icons/milk.png",
+    molluscs: "icons/mussel.png",
+    mustard: "icons/mustard.png",
+    nuts: "icons/nut.png",
+    peanuts: "icons/peanut.png",
+    sesameseeds: "icons/sesame.png",
+    soybeans: "icons/soy.png",
+    sulphites: "icons/sulphite.png",
+};
+
 /* -------- 14-allergen synonym dictionary -------- */
 const allergenMap = {
     celery: ["celery"],
@@ -13,7 +31,7 @@ const allergenMap = {
     peanuts: ["peanut", "groundnut"],
     sesameseeds: ["sesame", "tahini"],
     soybeans: ["soy", "soya", "soybean", "tofu", "soya-oil"],
-    sulphites: ["sulphite", "sulfite", "sulphur-dioxide"],
+    sulphites: ["sulphite", "sulfite", "sulphur-dioxide", "sulphur-dioxide-and-sulphites"],
 };
 
 /* lower-case + non-alphanum strip → better matching */
@@ -176,7 +194,24 @@ async function handleCode(barcode) {
 
             const li = document.createElement("li");
             li.className = "flex justify-between py-2";
-            li.innerHTML = `<span>${name}</span><span>${right}</span>`;
+            // lookup icon or fallback to a blank placeholder
+            const iconSrc =
+                allergenIcons[name] || "icons/allergen-placeholder.svg";
+            li.innerHTML = `
+              <div class="flex items-center justify-between w-full py-2">
+                <!-- Left: icon + name, takes up all free space -->
+                <div class="flex items-center space-x-2 flex-1">
+                  <img src="${iconSrc}"
+                       alt="${name} icon"
+                       class="w-6 h-6 flex-shrink-0"/>
+                  <span>${name}</span>
+                </div>
+                <!-- Right: percent, never shrinks or wraps -->
+                <div class="flex-shrink-0">
+                  <span>${right}</span>
+                </div>
+              </div>
+            `;
             allergensListEl.appendChild(li);
         });
         if (!allergens.length) {
