@@ -104,6 +104,25 @@ async function fetchProduct(barcode) {
     return json.product;
 }
 
+/* ---------- save scan to backend ---------- */
+async function saveScanToDB(scanDoc) {
+    try {
+        const res = await fetch("http://localhost:3000/scan", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(scanDoc),
+        });
+
+        if (res.ok) {
+            console.log("Scan saved successfully:", scanDoc.barcode);
+        } else {
+            console.warn("Save responded with HTTP", res.status);
+        }
+    } catch (err) {
+        console.error("Failed to save scan:", err);
+    }
+}
+
 /* ---------- scan loop ---------- */
 async function scanLoop() {
     if (!detector) return;
@@ -151,7 +170,7 @@ async function handleCode(barcode) {
             product?.image_front_small_url ||
             product?.image_front_url;
         if (thumbURL) prodThumbEl.src = thumbURL;
-        
+
         const nutr = product.nutriments || {};
         const allergens =
             Array.isArray(product.allergens_tags) &&
@@ -235,6 +254,16 @@ async function handleCode(barcode) {
             li.textContent = "None";
             allergensListEl.appendChild(li);
         }
+
+        const scanDoc = {
+            barcode,
+            productName: product.product_name || "",
+            brand: (product.brands || "").split(",")[0],
+            allergens,
+            allergenPercents: percentByAllergen,
+            thumbUrl: thumbURL || "",
+        };
+        saveScanToDB(scanDoc);
 
         toggleSheet(true); // expand sheet
     } catch (err) {
