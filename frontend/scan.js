@@ -1,3 +1,24 @@
+/* -------- 14-allergen synonym dictionary -------- */
+const allergenMap = {
+    celery: ["celery"],
+    crustaceans: ["crab", "lobster", "shrimp", "prawn", "crustacean"],
+    eggs: ["egg", "egg-yolk", "whole-egg"],
+    fish: ["fish", "anchovy", "salmon", "tuna", "cod", "haddock"],
+    gluten: ["gluten", "wheat", "barley", "rye", "oats", "spelt"],
+    lupin: ["lupin"],
+    milk: ["milk", "cheese", "butter", "cream", "yoghurt"],
+    molluscs: ["mussel", "clam", "oyster", "scallop", "snail"],
+    mustard: ["mustard"],
+    nuts: ["almond", "hazelnut", "walnut", "pistachio", "cashew"],
+    peanuts: ["peanut", "groundnut"],
+    sesameseeds: ["sesame", "tahini"],
+    soybeans: ["soy", "soya", "soybean", "tofu", "soya-oil"],
+    sulphites: ["sulphite", "sulfite", "sulphur-dioxide"],
+};
+
+/* lower-case + non-alphanum strip → better matching */
+const norm = (str) => str.toLowerCase().replace(/[^a-z0-9]/g, "");
+
 /* ---------- DOM elements ---------- */
 const video = document.getElementById("video");
 const barcodeBox = document.getElementById("barcode-box");
@@ -105,6 +126,35 @@ async function handleCode(barcode) {
                 ? product.allergens_tags.map((t) => t.split(":")[1])
                 : [];
 
+        /* --- Build lookup { allergen → % estimate or null } --- */
+        const percentByAllergen = Object.fromEntries(
+            allergens.map((a) => [a, null])
+        );
+
+        if (Array.isArray(product.ingredients)) {
+            product.ingredients.forEach((ing) => {
+                const id = norm(ing.id || "");
+                const text = norm(ing.text || "");
+
+                allergens.forEach((a) => {
+                    const words = allergenMap[a] || [a];
+                    const hit = words.some(
+                        (w) => id.includes(w) || text.includes(w)
+                    );
+                    if (
+                        hit &&
+                        ing.percent_estimate &&
+                        ing.percent_estimate > 0
+                    ) {
+                        percentByAllergen[a] = Math.max(
+                            percentByAllergen[a] ?? 0,
+                            ing.percent_estimate
+                        );
+                    }
+                });
+            });
+        }
+
         /* summary */
         prodNameEl.textContent = product.product_name || "Unknown product";
         prodBrandEl.textContent = (product.brands || "Unknown").split(",")[0];
@@ -114,12 +164,19 @@ async function handleCode(barcode) {
         allergensListEl.innerHTML = "";
         allergens.forEach((name) => {
             const gKey = `${name.replace(/\s+/g, "_").toLowerCase()}_100g`;
-            const grams = nutr[gKey];
+            const grams = nutr[gKey]; // e.g. “16 g per 100 g”
+            const pct = percentByAllergen[name]; // e.g. “3 % of recipe”
+
+            const right =
+                grams != null
+                    ? `${grams} g/100g`
+                    : pct != null
+                    ? `${pct.toFixed(1)} %`
+                    : "—";
+
             const li = document.createElement("li");
             li.className = "flex justify-between py-2";
-            li.innerHTML = `<span>${name}</span><span>${grams ?? ""}${
-                grams ? " g" : ""
-            }</span>`;
+            li.innerHTML = `<span>${name}</span><span>${right}</span>`;
             allergensListEl.appendChild(li);
         });
         if (!allergens.length) {
