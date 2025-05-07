@@ -8,21 +8,33 @@
 </head>
 <body class="bg-black flex flex-col h-screen text-white">
 
-  <!-- 1. Camera viewport + scan guides -->
+  <!-- 1. Camera viewport + scan guides (unchanged) -->
   <div class="relative flex-1 overflow-hidden">
     <video id="video" autoplay playsinline class="w-full h-full object-cover"></video>
-
-    <!-- four white corner guides -->
     <div class="absolute inset-0 pointer-events-none">
       <div class="absolute top-10  left-10  border-4 border-white w-8 h-8"></div>
       <div class="absolute top-10  right-10 border-4 border-white w-8 h-8"></div>
       <div class="absolute bottom-10 left-10  border-4 border-white w-8 h-8"></div>
       <div class="absolute bottom-10 right-10 border-4 border-white w-8 h-8"></div>
-
-      <!-- detected barcode bounding box -->
       <div id="barcode-box" class="absolute border-2 border-green-400 hidden"></div>
     </div>
   </div>
+
+  <!-- 2. Bottom navigation -->
+  <nav class="h-16 bg-white flex justify-around items-center text-black">
+    <button class="flex flex-col items-center text-gray-500">
+      <svg class="w-6 h-6 mb-1"></svg>
+      <span class="text-xs">Home</span>
+    </button>
+    <button class="flex flex-col items-center text-blue-600">
+      <svg class="w-6 h-6 mb-1"></svg>
+      <span class="text-xs">Scan</span>
+    </button>
+    <button class="flex flex-col items-center text-gray-500">
+      <svg class="w-6 h-6 mb-1"></svg>
+      <span class="text-xs">Profile</span>
+    </button>
+  </nav>
 
 </body>
 </html>
