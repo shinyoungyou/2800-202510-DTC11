@@ -31,7 +31,12 @@ const allergenMap = {
     peanuts: ["peanut", "groundnut"],
     sesameseeds: ["sesame", "tahini"],
     soybeans: ["soy", "soya", "soybean", "tofu", "soya-oil"],
-    sulphites: ["sulphite", "sulfite", "sulphur-dioxide", "sulphur-dioxide-and-sulphites"],
+    sulphites: [
+        "sulphite",
+        "sulfite",
+        "sulphur-dioxide",
+        "sulphur-dioxide-and-sulphites",
+    ],
 };
 
 /* lower-case + non-alphanum strip → better matching */
@@ -45,6 +50,7 @@ const bottomSheet = document.getElementById("bottom-sheet");
 const prodNameEl = document.getElementById("prod-name");
 const prodBrandEl = document.getElementById("prod-brand");
 const prodTagsEl = document.getElementById("prod-tags");
+const prodThumbEl = document.getElementById("prod-thumb");
 const allergensListEl = document.getElementById("allergens-list");
 
 /* Bottom-sheet state ---------------------------------------------------- */
@@ -137,6 +143,15 @@ async function handleCode(barcode) {
         toggleSheet(false); // stay collapsed while loading
 
         const product = await fetchProduct(barcode);
+        // choose the smallest available photo, fall back to any front image,
+        // or keep the placeholder if nothing exists.
+        const thumbURL =
+            product?.image_thumb_url ||
+            product?.image_front_thumb_url ||
+            product?.image_front_small_url ||
+            product?.image_front_url;
+        if (thumbURL) prodThumbEl.src = thumbURL;
+        
         const nutr = product.nutriments || {};
         const allergens =
             Array.isArray(product.allergens_tags) &&
