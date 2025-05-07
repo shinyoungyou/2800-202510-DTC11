@@ -51,6 +51,49 @@
       <h3 class="font-semibold">Allergens</h3>
       <ul id="allergens-list" class="divide-y divide-gray-200"></ul>
     </div>
+
+    <!-- Alternatives section (UI-only) -->
+    <div id="details" class="px-4 pt-4 space-y-4">
+       <!-- header -->
+    <div class="flex items-baseline justify-between mb-3">
+      <h3 class="font-semibold">Alternatives</h3>
+      <button class="text-sm text-blue-600 whitespace-nowrap">See all</button>
+    </div>
+
+    <!-- horizontal rail -->
+    <ul id="alt-list"
+        class="flex overflow-x-auto pb-2
+               space-x-8          /* 32 px gaps (roomier) */
+               snap-x snap-mandatory
+               scrollbar-hide">   <!-- hide iOS/Chrome scrollbar -->
+
+        <!-- card 1 (placeholder) -->
+        <li class="flex-shrink-0 snap-start w-56"> <!-- ~256 px card -->
+          <div class="flex space-x-4">
+            <div class="w-20 h-20 bg-gray-300 rounded flex-shrink-0"></div>
+            <div class="flex flex-col justify-center min-w-0">
+              <p class="font-medium truncate">Product #1</p>
+              <p class="text-xs text-gray-500 truncate">Brand #1</p>
+              <p class="text-xs text-gray-400 truncate">#Sesame</p>
+            </div>
+          </div>
+        </li>
+
+        <!-- card 2 (placeholder) -->
+        <li class="flex-shrink-0 snap-start w-56">
+          <div class="flex space-x-4">
+            <div class="w-20 h-20 bg-gray-300 rounded flex-shrink-0"></div>
+            <div class="flex flex-col justify-center min-w-0">
+              <p class="font-medium truncate">Product #2</p>
+              <p class="text-xs text-gray-500 truncate">Brand #2</p>
+              <p class="text-xs text-gray-400 truncate">#Peanuts</p>
+            </div>
+          </div>
+        </li>
+
+    <!-- add more <li> cards or let JS inject them later -->
+    </ul>
+    </div>
   </div>
 
   <!-- bottom navigation -->

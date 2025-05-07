@@ -53,9 +53,9 @@ function toggleSheet(expand = !isExpanded) {
     isExpanded = expand;
     if (isExpanded) {
         bottomSheet.classList.remove("h-24");
-        bottomSheet.classList.add("h-[60%]");
+        bottomSheet.classList.add("h-[80%]");
     } else {
-        bottomSheet.classList.remove("h-[60%]");
+        bottomSheet.classList.remove("h-[80%]");
         bottomSheet.classList.add("h-24");
     }
 }
