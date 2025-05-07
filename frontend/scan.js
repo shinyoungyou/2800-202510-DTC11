@@ -1,12 +1,29 @@
 /* ---------- DOM elements ---------- */
 const video = document.getElementById("video");
 const barcodeBox = document.getElementById("barcode-box");
+
+const bottomSheet = document.getElementById("bottom-sheet");
 const prodNameEl = document.getElementById("prod-name");
 const prodBrandEl = document.getElementById("prod-brand");
 const prodTagsEl = document.getElementById("prod-tags");
 const allergensListEl = document.getElementById("allergens-list");
 
-/* ---------- camera ---------- */
+/* Bottom-sheet state ---------------------------------------------------- */
+let isExpanded = false;
+function toggleSheet(expand = !isExpanded) {
+    isExpanded = expand;
+    if (isExpanded) {
+        bottomSheet.classList.remove("h-24");
+        bottomSheet.classList.add("h-[60%]");
+    } else {
+        bottomSheet.classList.remove("h-[60%]");
+        bottomSheet.classList.add("h-24");
+    }
+}
+/* Toggle on tap (extend to drag gestures if needed) */
+bottomSheet.addEventListener("click", () => toggleSheet());
+
+/* -------------------- Start camera -------------------- */
 async function startCamera() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({
@@ -51,6 +68,8 @@ async function scanLoop() {
         if (barcodes.length) {
             const { rawValue, boundingBox } = barcodes[0];
             drawBox(boundingBox);
+
+            // process product, then resume after 2 s
             await handleCode(rawValue);
             setTimeout(() => requestAnimationFrame(scanLoop), 2000);
             return;
@@ -72,26 +91,35 @@ function drawBox({ x, y, width, height }) {
 /* ---------- handle barcode ---------- */
 async function handleCode(barcode) {
     try {
+        // loading placeholder
         prodNameEl.textContent = "Loading…";
         prodBrandEl.textContent = "";
         prodTagsEl.textContent = "";
+        toggleSheet(false); // stay collapsed while loading
 
         const product = await fetchProduct(barcode);
+        const nutr = product.nutriments || {};
         const allergens =
             Array.isArray(product.allergens_tags) &&
             product.allergens_tags.length
                 ? product.allergens_tags.map((t) => t.split(":")[1])
                 : [];
 
+        /* summary */
         prodNameEl.textContent = product.product_name || "Unknown product";
         prodBrandEl.textContent = (product.brands || "Unknown").split(",")[0];
         prodTagsEl.textContent = allergens.map((a) => `#${a}`).join(" ");
 
+        /* allergen list */
         allergensListEl.innerHTML = "";
         allergens.forEach((name) => {
+            const gKey = `${name.replace(/\s+/g, "_").toLowerCase()}_100g`;
+            const grams = nutr[gKey];
             const li = document.createElement("li");
-            li.className = "py-2";
-            li.textContent = name;
+            li.className = "flex justify-between py-2";
+            li.innerHTML = `<span>${name}</span><span>${grams ?? ""}${
+                grams ? " g" : ""
+            }</span>`;
             allergensListEl.appendChild(li);
         });
         if (!allergens.length) {
@@ -100,6 +128,8 @@ async function handleCode(barcode) {
             li.textContent = "None";
             allergensListEl.appendChild(li);
         }
+
+        toggleSheet(true); // expand sheet
     } catch (err) {
         console.error(err);
         alert(`Failed to fetch product info:\n${err.message}`);

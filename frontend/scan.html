@@ -11,44 +11,61 @@
   <!-- camera viewport (unchanged) -->
   <div class="relative flex-1 overflow-hidden">
     <video id="video" autoplay playsinline class="w-full h-full object-cover"></video>
+
+    <!-- Four corner guides -->
     <div class="absolute inset-0 pointer-events-none">
       <div class="absolute top-10  left-10  border-4 border-white w-8 h-8"></div>
       <div class="absolute top-10  right-10 border-4 border-white w-8 h-8"></div>
       <div class="absolute bottom-10 left-10  border-4 border-white w-8 h-8"></div>
       <div class="absolute bottom-10 right-10 border-4 border-white w-8 h-8"></div>
+
+      <!-- Detected barcode bounding box -->
       <div id="barcode-box" class="absolute border-2 border-green-400 hidden"></div>
     </div>
   </div>
 
   <!-- bottom sheet (collapsed by default) -->
   <div id="bottom-sheet"
-       class="bg-white text-black w-full transition-all duration-300 h-24 overflow-hidden">
+       class="bg-white text-black w-full
+              transition-all duration-300
+              h-24   /* collapsed height */
+              overflow-hidden">
+    <!-- handle -->
     <div class="w-full flex justify-center py-1">
       <div class="w-12 h-1.5 bg-gray-300 rounded"></div>
     </div>
 
-    <!-- summary row -->
+    <!-- collapsed summary row -->
     <div id="summary-row" class="flex items-center px-4 space-x-4">
-      <div class="w-16 h-16 bg-gray-300 rounded"></div>
+      <div class="w-16 h-16 bg-gray-300 rounded"></div>   <!-- thumbnail -->
       <div class="flex-1">
-        <p id="prod-name"  class="font-semibold leading-tight truncate">Product name</p>
-        <p id="prod-brand" class="text-sm text-gray-500 truncate">Brand</p>
-        <p id="prod-tags"  class="text-xs text-gray-400 truncate"></p>
+        <p id="prod-name"  class="font-semibold leading-tight truncate">Chocolate milk</p>
+        <p id="prod-brand" class="text-sm text-gray-500 truncate">Brand #3</p>
+        <p id="prod-tags"  class="text-xs text-gray-400 truncate">#Peanuts  #Milk</p>
       </div>
     </div>
 
-    <!-- details list -->
+    <!-- expanded details -->
     <div id="details" class="px-4 pt-4 space-y-4">
       <h3 class="font-semibold">Allergens</h3>
       <ul id="allergens-list" class="divide-y divide-gray-200"></ul>
     </div>
   </div>
 
-  <!-- bottom navigation (unchanged) -->
+  <!-- bottom navigation -->
   <nav class="h-16 bg-white flex justify-around items-center text-black">
-    <button class="flex flex-col items-center text-gray-500"><svg class="w-6 h-6 mb-1"></svg><span class="text-xs">Home</span></button>
-    <button class="flex flex-col items-center text-blue-600"><svg class="w-6 h-6 mb-1"></svg><span class="text-xs">Scan</span></button>
-    <button class="flex flex-col items-center text-gray-500"><svg class="w-6 h-6 mb-1"></svg><span class="text-xs">Profile</span></button>
+    <button class="flex flex-col items-center text-gray-500">
+      <svg class="w-6 h-6 mb-1"></svg>
+      <span class="text-xs">Home</span>
+    </button>
+    <button class="flex flex-col items-center text-blue-600">
+      <svg class="w-6 h-6 mb-1"></svg>
+      <span class="text-xs">Scan</span>
+    </button>
+    <button class="flex flex-col items-center text-gray-500">
+      <svg class="w-6 h-6 mb-1"></svg>
+      <span class="text-xs">Profile</span>
+    </button>
   </nav>
 
   <script src="scan.js"></script>
