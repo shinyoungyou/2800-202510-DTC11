@@ -1,0 +1,26 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shinyoungyou/2800-202510-DTC11.git"
+  },
+  "author": "DTC11",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shinyoungyou/2800-202510-DTC11/issues"
+  },
+  "homepage": "https://github.com/shinyoungyou/2800-202510-DTC11#readme",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.14.1"
+  }
+}
