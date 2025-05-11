@@ -74,16 +74,16 @@ const codeReader = new ZXing.BrowserBarcodeReader();
 
 /* -------------------- Start camera -------------------- */
 async function startCamera() {
-    console.log('▶ startCamera() 호출');
+    console.log('▶ startCamera() called');
     try {
         const stream = await navigator.mediaDevices.getUserMedia({
             video: { facingMode: "environment" },
             audio: false,
         });
-        console.log('▶ camera stream 받음', stream);
+        console.log('▶ camera stream received', stream);
         video.srcObject = stream;
         await video.play();
-        console.log('▶ video.play() 완료');
+        console.log('▶ video.play() completed');
     } catch (err) {
         console.error("Could not access camera:", err);
         alert("Unable to use the camera.");
