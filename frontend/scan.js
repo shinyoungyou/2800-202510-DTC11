@@ -1,3 +1,5 @@
+console.log('▶ scan.js loaded');
+
 /* -------- Optional: allergen → icon URL map -------- */
 const allergenIcons = {
     celery: "icons/celery.png",
@@ -68,15 +70,20 @@ function toggleSheet(expand = !isExpanded) {
 /* Toggle on tap (extend to drag gestures if needed) */
 bottomSheet.addEventListener("click", () => toggleSheet());
 
+const codeReader = new ZXing.BrowserBarcodeReader();
+
 /* -------------------- Start camera -------------------- */
 async function startCamera() {
+    console.log('▶ startCamera() 호출');
     try {
         const stream = await navigator.mediaDevices.getUserMedia({
             video: { facingMode: "environment" },
             audio: false,
         });
+        console.log('▶ camera stream 받음', stream);
         video.srcObject = stream;
         await video.play();
+        console.log('▶ video.play() 완료');
     } catch (err) {
         console.error("Could not access camera:", err);
         alert("Unable to use the camera.");
@@ -84,14 +91,14 @@ async function startCamera() {
 }
 
 /* ---------- detector ---------- */
-let detector = null;
-if ("BarcodeDetector" in window) {
-    detector = new BarcodeDetector({
-        formats: ["ean_13", "ean_8", "code_128"],
-    });
-} else {
-    alert("BarcodeDetector API is not supported in this browser.");
-}
+// let detector = null;
+// if ("BarcodeDetector" in window) {
+//     detector = new BarcodeDetector({
+//         formats: ["ean_13", "ean_8", "code_128"],
+//     });
+// } else {
+//     alert("BarcodeDetector API is not supported in this browser.");
+// }
 
 /* ---------- product API ---------- */
 async function fetchProduct(barcode) {
@@ -125,26 +132,30 @@ async function saveScanToDB(scanDoc) {
 
 /* ---------- scan loop ---------- */
 async function scanLoop() {
-    if (!detector) return;
-
+    console.log('🔄 scanning…');
     try {
-        const barcodes = await detector.detect(video);
-        if (barcodes.length) {
-            const { rawValue, boundingBox } = barcodes[0];
-            drawBox(boundingBox);
-
-            // process product, then resume after 2 s
-            await handleCode(rawValue);
-            setTimeout(() => requestAnimationFrame(scanLoop), 2000);
-            return;
-        } else {
-            barcodeBox.classList.add("hidden");
-        }
+      const result = await codeReader.decodeOnceFromVideoDevice(undefined, video);
+  
+      console.log('✅ Detected:', result.getText());
+      const points = result.getResultPoints(); // [{x,y}, …]
+      const xs = points.map(p => p.x);
+      const ys = points.map(p => p.y);
+      const x = Math.min(...xs),
+            y = Math.min(...ys),
+            width = Math.max(...xs) - x,
+            height = Math.max(...ys) - y;
+  
+      drawBox({ x, y, width, height });
+  
+      await handleCode(result.getText());
+  
+      setTimeout(scanLoop, 2000);
     } catch (err) {
-        console.error(err);
+      console.log('❌ no code yet, retrying…');
+      requestAnimationFrame(scanLoop);
     }
-    requestAnimationFrame(scanLoop);
-}
+  }
+  
 
 /* ---------- bounding box ---------- */
 function drawBox({ x, y, width, height }) {
@@ -274,5 +285,5 @@ async function handleCode(barcode) {
 
 /* ---------- init ---------- */
 startCamera().then(() => {
-    if (detector) scanLoop();
+    scanLoop();
 });
