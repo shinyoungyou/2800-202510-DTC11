@@ -100,31 +100,20 @@
 
   <!-- bottom navigation -->
   <nav class="h-16 bg-white flex justify-around items-center text-black">
-    <button class="flex flex-col items-center text-gray-500">
-      <img
-        src="icons/history-outlined.png"
-        alt="home"
-        class="w-6 h-6 mb-1 object-contain"
-       />
+    <a href="home_page.html" class="flex flex-col items-center text-gray-500">
+      <img src="icons/history-outlined.png" alt="home" class="w-6 h-6 mb-1 object-contain" />
       <span class="text-xs">Home</span>
-    </button>
-    <button class="flex flex-col items-center text-blue-600">
-      <img
-        src="icons/scan-outlined.png"
-        alt="scan"
-        class="w-6 h-6 mb-1 object-contain"
-       />
+    </a>
+    <button class="flex flex-col items-center text-blue-600 scan-nav">
+      <img src="icons/scan-outlined.png" alt="scan" class="w-6 h-6 mb-1 object-contain" />
       <span class="text-xs">Scan</span>
     </button>
     <button class="flex flex-col items-center text-gray-500">
-      <img
-        src="icons/profile-outlined.png"
-        alt="profile"
-        class="w-6 h-6 mb-1 object-contain"
-       />
+      <img src="icons/profile-outlined.png" alt="profile" class="w-6 h-6 mb-1 object-contain" />
       <span class="text-xs">Profile</span>
     </button>
   </nav>
+
   <script src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
   <script src="scan.js"></script>
 </body>
