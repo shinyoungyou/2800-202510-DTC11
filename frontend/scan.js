@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
     const scanButton = document.querySelector(".scan-nav");
     if (scanButton) {
@@ -71,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-
 
 /* Bottom-sheet state ---------------------------------------------------- */
 let isExpanded = false;
@@ -120,13 +118,9 @@ async function startCamera() {
 
 /* ---------- product API ---------- */
 async function fetchProduct(barcode) {
-    const res = await fetch(
-        `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`
-    );
+    const res = await fetch(`http://localhost:3000/product/${barcode}`);
     if (!res.ok) throw new Error(res.statusText);
-    const json = await res.json();
-    if (json.status !== 1) throw new Error("Product not found.");
-    return json.product;
+    return await res.json();
 }
 
 /* ---------- save scan to backend ---------- */
@@ -151,10 +145,13 @@ async function saveScanToDB(scanDoc) {
 }
 
 function saveScanToLocal(scanDoc) {
-    let savedProducts = JSON.parse(localStorage.getItem("scannedProducts")) || [];
+    let savedProducts =
+        JSON.parse(localStorage.getItem("scannedProducts")) || [];
 
     // Prevent duplicate products by barcode
-    const existingProduct = savedProducts.find(product => product.barcode === scanDoc.barcode);
+    const existingProduct = savedProducts.find(
+        (product) => product.barcode === scanDoc.barcode
+    );
     if (existingProduct) {
         console.log("Product already scanned. Skipping duplicate.");
         return;
@@ -164,13 +161,13 @@ function saveScanToLocal(scanDoc) {
     localStorage.setItem("scannedProducts", JSON.stringify(savedProducts));
 }
 
-
 function loadScannedProducts() {
     const historyList = document.getElementById("history-list");
     if (!historyList) return;
 
     historyList.innerHTML = "";
-    const savedProducts = JSON.parse(localStorage.getItem("scannedProducts")) || [];
+    const savedProducts =
+        JSON.parse(localStorage.getItem("scannedProducts")) || [];
 
     if (savedProducts.length === 0) {
         historyList.innerHTML = `<p class="text-gray-500">No scanned products yet.</p>`;
@@ -181,19 +178,23 @@ function loadScannedProducts() {
         const item = document.createElement("div");
         item.className = "flex items-center space-x-4";
         item.innerHTML = `
-            <img src="${product.thumbUrl || 'icons/allergen-placeholder.svg'}" 
+            <img src="${product.thumbUrl || "icons/allergen-placeholder.svg"}" 
                  class="w-16 h-16 rounded object-cover bg-gray-300 flex-shrink-0" />
             <div class="flex-1">
-                <p class="font-semibold leading-tight truncate">${product.productName || "Unknown Product"}</p>
-                <p class="text-sm text-gray-500 truncate">${product.brand || "Unknown Brand"}</p>
-                <p class="text-xs text-gray-400 truncate">${product.allergens.map(a => `#${a}`).join(" ")}</p>
+                <p class="font-semibold leading-tight truncate">${
+                    product.productName || "Unknown Product"
+                }</p>
+                <p class="text-sm text-gray-500 truncate">${
+                    product.brand || "Unknown Brand"
+                }</p>
+                <p class="text-xs text-gray-400 truncate">${product.allergens
+                    .map((a) => `#${a}`)
+                    .join(" ")}</p>
             </div>
         `;
         historyList.appendChild(item);
     });
 }
-
-
 
 function clearHistory() {
     if (confirm("Are you sure you want to clear history?")) {
@@ -202,33 +203,34 @@ function clearHistory() {
     }
 }
 
-
 /* ---------- scan loop ---------- */
 async function scanLoop() {
-    console.log('🔄 scanning…');
+    console.log("🔄 scanning…");
     try {
-      const result = await codeReader.decodeOnceFromVideoDevice(undefined, video);
-  
-      console.log('✅ Detected:', result.getText());
-      const points = result.getResultPoints(); // [{x,y}, …]
-      const xs = points.map(p => p.x);
-      const ys = points.map(p => p.y);
-      const x = Math.min(...xs),
+        const result = await codeReader.decodeOnceFromVideoDevice(
+            undefined,
+            video
+        );
+
+        console.log("✅ Detected:", result.getText());
+        const points = result.getResultPoints(); // [{x,y}, …]
+        const xs = points.map((p) => p.x);
+        const ys = points.map((p) => p.y);
+        const x = Math.min(...xs),
             y = Math.min(...ys),
             width = Math.max(...xs) - x,
             height = Math.max(...ys) - y;
-  
-      drawBox({ x, y, width, height });
-  
-      await handleCode(result.getText());
-  
-      setTimeout(scanLoop, 2000);
+
+        drawBox({ x, y, width, height });
+
+        await handleCode(result.getText());
+
+        setTimeout(scanLoop, 2000);
     } catch (err) {
-      console.log('❌ no code yet, retrying…');
-      requestAnimationFrame(scanLoop);
+        console.log("❌ no code yet, retrying…");
+        requestAnimationFrame(scanLoop);
     }
-  }
-  
+}
 
 /* ---------- bounding box ---------- */
 function drawBox({ x, y, width, height }) {
@@ -246,25 +248,18 @@ async function handleCode(barcode) {
         toggleSheet(false); // stay collapsed while loading
 
         const product = await fetchProduct(barcode);
+        console.log(product);
+        
+        const nutr = product.nutriments || {};
         // choose the smallest available photo, fall back to any front image,
         // or keep the placeholder if nothing exists.
-        const thumbURL =
-            product?.image_thumb_url ||
-            product?.image_front_thumb_url ||
-            product?.image_front_small_url ||
-            product?.image_front_url;
-        if (thumbURL) prodThumbEl.src = thumbURL;
+        prodThumbEl.src = product.thumbUrl;
 
-        const nutr = product.nutriments || {};
-        const allergens =
-            Array.isArray(product.allergens_tags) &&
-            product.allergens_tags.length
-                ? product.allergens_tags.map((t) => t.split(":")[1])
-                : [];
+        const allergens = product.allergens; // [{name,source}]
 
         /* --- Build lookup { allergen → % estimate or null } --- */
         const percentByAllergen = Object.fromEntries(
-            allergens.map((a) => [a, null])
+            allergens.map(({ name }) => [name, null])  // name 필드만 키로
         );
 
         if (Array.isArray(product.ingredients)) {
@@ -272,18 +267,14 @@ async function handleCode(barcode) {
                 const id = norm(ing.id || "");
                 const text = norm(ing.text || "");
 
-                allergens.forEach((a) => {
-                    const words = allergenMap[a] || [a];
+                allergens.forEach(({ name }) => {
+                    const words = allergenMap[name] || [name];
                     const hit = words.some(
                         (w) => id.includes(w) || text.includes(w)
                     );
-                    if (
-                        hit &&
-                        ing.percent_estimate &&
-                        ing.percent_estimate > 0
-                    ) {
-                        percentByAllergen[a] = Math.max(
-                            percentByAllergen[a] ?? 0,
+                    if (hit && ing.percent_estimate && ing.percent_estimate > 0) {
+                        percentByAllergen[name] = Math.max(
+                            percentByAllergen[name] ?? 0,
                             ing.percent_estimate
                         );
                     }
@@ -292,13 +283,15 @@ async function handleCode(barcode) {
         }
 
         /* summary */
-        prodNameEl.textContent = product.product_name || "Unknown product";
-        prodBrandEl.textContent = (product.brands || "Unknown").split(",")[0];
-        prodTagsEl.textContent = allergens.map((a) => `#${a}`).join(" ");
+        prodNameEl.textContent = product.productName || "Unknown product";
+        prodBrandEl.textContent = product.brand || "Unknown";
+        prodTagsEl.textContent = allergens
+            .map(({ name }) => `#${name}`)
+            .join(" ");
 
         /* allergen list */
         allergensListEl.innerHTML = "";
-        allergens.forEach((name) => {
+        allergens.forEach(({ name, source }) => {
             const gKey = `${name.replace(/\s+/g, "_").toLowerCase()}_100g`;
             const grams = nutr[gKey]; // e.g. “16 g per 100 g”
             const pct = percentByAllergen[name]; // e.g. “3 % of recipe”
@@ -322,7 +315,13 @@ async function handleCode(barcode) {
                   <img src="${iconSrc}"
                        alt="${name} icon"
                        class="w-6 h-6 flex-shrink-0"/>
-                  <span>${name}</span>
+                          <span class="${
+                              source === "ai"
+                                  ? "text-yellow-600 font-medium"
+                                  : ""
+                          }">
+                          ${name}${source === "ai" ? "*" : ""}
+                        </span>
                 </div>
                 <!-- Right: percent, never shrinks or wraps -->
                 <div class="flex-shrink-0">
@@ -341,11 +340,11 @@ async function handleCode(barcode) {
 
         const scanDoc = {
             barcode,
-            productName: product.product_name || "",
-            brand: (product.brands || "").split(",")[0],
-            allergens,
+            productName: product.productName || "",
+            brand: product.brand || "",
+            allergens: allergens.map(({ name }) => name),
             allergenPercents: percentByAllergen,
-            thumbUrl: thumbURL || "",
+            thumbUrl: product.thumbUrl,
         };
         saveScanToDB(scanDoc);
 
