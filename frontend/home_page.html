@@ -1,35 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="p-10">
-    <i class="fas fa-trash-alt absolute right-10 text-xl"></i>
-    <h1 class="font-bold text-3xl mt-10">History</h1>
-
-    <div id = "history-list" class="mt-5 space-y-4"></div>
-
-    <nav class="fixed bottom-10 left-0 right-0 h-16 bg-white flex justify-around items-center text-black">
-        <a href="homepage.html" class="flex flex-col items-center text-gray-500">
-            <img src="icons/history-outlined.png" alt="home" class="w-6 h-6 mb-1 object-contain" />
-            <span class="text-xs">Home</span>
-        </a>
-        <a href="scan.html" class="flex flex-col items-center text-gray-500">
-            <img src="icons/scan-outlined.png" alt="scan" class="w-6 h-6 mb-1 object-contain" />
-            <span class="text-xs">Scan</span>
-        </a>
-        <button class="flex flex-col items-center text-gray-500">
-            <img src="icons/profile-outlined.png" alt="profile" class="w-6 h-6 mb-1 object-contain" />
-            <span class="text-xs">Profile</span>
-        </button>
-    </nav>
-    
-
-    <script src="scan.js"></script>
+<body class="p-10 pb-4 h-screen flex flex-col">
+  <i id="clear-btn" class="fas fa-trash-alt absolute right-10 text-xl"></i>
+  <h1 class="font-bold text-3xl mt-10">History</h1>
+  <div id="history-list" class="mt-5 flex-1 overflow-auto space-y-4"></div>
+  <div id="navbar-container"></div>
+  <script src="history.js"></script>
+  <script src="navbar.js"></script>
 </body>
 </html>
