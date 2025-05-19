@@ -55,13 +55,6 @@ const prodTagsEl = document.getElementById("prod-tags");
 const prodThumbEl = document.getElementById("prod-thumb");
 const allergensListEl = document.getElementById("allergens-list");
 
-// Event Listeners
-document.addEventListener("DOMContentLoaded", () => {
-    if (document.getElementById("history-list")) {
-        loadScannedProducts();
-    }
-});
-
 document.addEventListener("DOMContentLoaded", () => {
     const scanButton = document.querySelector(".scan-nav");
     if (scanButton) {
@@ -161,47 +154,6 @@ function saveScanToLocal(scanDoc) {
     localStorage.setItem("scannedProducts", JSON.stringify(savedProducts));
 }
 
-function loadScannedProducts() {
-    const historyList = document.getElementById("history-list");
-    if (!historyList) return;
-
-    historyList.innerHTML = "";
-    const savedProducts =
-        JSON.parse(localStorage.getItem("scannedProducts")) || [];
-
-    if (savedProducts.length === 0) {
-        historyList.innerHTML = `<p class="text-gray-500">No scanned products yet.</p>`;
-        return;
-    }
-
-    savedProducts.reverse().forEach((product) => {
-        const item = document.createElement("div");
-        item.className = "flex items-center space-x-4";
-        item.innerHTML = `
-            <img src="${product.thumbUrl || "icons/allergen-placeholder.svg"}" 
-                 class="w-16 h-16 rounded object-cover bg-gray-300 flex-shrink-0" />
-            <div class="flex-1">
-                <p class="font-semibold leading-tight truncate">${
-                    product.productName || "Unknown Product"
-                }</p>
-                <p class="text-sm text-gray-500 truncate">${
-                    product.brand || "Unknown Brand"
-                }</p>
-                <p class="text-xs text-gray-400 truncate">${product.allergens
-                    .map((a) => `#${a}`)
-                    .join(" ")}</p>
-            </div>
-        `;
-        historyList.appendChild(item);
-    });
-}
-
-function clearHistory() {
-    if (confirm("Are you sure you want to clear history?")) {
-        localStorage.removeItem("scannedProducts");
-        loadScannedProducts(); // Reload to clear the list
-    }
-}
 
 /* ---------- scan loop ---------- */
 async function scanLoop() {
