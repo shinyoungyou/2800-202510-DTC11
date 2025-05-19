@@ -33,9 +33,6 @@ async function loadScannedProducts() {
         historyList.innerHTML = `<p class="text-gray-500">No scanned products yet.</p>`;
         return;
     }
-    const path = window.location.pathname.split("/").pop();
-    const isIndex = path === "" || path === "index.html";
-    const isScan = path === "scan.html";
     savedProducts
         .slice()
         .reverse()
@@ -46,7 +43,22 @@ async function loadScannedProducts() {
                 ? `<p class="text-xs text-gray-500 truncate">${aiSummary}</p>`
                 : "";
             const item = document.createElement("div");
-            item.className = "flex items-center justify-between py-4";
+            item.className =
+                "flex items-center justify-between py-4 cursor-pointer";
+            item.dataset.id = product._id;
+            item.addEventListener("click", () => {
+                if (selectionMode) {
+                    if (selectedSet.has(product._id)) {
+                        selectedSet.delete(product._id);
+                        item.classList.remove("bg-gray-200");
+                    } else {
+                        selectedSet.add(product._id);
+                        item.classList.add("bg-gray-200");
+                    }
+                } else {
+                    window.location.href = `detail.html?id=${product._id}`;
+                }
+            });
             const leftContent = document.createElement("div");
             leftContent.className = "flex items-center space-x-4 flex-1";
             if (selectionMode) {
@@ -71,9 +83,9 @@ async function loadScannedProducts() {
       <p class="font-semibold leading-tight truncate">${
           product.productName || "Unknown Product"
       }</p>
-      <p class="text-sm ${
-          isIndex ? "text-blue-600" : "text-gray-500"
-      } truncate">${product.brand || "Unknown Brand"}</p>
+      <p class="text-sm text-gray-500 truncate">${
+          product.brand || "Unknown Brand"
+      }</p>
       <p class="text-xs text-gray-400 truncate">${product.allergens
           .map((a) => `#${a}`)
           .join(" ")}</p>
@@ -83,7 +95,7 @@ async function loadScannedProducts() {
             item.appendChild(leftContent);
             const arrow = document.createElement("span");
             arrow.className = "text-gray-400 ml-4 flex-shrink-0";
-            arrow.textContent = "›";
+            arrow.textContent = ">";
             item.appendChild(arrow);
             historyList.appendChild(item);
         });
