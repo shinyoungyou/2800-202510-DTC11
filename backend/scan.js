@@ -30,6 +30,15 @@ router.get("/", async (_req, res) => {
         res.status(500).json({ error: "Failed to fetch scans" });
     }
 });
+router.get("/:id", async (req, res) => {
+    try {
+        const scan = await Scan.findById(req.params.id);
+        if (!scan) return res.status(404).json({ error: "Not found" });
+        res.json(scan);
+    } catch (err) {
+        res.status(500).json({ error: "Failed to fetch scan" });
+    }
+});
 router.delete("/:id", async (req, res) => {
     try {
         await Scan.findByIdAndDelete(req.params.id);
