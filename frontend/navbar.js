@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const path = window.location.pathname.split("/").pop();
-    const isHome = path === "" || path === "index.html";
+    const isHome = path === "" || path === "index.html" || path === "detail.html";
     const isScan = path === "scan.html";
     const isProfile = path === "profile.html";
     const c = document.getElementById("navbar-container");
