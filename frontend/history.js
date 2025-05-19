@@ -79,7 +79,7 @@ async function loadScannedProducts() {
             leftContent.appendChild(info);
             item.appendChild(leftContent);
             const arrow = document.createElement("span");
-            arrow.className = "text-gray-400 ml-4";
+            arrow.className = "text-gray-400 ml-4 flex-shrink-0";
             arrow.textContent = "›";
             item.appendChild(arrow);
             historyList.appendChild(item);
