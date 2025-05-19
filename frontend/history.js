@@ -33,6 +33,9 @@ async function loadScannedProducts() {
         historyList.innerHTML = `<p class="text-gray-500">No scanned products yet.</p>`;
         return;
     }
+    const path = window.location.pathname.split("/").pop();
+    const isIndex = path === "" || path === "index.html";
+    const isScan = path === "scan.html";
     savedProducts
         .slice()
         .reverse()
@@ -68,9 +71,9 @@ async function loadScannedProducts() {
       <p class="font-semibold leading-tight truncate">${
           product.productName || "Unknown Product"
       }</p>
-      <p class="text-sm text-gray-500 truncate">${
-          product.brand || "Unknown Brand"
-      }</p>
+      <p class="text-sm ${
+          isIndex ? "text-blue-600" : "text-gray-500"
+      } truncate">${product.brand || "Unknown Brand"}</p>
       <p class="text-xs text-gray-400 truncate">${product.allergens
           .map((a) => `#${a}`)
           .join(" ")}</p>
