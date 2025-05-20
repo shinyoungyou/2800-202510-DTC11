@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+document.getElementById("trash-icon").addEventListener("click", toggleCheckboxes);
+
 function saveScanToLocal(scanDoc) {
     let savedProducts = JSON.parse(localStorage.getItem("scannedProducts")) || [];
 
