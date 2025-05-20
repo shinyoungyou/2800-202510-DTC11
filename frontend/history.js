@@ -2,6 +2,8 @@ console.log('▶ history.js loaded');
 
 /* ---------- DOM elements ---------- */
 const historyList = document.getElementById("history-list");
+const trashIcon = document.getElementById("trash-icon");
+let checkboxesVisible = false;
 
 // Load scanned products (for history page)
 document.addEventListener("DOMContentLoaded", () => {
@@ -10,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-document.getElementById("trash-icon").addEventListener("click", toggleCheckboxes);
+trashIcon.addEventListener("click", toggleCheckboxes);
 
 function saveScanToLocal(scanDoc) {
     let savedProducts = JSON.parse(localStorage.getItem("scannedProducts")) || [];
@@ -42,9 +44,14 @@ function loadScannedProducts() {
     savedProducts.reverse().forEach((product) => {
         const item = document.createElement("div");
         item.className = "flex items-center space-x-4";
+        item.setAttribute("data-barcode", product.barcode);
+
         item.innerHTML = `
-            <img src="${product.thumbUrl || 'icons/allergen-placeholder.svg'}" 
-                 class="w-16 h-16 rounded object-cover bg-gray-300 flex-shrink-0" />
+            <div class="flex items-center">
+                <input type="checkbox" class="delete-checkbox hidden mr-3 w-4 h-4" />
+                <img src="${product.thumbUrl || 'icons/allergen-placeholder.svg'}" 
+                    class="w-16 h-16 rounded object-cover bg-gray-300 flex-shrink-0" />
+            </div>
             <div class="flex-1">
                 <p class="font-semibold leading-tight truncate">${product.productName || "Unknown Product"}</p>
                 <p class="text-sm text-gray-500 truncate">${product.brand || "Unknown Brand"}</p>
@@ -55,12 +62,53 @@ function loadScannedProducts() {
     });
 }
 
+function toggleCheckboxes() {
+    const checkboxes = document.querySelectorAll(".delete-checkbox");
+    checkboxesVisible = !checkboxesVisible;
 
+    checkboxes.forEach(checkbox => {
+        checkbox.classList.toggle("hidden", !checkboxesVisible)
+    })
 
-// Clear history
-function clearHistory() {
-    if (confirm("Are you sure you want to clear history?")) {
-        localStorage.removeItem("scannedProducts");
-        loadScannedProducts(); // Reload to clear the list
+    if (checkboxesVisible) {
+        // Create a red delete button with white text
+        trashIcon.innerHTML = `
+            <button id="delete-button" 
+                    class="bg-red-500 text-white px-2 py-1 rounded-md text-sm hover:bg-red-600 transition">
+                Delete
+            </button>
+        `;
+
+        // Attach click event to the delete button
+        document.getElementById("delete-button").onclick = deleteSelectedItems;
+    } else {
+        trashIcon.innerHTML = '';
+        trashIcon.appendChild(createTrashIcon());
     }
+}
+
+// Delete selected items
+function deleteSelectedItems() {
+    const checkboxes = document.querySelectorAll(".delete-checkbox");
+    let savedProducts = JSON.parse(localStorage.getItem("scannedProducts")) || [];
+
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            const productElement = checkbox.closest("div[data-barcode]");
+            const barcode = productElement.getAttribute("data-barcode")
+            
+            // Remove product from localStorage
+            savedProducts = savedProducts.filter(product => product.barcode !== barcode);
+            
+            // Remove product from DOM
+            productElement.remove();
+        }
+    })
+
+    // Update localStorage
+    localStorage.setItem("scannedProducts", JSON.stringify(savedProducts));
+
+    // Reset the icon back to trash
+    toggleCheckboxes();
+
 }
