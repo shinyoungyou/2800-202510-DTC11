@@ -1,0 +1,3114 @@
+[
+  {
+    "name": "Almond",
+    "subcategory": "Tree Nut",
+    "common_sources": "Almond and products containing almond",
+    "typical_severity": "Severe",
+    "notes": "Tree Nut food allergen",
+    "contained_in": [
+      "almond",
+      "almond butter",
+      "almond flour",
+      "almond meal",
+      "almond milk",
+      "almond oil",
+      "almond paste",
+      "almonds",
+      "frangipane",
+      "marzipan",
+      "orgeat",
+      "persipan",
+      "praline"
+    ]
+  },
+  {
+    "name": "Brazil nut",
+    "subcategory": "Tree Nut",
+    "common_sources": "Brazil nut and products containing brazil nut",
+    "typical_severity": "Severe",
+    "notes": "Tree Nut food allergen",
+    "contained_in": [
+      "brazil nut",
+      "brazil nuts",
+      "cream nut",
+      "para nut",
+      "para nuts"
+    ]
+  },
+  {
+    "name": "Cashew",
+    "subcategory": "Tree Nut",
+    "common_sources": "Cashew and products containing cashew",
+    "typical_severity": "Severe",
+    "notes": "Tree Nut food allergen",
+    "contained_in": [
+      "anacardium",
+      "cashew",
+      "cashew butter",
+      "cashew flour",
+      "cashew milk",
+      "cashews",
+      "kaju",
+      "kashu"
+    ]
+  },
+  {
+    "name": "Chestnut",
+    "subcategory": "Tree Nut",
+    "common_sources": "Chestnut and products containing chestnut",
+    "typical_severity": "Severe",
+    "notes": "Tree Nut food allergen",
+    "contained_in": [
+      "chestnut",
+      "chestnut flour",
+      "chestnut puree",
+      "chestnuts",
+      "marron",
+      "mont blanc"
+    ]
+  },
+  {
+    "name": "Hazelnut",
+    "subcategory": "Tree Nut",
+    "common_sources": "Hazelnut and products containing hazelnut",
+    "typical_severity": "Severe",
+    "notes": "Tree Nut food allergen",
+    "contained_in": [
+      "cobnut",
+      "filbert",
+      "filberts",
+      "frangelico liqueur",
+      "gianduja",
+      "hazelnut",
+      "hazelnut butter",
+      "hazelnut flour",
+      "hazelnut meal",
+      "hazelnuts",
+      "nocciola",
+      "nutella"
+    ]
+  },
+  {
+    "name": "Macadamia",
+    "subcategory": "Tree Nut",
+    "common_sources": "Macadamia and products containing macadamia",
+    "typical_severity": "Severe",
+    "notes": "Tree Nut food allergen",
+    "contained_in": [
+      "bauple nut",
+      "macadamia",
+      "macadamia nuts",
+      "macadamia oil",
+      "macadamias",
+      "maroochi nut",
+      "queensland nut"
+    ]
+  },
+  {
+    "name": "Pecan",
+    "subcategory": "Tree Nut",
+    "common_sources": "Pecan and products containing pecan",
+    "typical_severity": "Severe",
+    "notes": "Tree Nut food allergen",
+    "contained_in": [
+      "pecan",
+      "pecan butter",
+      "pecan meal",
+      "pecan pie",
+      "pecans",
+      "praline pecans"
+    ]
+  },
+  {
+    "name": "Pine nut",
+    "subcategory": "Tree Nut",
+    "common_sources": "Pine nut and products containing pine nut",
+    "typical_severity": "Severe",
+    "notes": "Tree Nut food allergen",
+    "contained_in": [
+      "cedar nut",
+      "pignoli",
+      "pignolia",
+      "pine nut",
+      "pine nut pesto",
+      "pine nuts",
+      "pinoli"
+    ]
+  },
+  {
+    "name": "Pistachio",
+    "subcategory": "Tree Nut",
+    "common_sources": "Pistachio and products containing pistachio",
+    "typical_severity": "Severe",
+    "notes": "Tree Nut food allergen",
+    "contained_in": [
+      "pistachio",
+      "pistachio butter",
+      "pistachio gelato",
+      "pistachio nuts",
+      "pistachio paste",
+      "pistachios"
+    ]
+  },
+  {
+    "name": "Walnut",
+    "subcategory": "Tree Nut",
+    "common_sources": "Walnut and products containing walnut",
+    "typical_severity": "Severe",
+    "notes": "Tree Nut food allergen",
+    "contained_in": [
+      "black walnut",
+      "english walnut",
+      "walnut",
+      "walnut butter",
+      "walnut meal",
+      "walnut oil",
+      "walnuts"
+    ]
+  },
+  {
+    "name": "Beech nut",
+    "subcategory": "Tree Nut",
+    "common_sources": "Beech nut and products containing beech nut",
+    "typical_severity": "Severe",
+    "notes": "Tree Nut food allergen",
+    "contained_in": [
+      "beech nut",
+      "beech nuts"
+    ]
+  },
+  {
+    "name": "Butternut",
+    "subcategory": "Tree Nut",
+    "common_sources": "Butternut and products containing butternut",
+    "typical_severity": "Severe",
+    "notes": "Tree Nut food allergen",
+    "contained_in": [
+      "butternut",
+      "oil nut",
+      "white walnut"
+    ]
+  },
+  {
+    "name": "Ginkgo nut",
+    "subcategory": "Tree Nut",
+    "common_sources": "Ginkgo nut and products containing ginkgo nut",
+    "typical_severity": "Severe",
+    "notes": "Tree Nut food allergen",
+    "contained_in": [
+      "ginkgo nut",
+      "ginkgo nuts",
+      "maidenhair tree seed"
+    ]
+  },
+  {
+    "name": "Kola nut",
+    "subcategory": "Tree Nut",
+    "common_sources": "Kola nut and products containing kola nut",
+    "typical_severity": "Severe",
+    "notes": "Tree Nut food allergen",
+    "contained_in": [
+      "bissy nut",
+      "cola nut",
+      "guru nut",
+      "kola nut"
+    ]
+  },
+  {
+    "name": "Peanut",
+    "subcategory": "Peanut",
+    "common_sources": "Peanut and products containing peanut",
+    "typical_severity": "Severe",
+    "notes": "Peanut food allergen",
+    "contained_in": [
+      "arachis oil",
+      "goober",
+      "goober pea",
+      "ground nuts",
+      "groundnut",
+      "monkey nut",
+      "peanut",
+      "peanut butter",
+      "peanut flour",
+      "peanut protein",
+      "peanuts",
+      "satay"
+    ]
+  },
+  {
+    "name": "Soybean",
+    "subcategory": "Legume",
+    "common_sources": "Soybean and products containing soybean",
+    "typical_severity": "Moderate",
+    "notes": "Legume food allergen",
+    "contained_in": [
+      "edamame",
+      "hvp (soy)",
+      "hydrolyzed soy protein",
+      "miso",
+      "natto",
+      "shoyu",
+      "soy",
+      "soy flour",
+      "soy lecithin",
+      "soy protein isolate",
+      "soy sauce",
+      "soya",
+      "soybean oil",
+      "soybeans",
+      "tamari",
+      "tempeh",
+      "textured vegetable protein",
+      "tofu",
+      "tvp",
+      "yuba"
+    ]
+  },
+  {
+    "name": "Chickpea",
+    "subcategory": "Legume",
+    "common_sources": "Chickpea and products containing chickpea",
+    "typical_severity": "Moderate",
+    "notes": "Legume food allergen",
+    "contained_in": [
+      "besan",
+      "chana",
+      "chana dal",
+      "chickpea",
+      "chickpeas",
+      "garbanzo",
+      "garbanzo bean",
+      "gram flour",
+      "hummus"
+    ]
+  },
+  {
+    "name": "Lentil",
+    "subcategory": "Legume",
+    "common_sources": "Lentil and products containing lentil",
+    "typical_severity": "Moderate",
+    "notes": "Legume food allergen",
+    "contained_in": [
+      "dal",
+      "dhal",
+      "green lentils",
+      "lentil",
+      "lentil flour",
+      "lentils",
+      "masoor",
+      "red lentils"
+    ]
+  },
+  {
+    "name": "Pea",
+    "subcategory": "Legume",
+    "common_sources": "Pea and products containing pea",
+    "typical_severity": "Moderate",
+    "notes": "Legume food allergen",
+    "contained_in": [
+      "pea",
+      "pea fiber",
+      "pea flour",
+      "pea protein",
+      "pea protein isolate",
+      "peas",
+      "pisum sativum",
+      "split pea",
+      "split peas"
+    ]
+  },
+  {
+    "name": "Black bean",
+    "subcategory": "Legume",
+    "common_sources": "Black bean and products containing black bean",
+    "typical_severity": "Moderate",
+    "notes": "Legume food allergen",
+    "contained_in": [
+      "black bean",
+      "black bean paste",
+      "black beans",
+      "turtle beans"
+    ]
+  },
+  {
+    "name": "Kidney bean",
+    "subcategory": "Legume",
+    "common_sources": "Kidney bean and products containing kidney bean",
+    "typical_severity": "Moderate",
+    "notes": "Legume food allergen",
+    "contained_in": [
+      "kidney bean",
+      "kidney beans",
+      "rajma",
+      "red kidney beans"
+    ]
+  },
+  {
+    "name": "Navy bean",
+    "subcategory": "Legume",
+    "common_sources": "Navy bean and products containing navy bean",
+    "typical_severity": "Moderate",
+    "notes": "Legume food allergen",
+    "contained_in": [
+      "boston bean",
+      "haricot bean",
+      "haricot beans",
+      "navy bean",
+      "navy beans"
+    ]
+  },
+  {
+    "name": "Pinto bean",
+    "subcategory": "Legume",
+    "common_sources": "Pinto bean and products containing pinto bean",
+    "typical_severity": "Moderate",
+    "notes": "Legume food allergen",
+    "contained_in": [
+      "pinto bean",
+      "pinto beans",
+      "pinto refried beans"
+    ]
+  },
+  {
+    "name": "Broad bean (Fava)",
+    "subcategory": "Legume",
+    "common_sources": "Broad bean (Fava) and products containing broad bean (fava)",
+    "typical_severity": "Moderate",
+    "notes": "Legume food allergen",
+    "contained_in": [
+      "baghla",
+      "broad bean",
+      "broad beans",
+      "fava bean",
+      "fava beans",
+      "fava flour",
+      "ful medames",
+      "fuul",
+      "habas"
+    ]
+  },
+  {
+    "name": "Lupin",
+    "subcategory": "Legume",
+    "common_sources": "Lupin and products containing lupin",
+    "typical_severity": "Moderate",
+    "notes": "Legume food allergen",
+    "contained_in": [
+      "lupin",
+      "lupin bean",
+      "lupin flour",
+      "lupine",
+      "lupini"
+    ]
+  },
+  {
+    "name": "Mung bean",
+    "subcategory": "Legume",
+    "common_sources": "Mung bean and products containing mung bean",
+    "typical_severity": "Moderate",
+    "notes": "Legume food allergen",
+    "contained_in": [
+      "bean sprouts",
+      "green gram",
+      "moong dal",
+      "mung bean",
+      "mung beans"
+    ]
+  },
+  {
+    "name": "Fenugreek",
+    "subcategory": "Legume",
+    "common_sources": "Fenugreek and products containing fenugreek",
+    "typical_severity": "Moderate",
+    "notes": "Legume food allergen",
+    "contained_in": [
+      "fenugreek",
+      "fenugreek flour",
+      "methi",
+      "methi seeds"
+    ]
+  },
+  {
+    "name": "Sesame",
+    "subcategory": "Seed",
+    "common_sources": "Sesame and products containing sesame",
+    "typical_severity": "Severe",
+    "notes": "Seed food allergen",
+    "contained_in": [
+      "benne",
+      "benniseed",
+      "gingelly",
+      "halvah",
+      "sesame",
+      "sesame flour",
+      "sesame oil",
+      "sesame seed",
+      "sesame seeds",
+      "sesamol",
+      "tahini"
+    ]
+  },
+  {
+    "name": "Sunflower seed",
+    "subcategory": "Seed",
+    "common_sources": "Sunflower seed and products containing sunflower seed",
+    "typical_severity": "Severe",
+    "notes": "Seed food allergen",
+    "contained_in": [
+      "sunflower",
+      "sunflower butter",
+      "sunflower lecithin",
+      "sunflower oil",
+      "sunflower seed",
+      "sunflower seeds"
+    ]
+  },
+  {
+    "name": "Pumpkin seed",
+    "subcategory": "Seed",
+    "common_sources": "Pumpkin seed and products containing pumpkin seed",
+    "typical_severity": "Severe",
+    "notes": "Seed food allergen",
+    "contained_in": [
+      "pepita",
+      "pepitas",
+      "pumpkin seed",
+      "pumpkin seed butter",
+      "pumpkin seed oil",
+      "pumpkin seeds"
+    ]
+  },
+  {
+    "name": "Poppy seed",
+    "subcategory": "Seed",
+    "common_sources": "Poppy seed and products containing poppy seed",
+    "typical_severity": "Severe",
+    "notes": "Seed food allergen",
+    "contained_in": [
+      "poppy seed",
+      "poppy seeds",
+      "poppyseed",
+      "poppyseed filling"
+    ]
+  },
+  {
+    "name": "Mustard seed",
+    "subcategory": "Seed",
+    "common_sources": "Mustard seed and products containing mustard seed",
+    "typical_severity": "Severe",
+    "notes": "Seed food allergen",
+    "contained_in": [
+      "dijon",
+      "mustard",
+      "mustard flour",
+      "mustard greens",
+      "mustard oil",
+      "mustard powder",
+      "mustard seed",
+      "mustard seeds",
+      "prepared mustard",
+      "wholegrain mustard",
+      "yellow mustard"
+    ]
+  },
+  {
+    "name": "Flax seed",
+    "subcategory": "Seed",
+    "common_sources": "Flax seed and products containing flax seed",
+    "typical_severity": "Severe",
+    "notes": "Seed food allergen",
+    "contained_in": [
+      "flax",
+      "flax meal",
+      "flax seed",
+      "flaxseed",
+      "linseed",
+      "linseed oil"
+    ]
+  },
+  {
+    "name": "Chia seed",
+    "subcategory": "Seed",
+    "common_sources": "Chia seed and products containing chia seed",
+    "typical_severity": "Severe",
+    "notes": "Seed food allergen",
+    "contained_in": [
+      "chia",
+      "chia flour",
+      "chia seed",
+      "chia seeds",
+      "salvia hispanica"
+    ]
+  },
+  {
+    "name": "Hemp seed",
+    "subcategory": "Seed",
+    "common_sources": "Hemp seed and products containing hemp seed",
+    "typical_severity": "Severe",
+    "notes": "Seed food allergen",
+    "contained_in": [
+      "hemp",
+      "hemp hearts",
+      "hemp protein",
+      "hemp seed",
+      "hemp seeds"
+    ]
+  },
+  {
+    "name": "Caraway seed",
+    "subcategory": "Seed",
+    "common_sources": "Caraway seed and products containing caraway seed",
+    "typical_severity": "Severe",
+    "notes": "Seed food allergen",
+    "contained_in": [
+      "caraway",
+      "caraway seed",
+      "caraway seeds"
+    ]
+  },
+  {
+    "name": "Coriander seed",
+    "subcategory": "Seed",
+    "common_sources": "Coriander seed and products containing coriander seed",
+    "typical_severity": "Severe",
+    "notes": "Seed food allergen",
+    "contained_in": [
+      "cilantro seeds",
+      "coriander",
+      "coriander seed",
+      "coriander seeds"
+    ]
+  },
+  {
+    "name": "Cumin seed",
+    "subcategory": "Seed",
+    "common_sources": "Cumin seed and products containing cumin seed",
+    "typical_severity": "Severe",
+    "notes": "Seed food allergen",
+    "contained_in": [
+      "cumin",
+      "cumin seed",
+      "cumin seeds",
+      "jeera"
+    ]
+  },
+  {
+    "name": "Fennel seed",
+    "subcategory": "Seed",
+    "common_sources": "Fennel seed and products containing fennel seed",
+    "typical_severity": "Severe",
+    "notes": "Seed food allergen",
+    "contained_in": [
+      "fennel",
+      "fennel seed",
+      "fennel seeds",
+      "saunf"
+    ]
+  },
+  {
+    "name": "Nigella seed",
+    "subcategory": "Seed",
+    "common_sources": "Nigella seed and products containing nigella seed",
+    "typical_severity": "Severe",
+    "notes": "Seed food allergen",
+    "contained_in": [
+      "black cumin",
+      "kalonji",
+      "nigella",
+      "nigella seed",
+      "nigella seeds"
+    ]
+  },
+  {
+    "name": "Gluten",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Wheat and products containing gluten",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "ale beer",
+      "barley",
+      "beer",
+      "bleached flour",
+      "bread flour",
+      "brewer's yeast (wheat)",
+      "bulgur",
+      "cake flour",
+      "couscous",
+      "cracked wheat",
+      "durum",
+      "enriched flour",
+      "farina",
+      "gluten",
+      "graham",
+      "hydrolyzed wheat protein",
+      "kamut",
+      "malt (barley)",
+      "malt",
+      "maltodextrin (wheat)",
+      "noodles",
+      "pasta",
+      "paste (wheat)",
+      "ramen",
+      "seitan",
+      "semolina",
+      "spelt",
+      "torula yeast",
+      "triticale",
+      "udon",
+      "unbleached flour",
+      "vital wheat gluten",
+      "wheat",
+      "wheat bran",
+      "wheat flour",
+      "wheat germ",
+      "wheat starch",
+      "whole wheat"
+    ]
+  },
+  {
+    "name": "Barley",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Barley and products containing barley",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "ale",
+      "barley",
+      "barley malt",
+      "beer",
+      "hordein",
+      "malt",
+      "malt extract",
+      "malt flavoring",
+      "malted barley",
+      "porter",
+      "sprouted barley",
+      "stout"
+    ]
+  },
+  {
+    "name": "Rye",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Rye and products containing rye",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "pumpernickel",
+      "rye",
+      "rye beer",
+      "rye bread",
+      "rye flour",
+      "secalin"
+    ]
+  },
+  {
+    "name": "Oats",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Oats and products containing oats",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "avenin",
+      "granola",
+      "muesli",
+      "oat",
+      "oat bran",
+      "oat fiber",
+      "oat flour",
+      "oatmeal",
+      "oats"
+    ]
+  },
+  {
+    "name": "Triticale",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Triticale and products containing triticale",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "triticale"
+    ]
+  },
+  {
+    "name": "Spelt",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Spelt and products containing spelt",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "dinkel",
+      "farro grande",
+      "spelt"
+    ]
+  },
+  {
+    "name": "Kamut",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Kamut and products containing kamut",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "kamut",
+      "khorasan wheat"
+    ]
+  },
+  {
+    "name": "Durum wheat",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Durum wheat and products containing durum wheat",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "couscous",
+      "durum",
+      "pasta (durum)",
+      "semolina"
+    ]
+  },
+  {
+    "name": "Emmer wheat",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Emmer wheat and products containing emmer wheat",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "emmer",
+      "emmer flour",
+      "farro medio"
+    ]
+  },
+  {
+    "name": "Einkorn",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Einkorn and products containing einkorn",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "einkorn",
+      "farro piccolo"
+    ]
+  },
+  {
+    "name": "Farro",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Farro and products containing farro",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "emmer",
+      "farro",
+      "farro medio"
+    ]
+  },
+  {
+    "name": "Corn (Maize)",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Corn (Maize) and products containing corn (maize)",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "corn",
+      "corn flour",
+      "corn syrup",
+      "cornmeal",
+      "cornstarch",
+      "dextrose",
+      "grits",
+      "hfcs",
+      "hominy",
+      "maize",
+      "masa",
+      "masa harina",
+      "polenta",
+      "popcorn"
+    ]
+  },
+  {
+    "name": "Rice",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Rice and products containing rice",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "rice",
+      "rice bran",
+      "rice flour",
+      "rice milk",
+      "rice starch",
+      "rice syrup"
+    ]
+  },
+  {
+    "name": "Millet",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Millet and products containing millet",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "bajra",
+      "millet",
+      "millet flour"
+    ]
+  },
+  {
+    "name": "Sorghum",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Sorghum and products containing sorghum",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "milo",
+      "sorghum",
+      "sorghum flour"
+    ]
+  },
+  {
+    "name": "Teff",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Teff and products containing teff",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "injera",
+      "tef",
+      "teff",
+      "teff flour"
+    ]
+  },
+  {
+    "name": "Buckwheat",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Buckwheat and products containing buckwheat",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "buckwheat",
+      "buckwheat flour",
+      "kasha",
+      "soba noodles (buckwheat)"
+    ]
+  },
+  {
+    "name": "Quinoa",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Quinoa and products containing quinoa",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "puffed quinoa",
+      "quinoa",
+      "quinoa flour"
+    ]
+  },
+  {
+    "name": "Amaranth",
+    "subcategory": "Cereal/Grain",
+    "common_sources": "Amaranth and products containing amaranth",
+    "typical_severity": "Moderate",
+    "notes": "Cereal/Grain food allergen",
+    "contained_in": [
+      "amaranth",
+      "amaranth flour",
+      "kiwicha"
+    ]
+  },
+  {
+    "name": "Cow's milk",
+    "subcategory": "Dairy",
+    "common_sources": "Cow's milk and products containing cow's milk",
+    "typical_severity": "Moderate",
+    "notes": "Dairy food allergen",
+    "contained_in": [
+      "butter",
+      "buttermilk",
+      "calcium caseinate",
+      "casein",
+      "caseinate",
+      "cheddar",
+      "cheese",
+      "condensed milk",
+      "cream",
+      "cultured buttermilk",
+      "custard",
+      "evaporated milk",
+      "ghee",
+      "half and half",
+      "ice cream",
+      "kefir",
+      "lactalbumin",
+      "lactoglobulin",
+      "lactose",
+      "low fat milk",
+      "milk",
+      "milk fat",
+      "milk powder",
+      "milk solids",
+      "mozzarella",
+      "nonfat dry milk",
+      "nougat",
+      "protein hydrolysate (milk)",
+      "pudding",
+      "recaldent",
+      "rennet",
+      "rennet casein",
+      "sherbet",
+      "skim milk",
+      "sodium caseinate",
+      "whey",
+      "whey isolate",
+      "whey protein concentrate",
+      "whey solids",
+      "whole milk",
+      "yogurt"
+    ]
+  },
+  {
+    "name": "Goat's milk",
+    "subcategory": "Dairy",
+    "common_sources": "Goat's milk and products containing goat's milk",
+    "typical_severity": "Moderate",
+    "notes": "Dairy food allergen",
+    "contained_in": [
+      "cajeta",
+      "goat butter",
+      "goat cheese",
+      "goat milk",
+      "goat milk powder",
+      "goat's milk"
+    ]
+  },
+  {
+    "name": "Sheep's milk",
+    "subcategory": "Dairy",
+    "common_sources": "Sheep's milk and products containing sheep's milk",
+    "typical_severity": "Moderate",
+    "notes": "Dairy food allergen",
+    "contained_in": [
+      "manchego",
+      "pecorino",
+      "ricotta (sheep)",
+      "sheep milk",
+      "sheep yogurt",
+      "sheep's milk"
+    ]
+  },
+  {
+    "name": "Buffalo milk",
+    "subcategory": "Dairy",
+    "common_sources": "Buffalo milk and products containing buffalo milk",
+    "typical_severity": "Moderate",
+    "notes": "Dairy food allergen",
+    "contained_in": [
+      "buffalo butter",
+      "buffalo milk",
+      "buffalo mozzarella"
+    ]
+  },
+  {
+    "name": "Hen egg",
+    "subcategory": "Egg",
+    "common_sources": "Hen egg and products containing hen egg",
+    "typical_severity": "Moderate",
+    "notes": "Egg food allergen",
+    "contained_in": [
+      "aioli",
+      "albumen",
+      "albumin",
+      "custard",
+      "dried egg",
+      "egg",
+      "egg noodles",
+      "egg wash",
+      "egg white",
+      "egg yolk",
+      "eggs",
+      "globulin",
+      "livetin",
+      "lysozyme",
+      "marshmallow",
+      "mayonnaise",
+      "meringue",
+      "ovalbumin",
+      "ovomucoid",
+      "ovovitellin",
+      "powdered egg",
+      "surimi binder"
+    ]
+  },
+  {
+    "name": "Duck egg",
+    "subcategory": "Egg",
+    "common_sources": "Duck egg and products containing duck egg",
+    "typical_severity": "Moderate",
+    "notes": "Egg food allergen",
+    "contained_in": [
+      "balut",
+      "duck egg",
+      "duck eggs"
+    ]
+  },
+  {
+    "name": "Quail egg",
+    "subcategory": "Egg",
+    "common_sources": "Quail egg and products containing quail egg",
+    "typical_severity": "Moderate",
+    "notes": "Egg food allergen",
+    "contained_in": [
+      "quail egg",
+      "quail eggs"
+    ]
+  },
+  {
+    "name": "Turkey egg",
+    "subcategory": "Egg",
+    "common_sources": "Turkey egg and products containing turkey egg",
+    "typical_severity": "Moderate",
+    "notes": "Egg food allergen",
+    "contained_in": [
+      "turkey egg",
+      "turkey eggs"
+    ]
+  },
+  {
+    "name": "Cod",
+    "subcategory": "Fish",
+    "common_sources": "Cod and products containing cod",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "cod",
+      "cod fillet",
+      "cod oil",
+      "cod steak",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "isinglass",
+      "omega 3 (fish)",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Haddock",
+    "subcategory": "Fish",
+    "common_sources": "Haddock and products containing haddock",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "haddock",
+      "haddock fillet",
+      "haddock oil",
+      "haddock steak",
+      "isinglass",
+      "omega 3 (fish)",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Pollock",
+    "subcategory": "Fish",
+    "common_sources": "Pollock and products containing pollock",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "isinglass",
+      "omega 3 (fish)",
+      "pollock",
+      "pollock fillet",
+      "pollock oil",
+      "pollock steak",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Hake",
+    "subcategory": "Fish",
+    "common_sources": "Hake and products containing hake",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "hake",
+      "hake fillet",
+      "hake oil",
+      "hake steak",
+      "isinglass",
+      "omega 3 (fish)",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Halibut",
+    "subcategory": "Fish",
+    "common_sources": "Halibut and products containing halibut",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "halibut",
+      "halibut fillet",
+      "halibut oil",
+      "halibut steak",
+      "isinglass",
+      "omega 3 (fish)",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Flounder",
+    "subcategory": "Fish",
+    "common_sources": "Flounder and products containing flounder",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "flounder",
+      "flounder fillet",
+      "flounder oil",
+      "flounder steak",
+      "isinglass",
+      "omega 3 (fish)",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Sole",
+    "subcategory": "Fish",
+    "common_sources": "Sole and products containing sole",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "isinglass",
+      "omega 3 (fish)",
+      "sole",
+      "sole fillet",
+      "sole oil",
+      "sole steak",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Salmon",
+    "subcategory": "Fish",
+    "common_sources": "Salmon and products containing salmon",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "isinglass",
+      "omega 3 (fish)",
+      "salmon",
+      "salmon fillet",
+      "salmon oil",
+      "salmon steak",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Trout",
+    "subcategory": "Fish",
+    "common_sources": "Trout and products containing trout",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "isinglass",
+      "omega 3 (fish)",
+      "surimi",
+      "trout",
+      "trout fillet",
+      "trout oil",
+      "trout steak"
+    ]
+  },
+  {
+    "name": "Tuna",
+    "subcategory": "Fish",
+    "common_sources": "Tuna and products containing tuna",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "isinglass",
+      "omega 3 (fish)",
+      "surimi",
+      "tuna",
+      "tuna fillet",
+      "tuna oil",
+      "tuna steak"
+    ]
+  },
+  {
+    "name": "Mackerel",
+    "subcategory": "Fish",
+    "common_sources": "Mackerel and products containing mackerel",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "isinglass",
+      "mackerel",
+      "mackerel fillet",
+      "mackerel oil",
+      "mackerel steak",
+      "omega 3 (fish)",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Sardine",
+    "subcategory": "Fish",
+    "common_sources": "Sardine and products containing sardine",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "isinglass",
+      "omega 3 (fish)",
+      "sardine",
+      "sardine fillet",
+      "sardine oil",
+      "sardine steak",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Anchovy",
+    "subcategory": "Fish",
+    "common_sources": "Anchovy and products containing anchovy",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy",
+      "anchovy fillet",
+      "anchovy oil",
+      "anchovy paste",
+      "anchovy steak",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "isinglass",
+      "omega 3 (fish)",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Herring",
+    "subcategory": "Fish",
+    "common_sources": "Herring and products containing herring",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "herring",
+      "herring fillet",
+      "herring oil",
+      "herring steak",
+      "isinglass",
+      "omega 3 (fish)",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Snapper",
+    "subcategory": "Fish",
+    "common_sources": "Snapper and products containing snapper",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "isinglass",
+      "omega 3 (fish)",
+      "snapper",
+      "snapper fillet",
+      "snapper oil",
+      "snapper steak",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Grouper",
+    "subcategory": "Fish",
+    "common_sources": "Grouper and products containing grouper",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "grouper",
+      "grouper fillet",
+      "grouper oil",
+      "grouper steak",
+      "isinglass",
+      "omega 3 (fish)",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Catfish",
+    "subcategory": "Fish",
+    "common_sources": "Catfish and products containing catfish",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "catfish",
+      "catfish fillet",
+      "catfish oil",
+      "catfish steak",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "isinglass",
+      "omega 3 (fish)",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Tilapia",
+    "subcategory": "Fish",
+    "common_sources": "Tilapia and products containing tilapia",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "isinglass",
+      "omega 3 (fish)",
+      "surimi",
+      "tilapia",
+      "tilapia fillet",
+      "tilapia oil",
+      "tilapia steak"
+    ]
+  },
+  {
+    "name": "Carp",
+    "subcategory": "Fish",
+    "common_sources": "Carp and products containing carp",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "carp",
+      "carp fillet",
+      "carp oil",
+      "carp steak",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "isinglass",
+      "omega 3 (fish)",
+      "surimi"
+    ]
+  },
+  {
+    "name": "Swordfish",
+    "subcategory": "Fish",
+    "common_sources": "Swordfish and products containing swordfish",
+    "typical_severity": "Severe",
+    "notes": "Fish food allergen",
+    "contained_in": [
+      "anchovy paste",
+      "fish",
+      "fish gelatin",
+      "fish meal",
+      "fish oil",
+      "fish sauce",
+      "isinglass",
+      "omega 3 (fish)",
+      "surimi",
+      "swordfish",
+      "swordfish fillet",
+      "swordfish oil",
+      "swordfish steak"
+    ]
+  },
+  {
+    "name": "Shrimp",
+    "subcategory": "Crustacean Shellfish",
+    "common_sources": "Shrimp and products containing shrimp",
+    "typical_severity": "Severe",
+    "notes": "Crustacean Shellfish food allergen",
+    "contained_in": [
+      "crevette",
+      "ebi (sushi)",
+      "krill",
+      "prawn",
+      "prawns",
+      "scampi",
+      "shrimp",
+      "shrimps"
+    ]
+  },
+  {
+    "name": "Prawn",
+    "subcategory": "Crustacean Shellfish",
+    "common_sources": "Prawn and products containing prawn",
+    "typical_severity": "Severe",
+    "notes": "Crustacean Shellfish food allergen",
+    "contained_in": [
+      "langoustine",
+      "prawn",
+      "prawns",
+      "shrimp"
+    ]
+  },
+  {
+    "name": "Crab",
+    "subcategory": "Crustacean Shellfish",
+    "common_sources": "Crab and products containing crab",
+    "typical_severity": "Severe",
+    "notes": "Crustacean Shellfish food allergen",
+    "contained_in": [
+      "crab",
+      "crabmeat",
+      "crabs",
+      "king crab",
+      "snow crab",
+      "soft shell crab",
+      "surimi (crab)"
+    ]
+  },
+  {
+    "name": "Lobster",
+    "subcategory": "Crustacean Shellfish",
+    "common_sources": "Lobster and products containing lobster",
+    "typical_severity": "Severe",
+    "notes": "Crustacean Shellfish food allergen",
+    "contained_in": [
+      "crayfish",
+      "langouste",
+      "lobster",
+      "lobsters"
+    ]
+  },
+  {
+    "name": "Crayfish",
+    "subcategory": "Crustacean Shellfish",
+    "common_sources": "Crayfish and products containing crayfish",
+    "typical_severity": "Severe",
+    "notes": "Crustacean Shellfish food allergen",
+    "contained_in": [
+      "crawdad",
+      "crawfish",
+      "crayfish",
+      "yabby"
+    ]
+  },
+  {
+    "name": "Oyster",
+    "subcategory": "Mollusk Shellfish",
+    "common_sources": "Oyster and products containing oyster",
+    "typical_severity": "Severe",
+    "notes": "Mollusk Shellfish food allergen",
+    "contained_in": [
+      "oyster",
+      "oyster extract",
+      "oyster liquor",
+      "oyster sauce",
+      "oysters"
+    ]
+  },
+  {
+    "name": "Scallop",
+    "subcategory": "Mollusk Shellfish",
+    "common_sources": "Scallop and products containing scallop",
+    "typical_severity": "Severe",
+    "notes": "Mollusk Shellfish food allergen",
+    "contained_in": [
+      "bay scallop",
+      "scallop",
+      "scallops",
+      "sea scallop"
+    ]
+  },
+  {
+    "name": "Clam",
+    "subcategory": "Mollusk Shellfish",
+    "common_sources": "Clam and products containing clam",
+    "typical_severity": "Severe",
+    "notes": "Mollusk Shellfish food allergen",
+    "contained_in": [
+      "clam",
+      "clam chowder",
+      "clam juice",
+      "clams"
+    ]
+  },
+  {
+    "name": "Mussel",
+    "subcategory": "Mollusk Shellfish",
+    "common_sources": "Mussel and products containing mussel",
+    "typical_severity": "Severe",
+    "notes": "Mollusk Shellfish food allergen",
+    "contained_in": [
+      "mussel",
+      "mussel extract",
+      "mussels"
+    ]
+  },
+  {
+    "name": "Octopus",
+    "subcategory": "Mollusk Shellfish",
+    "common_sources": "Octopus and products containing octopus",
+    "typical_severity": "Severe",
+    "notes": "Mollusk Shellfish food allergen",
+    "contained_in": [
+      "octopi",
+      "octopus",
+      "tako (sushi)"
+    ]
+  },
+  {
+    "name": "Squid",
+    "subcategory": "Mollusk Shellfish",
+    "common_sources": "Squid and products containing squid",
+    "typical_severity": "Severe",
+    "notes": "Mollusk Shellfish food allergen",
+    "contained_in": [
+      "calamari",
+      "ika (sushi)",
+      "squid"
+    ]
+  },
+  {
+    "name": "Cuttlefish",
+    "subcategory": "Mollusk Shellfish",
+    "common_sources": "Cuttlefish and products containing cuttlefish",
+    "typical_severity": "Severe",
+    "notes": "Mollusk Shellfish food allergen",
+    "contained_in": [
+      "cuttlebone",
+      "cuttlefish",
+      "sepia ink"
+    ]
+  },
+  {
+    "name": "Abalone",
+    "subcategory": "Mollusk Shellfish",
+    "common_sources": "Abalone and products containing abalone",
+    "typical_severity": "Severe",
+    "notes": "Mollusk Shellfish food allergen",
+    "contained_in": [
+      "abalone",
+      "awabi"
+    ]
+  },
+  {
+    "name": "Snail",
+    "subcategory": "Mollusk Shellfish",
+    "common_sources": "Snail and products containing snail",
+    "typical_severity": "Severe",
+    "notes": "Mollusk Shellfish food allergen",
+    "contained_in": [
+      "escargot",
+      "snail",
+      "snails"
+    ]
+  },
+  {
+    "name": "Conch",
+    "subcategory": "Mollusk Shellfish",
+    "common_sources": "Conch and products containing conch",
+    "typical_severity": "Severe",
+    "notes": "Mollusk Shellfish food allergen",
+    "contained_in": [
+      "conch",
+      "conch meat",
+      "lambi"
+    ]
+  },
+  {
+    "name": "Apple",
+    "subcategory": "Fruit",
+    "common_sources": "Apple and products containing apple",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "apple",
+      "apple extract",
+      "apple powder",
+      "apples"
+    ]
+  },
+  {
+    "name": "Pear",
+    "subcategory": "Fruit",
+    "common_sources": "Pear and products containing pear",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "pear",
+      "pear extract",
+      "pear powder",
+      "pears"
+    ]
+  },
+  {
+    "name": "Peach",
+    "subcategory": "Fruit",
+    "common_sources": "Peach and products containing peach",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "peach",
+      "peach extract",
+      "peach powder",
+      "peachs"
+    ]
+  },
+  {
+    "name": "Nectarine",
+    "subcategory": "Fruit",
+    "common_sources": "Nectarine and products containing nectarine",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "nectarine",
+      "nectarine extract",
+      "nectarine powder",
+      "nectarines"
+    ]
+  },
+  {
+    "name": "Plum",
+    "subcategory": "Fruit",
+    "common_sources": "Plum and products containing plum",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "plum",
+      "plum extract",
+      "plum powder",
+      "plums"
+    ]
+  },
+  {
+    "name": "Apricot",
+    "subcategory": "Fruit",
+    "common_sources": "Apricot and products containing apricot",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "apricot",
+      "apricot extract",
+      "apricot powder",
+      "apricots"
+    ]
+  },
+  {
+    "name": "Cherry",
+    "subcategory": "Fruit",
+    "common_sources": "Cherry and products containing cherry",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "cherries",
+      "cherry",
+      "cherry extract",
+      "cherry powder"
+    ]
+  },
+  {
+    "name": "Mango",
+    "subcategory": "Fruit",
+    "common_sources": "Mango and products containing mango",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "mango",
+      "mango extract",
+      "mango powder",
+      "mangos"
+    ]
+  },
+  {
+    "name": "Avocado",
+    "subcategory": "Fruit",
+    "common_sources": "Avocado and products containing avocado",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "avocado",
+      "avocado extract",
+      "avocado powder",
+      "avocados"
+    ]
+  },
+  {
+    "name": "Banana",
+    "subcategory": "Fruit",
+    "common_sources": "Banana and products containing banana",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "banana",
+      "banana extract",
+      "banana powder",
+      "bananas"
+    ]
+  },
+  {
+    "name": "Kiwi",
+    "subcategory": "Fruit",
+    "common_sources": "Kiwi and products containing kiwi",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "kiwi",
+      "kiwi extract",
+      "kiwi powder",
+      "kiwis"
+    ]
+  },
+  {
+    "name": "Pineapple",
+    "subcategory": "Fruit",
+    "common_sources": "Pineapple and products containing pineapple",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "pineapple",
+      "pineapple extract",
+      "pineapple powder",
+      "pineapples"
+    ]
+  },
+  {
+    "name": "Strawberry",
+    "subcategory": "Fruit",
+    "common_sources": "Strawberry and products containing strawberry",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "strawberries",
+      "strawberry",
+      "strawberry extract",
+      "strawberry powder"
+    ]
+  },
+  {
+    "name": "Raspberry",
+    "subcategory": "Fruit",
+    "common_sources": "Raspberry and products containing raspberry",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "raspberries",
+      "raspberry",
+      "raspberry extract",
+      "raspberry powder"
+    ]
+  },
+  {
+    "name": "Blackberry",
+    "subcategory": "Fruit",
+    "common_sources": "Blackberry and products containing blackberry",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "blackberries",
+      "blackberry",
+      "blackberry extract",
+      "blackberry powder"
+    ]
+  },
+  {
+    "name": "Blueberry",
+    "subcategory": "Fruit",
+    "common_sources": "Blueberry and products containing blueberry",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "blueberries",
+      "blueberry",
+      "blueberry extract",
+      "blueberry powder"
+    ]
+  },
+  {
+    "name": "Grape",
+    "subcategory": "Fruit",
+    "common_sources": "Grape and products containing grape",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "grape",
+      "grape extract",
+      "grape powder",
+      "grapes"
+    ]
+  },
+  {
+    "name": "Orange",
+    "subcategory": "Fruit",
+    "common_sources": "Orange and products containing orange",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "orange",
+      "orange extract",
+      "orange powder",
+      "oranges"
+    ]
+  },
+  {
+    "name": "Lemon",
+    "subcategory": "Fruit",
+    "common_sources": "Lemon and products containing lemon",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "lemon",
+      "lemon extract",
+      "lemon powder",
+      "lemons"
+    ]
+  },
+  {
+    "name": "Lime",
+    "subcategory": "Fruit",
+    "common_sources": "Lime and products containing lime",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "lime",
+      "lime extract",
+      "lime powder",
+      "limes"
+    ]
+  },
+  {
+    "name": "Grapefruit",
+    "subcategory": "Fruit",
+    "common_sources": "Grapefruit and products containing grapefruit",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "grapefruit",
+      "grapefruit extract",
+      "grapefruit powder",
+      "grapefruits"
+    ]
+  },
+  {
+    "name": "Mandarin",
+    "subcategory": "Fruit",
+    "common_sources": "Mandarin and products containing mandarin",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "mandarin",
+      "mandarin extract",
+      "mandarin powder",
+      "mandarins"
+    ]
+  },
+  {
+    "name": "Clementine",
+    "subcategory": "Fruit",
+    "common_sources": "Clementine and products containing clementine",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "clementine",
+      "clementine extract",
+      "clementine powder",
+      "clementines"
+    ]
+  },
+  {
+    "name": "Pomegranate",
+    "subcategory": "Fruit",
+    "common_sources": "Pomegranate and products containing pomegranate",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "pomegranate",
+      "pomegranate extract",
+      "pomegranate powder",
+      "pomegranates"
+    ]
+  },
+  {
+    "name": "Fig",
+    "subcategory": "Fruit",
+    "common_sources": "Fig and products containing fig",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "fig",
+      "fig extract",
+      "fig powder",
+      "figs"
+    ]
+  },
+  {
+    "name": "Mulberry",
+    "subcategory": "Fruit",
+    "common_sources": "Mulberry and products containing mulberry",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "mulberries",
+      "mulberry",
+      "mulberry extract",
+      "mulberry powder"
+    ]
+  },
+  {
+    "name": "Date",
+    "subcategory": "Fruit",
+    "common_sources": "Date and products containing date",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "date",
+      "date extract",
+      "date powder",
+      "dates"
+    ]
+  },
+  {
+    "name": "Lychee",
+    "subcategory": "Fruit",
+    "common_sources": "Lychee and products containing lychee",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "lychee",
+      "lychee extract",
+      "lychee powder",
+      "lychees"
+    ]
+  },
+  {
+    "name": "Passion fruit",
+    "subcategory": "Fruit",
+    "common_sources": "Passion fruit and products containing passion fruit",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "passion fruit",
+      "passion fruit extract",
+      "passion fruit powder",
+      "passion fruits"
+    ]
+  },
+  {
+    "name": "Papaya",
+    "subcategory": "Fruit",
+    "common_sources": "Papaya and products containing papaya",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "papaya",
+      "papaya extract",
+      "papaya powder",
+      "papayas"
+    ]
+  },
+  {
+    "name": "Guava",
+    "subcategory": "Fruit",
+    "common_sources": "Guava and products containing guava",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "guava",
+      "guava extract",
+      "guava powder",
+      "guavas"
+    ]
+  },
+  {
+    "name": "Coconut",
+    "subcategory": "Fruit",
+    "common_sources": "Coconut and products containing coconut",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "coconut",
+      "coconut extract",
+      "coconut powder",
+      "coconuts"
+    ]
+  },
+  {
+    "name": "Persimmon",
+    "subcategory": "Fruit",
+    "common_sources": "Persimmon and products containing persimmon",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "persimmon",
+      "persimmon extract",
+      "persimmon powder",
+      "persimmons"
+    ]
+  },
+  {
+    "name": "Watermelon",
+    "subcategory": "Fruit",
+    "common_sources": "Watermelon and products containing watermelon",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "watermelon",
+      "watermelon extract",
+      "watermelon powder",
+      "watermelons"
+    ]
+  },
+  {
+    "name": "Cantaloupe",
+    "subcategory": "Fruit",
+    "common_sources": "Cantaloupe and products containing cantaloupe",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "cantaloupe",
+      "cantaloupe extract",
+      "cantaloupe powder",
+      "cantaloupes"
+    ]
+  },
+  {
+    "name": "Honeydew",
+    "subcategory": "Fruit",
+    "common_sources": "Honeydew and products containing honeydew",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Fruit food allergen",
+    "contained_in": [
+      "honeydew",
+      "honeydew extract",
+      "honeydew powder",
+      "honeydews"
+    ]
+  },
+  {
+    "name": "Carrot",
+    "subcategory": "Vegetable",
+    "common_sources": "Carrot and products containing carrot",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "carrot",
+      "carrot extract",
+      "carrot powder",
+      "carrots"
+    ]
+  },
+  {
+    "name": "Celery",
+    "subcategory": "Vegetable",
+    "common_sources": "Celery and products containing celery",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "celeries",
+      "celery",
+      "celery extract",
+      "celery powder"
+    ]
+  },
+  {
+    "name": "Tomato",
+    "subcategory": "Vegetable",
+    "common_sources": "Tomato and products containing tomato",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "tomato",
+      "tomato extract",
+      "tomato powder",
+      "tomatos"
+    ]
+  },
+  {
+    "name": "Potato",
+    "subcategory": "Vegetable",
+    "common_sources": "Potato and products containing potato",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "potato",
+      "potato extract",
+      "potato powder",
+      "potatos"
+    ]
+  },
+  {
+    "name": "Sweet potato",
+    "subcategory": "Vegetable",
+    "common_sources": "Sweet potato and products containing sweet potato",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "sweet potato",
+      "sweet potato extract",
+      "sweet potato powder",
+      "sweet potatos"
+    ]
+  },
+  {
+    "name": "Onion",
+    "subcategory": "Vegetable",
+    "common_sources": "Onion and products containing onion",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "onion",
+      "onion extract",
+      "onion powder",
+      "onions"
+    ]
+  },
+  {
+    "name": "Garlic",
+    "subcategory": "Vegetable",
+    "common_sources": "Garlic and products containing garlic",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "garlic",
+      "garlic extract",
+      "garlic powder",
+      "garlics"
+    ]
+  },
+  {
+    "name": "Bell pepper",
+    "subcategory": "Vegetable",
+    "common_sources": "Bell pepper and products containing bell pepper",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "bell pepper",
+      "bell pepper extract",
+      "bell pepper powder",
+      "bell peppers"
+    ]
+  },
+  {
+    "name": "Chili pepper",
+    "subcategory": "Vegetable",
+    "common_sources": "Chili pepper and products containing chili pepper",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "chili pepper",
+      "chili pepper extract",
+      "chili pepper powder",
+      "chili peppers"
+    ]
+  },
+  {
+    "name": "Cucumber",
+    "subcategory": "Vegetable",
+    "common_sources": "Cucumber and products containing cucumber",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "cucumber",
+      "cucumber extract",
+      "cucumber powder",
+      "cucumbers"
+    ]
+  },
+  {
+    "name": "Zucchini",
+    "subcategory": "Vegetable",
+    "common_sources": "Zucchini and products containing zucchini",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "zucchini",
+      "zucchini extract",
+      "zucchini powder",
+      "zucchinis"
+    ]
+  },
+  {
+    "name": "Pumpkin",
+    "subcategory": "Vegetable",
+    "common_sources": "Pumpkin and products containing pumpkin",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "pumpkin",
+      "pumpkin extract",
+      "pumpkin powder",
+      "pumpkins"
+    ]
+  },
+  {
+    "name": "Butternut squash",
+    "subcategory": "Vegetable",
+    "common_sources": "Butternut squash and products containing butternut squash",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "butternut squash",
+      "butternut squash extract",
+      "butternut squash powder",
+      "butternut squashs"
+    ]
+  },
+  {
+    "name": "Eggplant",
+    "subcategory": "Vegetable",
+    "common_sources": "Eggplant and products containing eggplant",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "eggplant",
+      "eggplant extract",
+      "eggplant powder",
+      "eggplants"
+    ]
+  },
+  {
+    "name": "Spinach",
+    "subcategory": "Vegetable",
+    "common_sources": "Spinach and products containing spinach",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "spinach",
+      "spinach extract",
+      "spinach powder",
+      "spinachs"
+    ]
+  },
+  {
+    "name": "Lettuce",
+    "subcategory": "Vegetable",
+    "common_sources": "Lettuce and products containing lettuce",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "lettuce",
+      "lettuce extract",
+      "lettuce powder",
+      "lettuces"
+    ]
+  },
+  {
+    "name": "Beet",
+    "subcategory": "Vegetable",
+    "common_sources": "Beet and products containing beet",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "beet",
+      "beet extract",
+      "beet powder",
+      "beets"
+    ]
+  },
+  {
+    "name": "Kale",
+    "subcategory": "Vegetable",
+    "common_sources": "Kale and products containing kale",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "kale",
+      "kale extract",
+      "kale powder",
+      "kales"
+    ]
+  },
+  {
+    "name": "Asparagus",
+    "subcategory": "Vegetable",
+    "common_sources": "Asparagus and products containing asparagus",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "asparagus",
+      "asparagus extract",
+      "asparagus powder"
+    ]
+  },
+  {
+    "name": "Broccoli",
+    "subcategory": "Vegetable",
+    "common_sources": "Broccoli and products containing broccoli",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "broccoli",
+      "broccoli extract",
+      "broccoli powder",
+      "broccolis"
+    ]
+  },
+  {
+    "name": "Cauliflower",
+    "subcategory": "Vegetable",
+    "common_sources": "Cauliflower and products containing cauliflower",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "cauliflower",
+      "cauliflower extract",
+      "cauliflower powder",
+      "cauliflowers"
+    ]
+  },
+  {
+    "name": "Cabbage",
+    "subcategory": "Vegetable",
+    "common_sources": "Cabbage and products containing cabbage",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "cabbage",
+      "cabbage extract",
+      "cabbage powder",
+      "cabbages"
+    ]
+  },
+  {
+    "name": "Brussels sprout",
+    "subcategory": "Vegetable",
+    "common_sources": "Brussels sprout and products containing brussels sprout",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "brussels sprout",
+      "brussels sprout extract",
+      "brussels sprout powder",
+      "brussels sprouts"
+    ]
+  },
+  {
+    "name": "Radish",
+    "subcategory": "Vegetable",
+    "common_sources": "Radish and products containing radish",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "radish",
+      "radish extract",
+      "radish powder",
+      "radishs"
+    ]
+  },
+  {
+    "name": "Parsnip",
+    "subcategory": "Vegetable",
+    "common_sources": "Parsnip and products containing parsnip",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "parsnip",
+      "parsnip extract",
+      "parsnip powder",
+      "parsnips"
+    ]
+  },
+  {
+    "name": "Turnip",
+    "subcategory": "Vegetable",
+    "common_sources": "Turnip and products containing turnip",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "turnip",
+      "turnip extract",
+      "turnip powder",
+      "turnips"
+    ]
+  },
+  {
+    "name": "Artichoke",
+    "subcategory": "Vegetable",
+    "common_sources": "Artichoke and products containing artichoke",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "artichoke",
+      "artichoke extract",
+      "artichoke powder",
+      "artichokes"
+    ]
+  },
+  {
+    "name": "Rhubarb",
+    "subcategory": "Vegetable",
+    "common_sources": "Rhubarb and products containing rhubarb",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "rhubarb",
+      "rhubarb extract",
+      "rhubarb powder",
+      "rhubarbs"
+    ]
+  },
+  {
+    "name": "Okra",
+    "subcategory": "Vegetable",
+    "common_sources": "Okra and products containing okra",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Vegetable food allergen",
+    "contained_in": [
+      "okra",
+      "okra extract",
+      "okra powder",
+      "okras"
+    ]
+  },
+  {
+    "name": "Parsley",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Parsley and products containing parsley",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "parsley",
+      "parsley extract",
+      "parsley powder",
+      "parsleys"
+    ]
+  },
+  {
+    "name": "Cilantro",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Cilantro and products containing cilantro",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "cilantro",
+      "cilantro extract",
+      "cilantro powder",
+      "cilantros"
+    ]
+  },
+  {
+    "name": "Dill",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Dill and products containing dill",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "dill",
+      "dill extract",
+      "dill powder",
+      "dills"
+    ]
+  },
+  {
+    "name": "Basil",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Basil and products containing basil",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "basil",
+      "basil extract",
+      "basil powder",
+      "basils"
+    ]
+  },
+  {
+    "name": "Thyme",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Thyme and products containing thyme",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "thyme",
+      "thyme extract",
+      "thyme powder",
+      "thymes"
+    ]
+  },
+  {
+    "name": "Oregano",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Oregano and products containing oregano",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "oregano",
+      "oregano extract",
+      "oregano powder",
+      "oreganos"
+    ]
+  },
+  {
+    "name": "Rosemary",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Rosemary and products containing rosemary",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "rosemaries",
+      "rosemary",
+      "rosemary extract",
+      "rosemary powder"
+    ]
+  },
+  {
+    "name": "Sage",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Sage and products containing sage",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "sage",
+      "sage extract",
+      "sage powder",
+      "sages"
+    ]
+  },
+  {
+    "name": "Mint",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Mint and products containing mint",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "mint",
+      "mint extract",
+      "mint powder",
+      "mints"
+    ]
+  },
+  {
+    "name": "Cinnamon",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Cinnamon and products containing cinnamon",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "cinnamon",
+      "cinnamon extract",
+      "cinnamon powder",
+      "cinnamons"
+    ]
+  },
+  {
+    "name": "Clove",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Clove and products containing clove",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "clove",
+      "clove extract",
+      "clove powder",
+      "cloves"
+    ]
+  },
+  {
+    "name": "Nutmeg",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Nutmeg and products containing nutmeg",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "nutmeg",
+      "nutmeg extract",
+      "nutmeg powder",
+      "nutmegs"
+    ]
+  },
+  {
+    "name": "Ginger",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Ginger and products containing ginger",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "ginger",
+      "ginger extract",
+      "ginger powder",
+      "gingers"
+    ]
+  },
+  {
+    "name": "Turmeric",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Turmeric and products containing turmeric",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "turmeric",
+      "turmeric extract",
+      "turmeric powder",
+      "turmerics"
+    ]
+  },
+  {
+    "name": "Cardamom",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Cardamom and products containing cardamom",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "cardamom",
+      "cardamom extract",
+      "cardamom powder",
+      "cardamoms"
+    ]
+  },
+  {
+    "name": "Black pepper",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Black pepper and products containing black pepper",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "black pepper",
+      "black pepper extract",
+      "black pepper powder",
+      "black peppers"
+    ]
+  },
+  {
+    "name": "White pepper",
+    "subcategory": "Herb/Spice",
+    "common_sources": "White pepper and products containing white pepper",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "white pepper",
+      "white pepper extract",
+      "white pepper powder",
+      "white peppers"
+    ]
+  },
+  {
+    "name": "Paprika",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Paprika and products containing paprika",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "paprika",
+      "paprika extract",
+      "paprika powder",
+      "paprikas"
+    ]
+  },
+  {
+    "name": "Saffron",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Saffron and products containing saffron",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "saffron",
+      "saffron extract",
+      "saffron powder",
+      "saffrons"
+    ]
+  },
+  {
+    "name": "Vanilla",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Vanilla and products containing vanilla",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "vanilla",
+      "vanilla extract",
+      "vanilla powder",
+      "vanillas"
+    ]
+  },
+  {
+    "name": "Star anise",
+    "subcategory": "Herb/Spice",
+    "common_sources": "Star anise and products containing star anise",
+    "typical_severity": "Mild to Moderate",
+    "notes": "Herb/Spice food allergen",
+    "contained_in": [
+      "star anise",
+      "star anise extract",
+      "star anise powder",
+      "star anises"
+    ]
+  },
+  {
+    "name": "Beef",
+    "subcategory": "Meat",
+    "common_sources": "Beef and products containing beef",
+    "typical_severity": "Moderate",
+    "notes": "Meat food allergen",
+    "contained_in": [
+      "beef",
+      "beef extract",
+      "beef powder",
+      "beefs"
+    ]
+  },
+  {
+    "name": "Pork",
+    "subcategory": "Meat",
+    "common_sources": "Pork and products containing pork",
+    "typical_severity": "Moderate",
+    "notes": "Meat food allergen",
+    "contained_in": [
+      "pork",
+      "pork extract",
+      "pork powder",
+      "porks"
+    ]
+  },
+  {
+    "name": "Lamb",
+    "subcategory": "Meat",
+    "common_sources": "Lamb and products containing lamb",
+    "typical_severity": "Moderate",
+    "notes": "Meat food allergen",
+    "contained_in": [
+      "lamb",
+      "lamb extract",
+      "lamb powder",
+      "lambs"
+    ]
+  },
+  {
+    "name": "Goat meat",
+    "subcategory": "Meat",
+    "common_sources": "Goat meat and products containing goat meat",
+    "typical_severity": "Moderate",
+    "notes": "Meat food allergen",
+    "contained_in": [
+      "goat meat",
+      "goat meat extract",
+      "goat meat powder",
+      "goat meats"
+    ]
+  },
+  {
+    "name": "Chicken",
+    "subcategory": "Meat",
+    "common_sources": "Chicken and products containing chicken",
+    "typical_severity": "Moderate",
+    "notes": "Meat food allergen",
+    "contained_in": [
+      "chicken",
+      "chicken extract",
+      "chicken powder",
+      "chickens"
+    ]
+  },
+  {
+    "name": "Turkey",
+    "subcategory": "Meat",
+    "common_sources": "Turkey and products containing turkey",
+    "typical_severity": "Moderate",
+    "notes": "Meat food allergen",
+    "contained_in": [
+      "turkey",
+      "turkey extract",
+      "turkey powder",
+      "turkeys"
+    ]
+  },
+  {
+    "name": "Duck",
+    "subcategory": "Meat",
+    "common_sources": "Duck and products containing duck",
+    "typical_severity": "Moderate",
+    "notes": "Meat food allergen",
+    "contained_in": [
+      "duck",
+      "duck extract",
+      "duck powder",
+      "ducks"
+    ]
+  },
+  {
+    "name": "Rabbit",
+    "subcategory": "Meat",
+    "common_sources": "Rabbit and products containing rabbit",
+    "typical_severity": "Moderate",
+    "notes": "Meat food allergen",
+    "contained_in": [
+      "rabbit",
+      "rabbit extract",
+      "rabbit powder",
+      "rabbits"
+    ]
+  },
+  {
+    "name": "Venison",
+    "subcategory": "Meat",
+    "common_sources": "Venison and products containing venison",
+    "typical_severity": "Moderate",
+    "notes": "Meat food allergen",
+    "contained_in": [
+      "venison",
+      "venison extract",
+      "venison powder",
+      "venisons"
+    ]
+  },
+  {
+    "name": "Horsemeat",
+    "subcategory": "Meat",
+    "common_sources": "Horsemeat and products containing horsemeat",
+    "typical_severity": "Moderate",
+    "notes": "Meat food allergen",
+    "contained_in": [
+      "horsemeat",
+      "horsemeat extract",
+      "horsemeat powder",
+      "horsemeats"
+    ]
+  },
+  {
+    "name": "Cocoa",
+    "subcategory": "Other",
+    "common_sources": "Cocoa and products containing cocoa",
+    "typical_severity": "Moderate",
+    "notes": "Other food allergen",
+    "contained_in": [
+      "cacao",
+      "chocolate",
+      "cocoa",
+      "cocoa butter",
+      "cocoa liquor",
+      "cocoa powder"
+    ]
+  },
+  {
+    "name": "Coffee",
+    "subcategory": "Other",
+    "common_sources": "Coffee and products containing coffee",
+    "typical_severity": "Moderate",
+    "notes": "Other food allergen",
+    "contained_in": [
+      "caffeine",
+      "coffee",
+      "coffee extract",
+      "espresso",
+      "instant coffee"
+    ]
+  },
+  {
+    "name": "Tea",
+    "subcategory": "Other",
+    "common_sources": "Tea and products containing tea",
+    "typical_severity": "Moderate",
+    "notes": "Other food allergen",
+    "contained_in": [
+      "black tea",
+      "green tea",
+      "kombucha",
+      "matcha",
+      "oolong",
+      "tea"
+    ]
+  },
+  {
+    "name": "Yeast",
+    "subcategory": "Other",
+    "common_sources": "Yeast and products containing yeast",
+    "typical_severity": "Moderate",
+    "notes": "Other food allergen",
+    "contained_in": [
+      "autolyzed yeast",
+      "baker's yeast",
+      "brewer's yeast",
+      "nutritional yeast",
+      "yeast",
+      "yeast extract"
+    ]
+  },
+  {
+    "name": "Sulfites",
+    "subcategory": "Other",
+    "common_sources": "Sulfites and products containing sulfites",
+    "typical_severity": "Moderate",
+    "notes": "Other food allergen",
+    "contained_in": [
+      "e220",
+      "e221",
+      "e222",
+      "e223",
+      "e224",
+      "e225",
+      "e226",
+      "e227",
+      "e228",
+      "sulfite",
+      "sulfur dioxide",
+      "sulphite"
+    ]
+  },
+  {
+    "name": "Tartrazine",
+    "subcategory": "Other",
+    "common_sources": "Tartrazine and products containing tartrazine",
+    "typical_severity": "Moderate",
+    "notes": "Other food allergen",
+    "contained_in": [
+      "e102",
+      "tartrazine",
+      "yellow #5",
+      "yellow 5"
+    ]
+  },
+  {
+    "name": "Annatto",
+    "subcategory": "Other",
+    "common_sources": "Annatto and products containing annatto",
+    "typical_severity": "Moderate",
+    "notes": "Other food allergen",
+    "contained_in": [
+      "achiote",
+      "annatto",
+      "bixina",
+      "e160b",
+      "norbixina"
+    ]
+  },
+  {
+    "name": "Mealworm",
+    "subcategory": "Insect-derived",
+    "common_sources": "Mealworm and products containing mealworm",
+    "typical_severity": "Moderate",
+    "notes": "Insect-derived food allergen",
+    "contained_in": [
+      "insect protein",
+      "mealworm",
+      "mealworms",
+      "tenebrio molitor",
+      "yellow mealworm"
+    ]
+  },
+  {
+    "name": "Cricket",
+    "subcategory": "Insect-derived",
+    "common_sources": "Cricket and products containing cricket",
+    "typical_severity": "Moderate",
+    "notes": "Insect-derived food allergen",
+    "contained_in": [
+      "acheta powder",
+      "cricket",
+      "cricket flour",
+      "crickets",
+      "gryllus"
+    ]
+  },
+  {
+    "name": "Locust",
+    "subcategory": "Insect-derived",
+    "common_sources": "Locust and products containing locust",
+    "typical_severity": "Moderate",
+    "notes": "Insect-derived food allergen",
+    "contained_in": [
+      "locust",
+      "locust powder",
+      "locusts"
+    ]
+  },
+  {
+    "name": "Silkworm",
+    "subcategory": "Insect-derived",
+    "common_sources": "Silkworm and products containing silkworm",
+    "typical_severity": "Moderate",
+    "notes": "Insect-derived food allergen",
+    "contained_in": [
+      "bombyx mori",
+      "silkworm",
+      "silkworm pupae"
+    ]
+  }
+]

@@ -1,0 +1,308 @@
+/* ─── Reset & Base ───────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e0f7fa 0%, #fff 100%);
+  color: #333;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ─── Card Container ──────────────────────────────────────── */
+.card {
+  background: #fff;
+  max-width: 360px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+/* ─── Page Header ────────────────────────────────────────── */
+.page-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem 0;
+}
+.back-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #555;
+  margin-right: 0.5rem;
+}
+.page-header h1 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* ─── Profile Card (index.html) ─────────────────────────── */
+.profile-card .avatar-small {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #bbb;
+  margin: 0 auto 1rem;
+}
+.profile-card .profile-info {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.profile-card .profile-info .name {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.profile-card .profile-info .email {
+  font-size: 0.9rem;
+  color: #00796b;
+  margin-top: 0.25rem;
+}
+
+/* ─── Buttons & Links ────────────────────────────────────── */
+.btn {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  text-align: center;
+  background: #00796b;
+  color: #fff;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  transition: background .3s, transform .1s;
+}
+.btn:hover {
+  background: #004d40;
+}
+.btn:active {
+  transform: scale(.98);
+}
+
+/* ─── Allergens Page ─────────────────────────────────────── */
+.allergens-card h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.allergens-card input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color .3s, box-shadow .3s;
+}
+.allergens-card input:focus {
+  outline: none;
+  border-color: #81d4fa;
+  box-shadow: 0 0 0 3px rgba(129,212,250,0.3);
+}
+.allergens-card ul {
+  list-style: none;
+  margin-top: 0.5rem;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.allergens-card li {
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.allergens-card li:hover {
+  background: #e0f7fa;
+}
+.allergens-card #added-list {
+  margin-top: 1.5rem;
+}
+.allergens-card #added-list h2 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.allergens-card #added-list li {
+  margin-left: 1rem;
+  list-style: disc;
+}
+
+/* ─── Settings Page ──────────────────────────────────────── */
+.settings-card .section {
+  margin-bottom: 1rem;
+}
+.settings-card .section-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.settings-card .setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-top: 1px solid #eee;
+}
+.settings-card .setting-row:first-child {
+  border-top: none;
+}
+.settings-card .setting-row.link {
+  cursor: pointer;
+}
+.settings-card .arrow {
+  font-size: 1.2rem;
+  color: #888;
+  margin-left: 0.5rem;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute;
+  inset: 0;
+  background: #ccc;
+  border-radius: 20px;
+  transition: .2s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background: #fff;
+  border-radius: 50%;
+  transition: .2s;
+}
+.switch input:checked + .slider {
+  background: #00796b;
+}
+.switch input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* ─── Account Page ──────────────────────────────────────── */
+.account-card .avatar-large {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #ddd center/cover no-repeat;
+  margin: 0 auto 1rem;
+  cursor: pointer;
+  transition: box-shadow .3s;
+}
+.account-card .avatar-large:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.account-card .display-info {
+  margin-bottom: 1.5rem;
+}
+.account-card .display-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.account-card .display-email {
+  font-size: 0.9rem;
+  color: #00796b;
+  text-decoration: none;
+}
+.account-card .btn-wide {
+  margin-bottom: 1.5rem;
+}
+.account-card .form-row input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color .3s, box-shadow .3s;
+}
+.account-card .form-row input:focus {
+  outline: none;
+  border-color: #81d4fa;
+  box-shadow: 0 0 0 3px rgba(129,212,250,0.3);
+}
+
+/* ─── Modal ─────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+.modal-overlay:not(.hidden) {
+  opacity: 1; visibility: visible;
+}
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  position: relative;
+}
+.modal h2 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.modal-close {
+  position: absolute;
+  top: 0.5rem; right: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #555;
+}
+.upload-box {
+  width: 64px; height: 64px;
+  margin: 0 auto;
+  background: #f0f0f0;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background .3s;
+}
+.upload-box:hover {
+  background: #e0e0e0;
+}
+.upload-label {
+  font-size: 2rem;
+  color: #666;
+}
+
+/* override .avatar-small to support cover & pointer */
+.profile-card .avatar-small {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #bbb center/cover no-repeat;
+  margin: 0 auto 1rem;
+  cursor: pointer;
+  transition: box-shadow .3s;
+}
+.profile-card .avatar-small:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+/* ─── Responsive ───────────────────────────────────────── */
+@media (max-width: 400px) {
+  .card {
+    margin: 1rem;
+    padding: 1rem;
+  }
+}
