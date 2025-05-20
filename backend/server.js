@@ -20,6 +20,7 @@ async function main() {
     });
     app.use("/scan", require("./scan"));
     app.use("/product", require("./product"));
+    app.use("/alternatives", require("./alternatives"));
     app.listen(PORT, () => {
         console.log(`Express listening on http://localhost:${PORT}`);
     });

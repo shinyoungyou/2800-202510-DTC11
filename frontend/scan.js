@@ -44,13 +44,24 @@ const prodBrandEl = document.getElementById("prod-brand");
 const prodTagsEl = document.getElementById("prod-tags");
 const prodThumbEl = document.getElementById("prod-thumb");
 const allergensListEl = document.getElementById("allergens-list");
+const altListEl = document.getElementById("alt-list");
+const seeAllBtn = document.getElementById("see-all");
+let currentBarcode = "";
 document.addEventListener("DOMContentLoaded", () => {
     const scanButton = document.querySelector(".scan-nav");
-    if (scanButton)
+    if (scanButton) {
         scanButton.addEventListener(
             "click",
             () => (window.location.href = "scan.html")
         );
+    }
+    if (seeAllBtn) {
+        seeAllBtn.addEventListener("click", () => {
+            if (currentBarcode) {
+                window.location.href = `alternatives.html?barcode=${currentBarcode}`;
+            }
+        });
+    }
 });
 let isExpanded = false;
 function toggleSheet(expand = !isExpanded) {
@@ -81,6 +92,17 @@ async function fetchProduct(barcode) {
     const res = await fetch(`http://localhost:3000/product/${barcode}`);
     if (!res.ok) throw new Error(res.statusText);
     return await res.json();
+}
+async function fetchAlternatives(barcode) {
+    try {
+        const res = await fetch(
+            `http://localhost:3000/alternatives/${barcode}?limit=2`
+        );
+        if (!res.ok) throw new Error();
+        return await res.json();
+    } catch {
+        return [];
+    }
 }
 async function saveScanToDB(scanDoc) {
     try {
@@ -216,6 +238,31 @@ async function handleCode(barcode) {
         };
         saveScanToDB(scanDoc);
         toggleSheet(true);
+        currentBarcode = barcode;
+        altListEl.innerHTML = "<p class='text-gray-500'>Loading alternatives...</p>";
+        const altsPromise = fetchAlternatives(barcode);
+        const alts = await altsPromise;
+        altListEl.innerHTML = "";
+        alts.forEach((p) => {
+            const li = document.createElement("li");
+            li.className = "flex-shrink-0 snap-start w-56 cursor-pointer";
+            li.addEventListener("click", () => {
+                window.location.href = `detail.html?barcode=${p.barcode}`;
+            });
+            li.innerHTML = `<div class="flex space-x-4">
+                <img src="${
+                    p.thumbUrl
+                }" class="w-20 h-20 bg-gray-300 rounded flex-shrink-0"/>
+                <div class="flex flex-col justify-center min-w-0">
+                  <p class="font-medium truncate">${p.productName}</p>
+                  <p class="text-xs text-gray-500 truncate">${p.brand}</p>
+                  <p class="text-xs text-gray-400 truncate">${p.allergens
+                      .map((a) => `#${a}`)
+                      .join(" ")}</p>
+                </div>
+              </div>`;
+            altListEl.appendChild(li);
+        });
     } catch (err) {
         alert(`Failed to fetch product info:\n${err.message}`);
     }
