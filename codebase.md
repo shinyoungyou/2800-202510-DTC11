@@ -1,8 +1,25 @@
+# .gitignore
+
+```
+node_modules/
+
+```
+
+# .vscode\settings.json
+
+```json
+{
+  "liveServer.settings.port": 5501
+}
+
+```
+
 # backend\.gitignore
 
 ```
 /node_modules
 package-lock.json
+.env
 ```
 
 # backend\package.json
@@ -28,16 +45,200 @@ package-lock.json
   "homepage": "https://github.com/shinyoungyou/2800-202510-DTC11#readme",
   "description": "",
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@zxing/library": "^0.21.3",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "mongoose": "^8.14.1"
+    "mongoose": "^8.14.1",
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
   }
 }
+
+```
+
+# backend\product.js
+
+```js
+// backend/product.js
+const express = require("express");
+const fetch = require("node-fetch");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+require("dotenv").config();
+
+const router = express.Router();
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+const EU14 = [
+    "celery",
+    "crustaceans",
+    "eggs",
+    "fish",
+    "gluten",
+    "lupin",
+    "milk",
+    "molluscs",
+    "mustard",
+    "nuts",
+    "peanuts",
+    "sesameseeds",
+    "soybeans",
+    "sulphites",
+];
+
+const CANON = {
+  "sulphur-dioxide-and-sulphites": "sulphites",
+  "sesame-seeds": "sesameseeds",
+  "sesame": "sesameseeds",
+};
+const canon = (a) => CANON[a] || a;
+
+function cloneNutriments(nutriments) {
+    for (const k of Object.keys(nutriments)) {
+        const m = k.match(/^(.+)_100g$/);
+        if (!m) continue;
+        const original = m[1];
+        const canonical = canon(original);
+        if (canonical !== original) {
+            const newKey = `${canonical}_100g`;
+            if (!(newKey in nutriments)) {
+                nutriments[newKey] = nutriments[k];
+            }
+        }
+    }
+    return nutriments;
+}
+
+function safeJsonArray(text = "[]") {
+    let t = text.trim();
+    if (t.startsWith("\`\`\`")) {
+        t = t.replace(/^\`\`\`[a-z]*\n?/i, "").replace(/\`\`\`$/i, "");
+    }
+    const match = t.match(/\[[\s\S]*]/);
+    if (!match) return [];
+    try {
+        return JSON.parse(match[0]);
+    } catch (e) {
+        console.warn("[Gemini] parse fallback:", e.message);
+        return [];
+    }
+}
+
+router.get("/:barcode", async (req, res) => {
+    try {
+        const { barcode } = req.params;
+
+        /* 1) OpenFoodFacts ------------------------------------------------------------------ */
+        const offRes = await fetch(
+            `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`
+        ).then((r) => r.json());
+
+        if (offRes.status !== 1) {
+            return res.status(404).json({ error: "Product not found" });
+        }
+        const prod = offRes.product;
+        cloneNutriments(prod.nutriments || {});
+        const offAllergens = (prod.allergens_tags || [])
+          .map((t) => canon(t.split(":")[1]));
+
+        /* 2) AI 추출 (필요할 때만) ----------------------------------------------------------- */
+        const ingredientsText = prod.ingredients_text || "";
+        let aiAllergens = [];
+
+        if (ingredientsText && offAllergens.length < EU14.length) {
+            console.log(
+                `[${barcode}] AI call ▶ missing ≈ ${
+                    EU14.length - offAllergens.length
+                }`
+            );
+
+            const prompt = `
+                You are an allergen-extraction assistant for a grocery-scanner app.
+
+                Task:
+                1. Read the full context (product name, brand, ingredient list, advisory lines).
+                2. Decide which of **exactly these 14 EU allergens** are plausibly present or may be present:
+                   [${EU14.join(", ")}]
+                   • Treat phrases like “contains X”, “may contain X”, “traces of X”, “processed in a facility with X”
+                     as positive evidence.
+                   • Ignore phrases like “free from X”, “no X”, “does not contain X”.
+
+                Output:
+                - Return ONLY a raw JSON array of the allergen names, lowercase, no markdown, no keys.
+                - Return [] if none.
+
+                Example:
+                Input → "Brand: ChocoJoy / Product: Dark Chocolate Bar
+                          Ingredients: cocoa mass, sugar, cocoa butter, emulsifier (soy lecithin). May contain milk."
+                Answer → ["soybeans","milk"]
+
+                Now analyse this product:
+                Brand: ${prod.brands || "Unknown"}
+                Product: ${prod.product_name || "Unknown"}
+                Ingredients & advisory:
+                """${ingredientsText}"""
+                `;
+
+                console.log(prompt);
+                
+
+            const geminiRes = await genAI
+                .getGenerativeModel({ model: "gemini-2.0-flash" })
+                .generateContent(prompt, {
+                    temperature: 0.2,
+                    maxOutputTokens: 32,
+                });
+
+            try {
+                const raw = geminiRes?.response?.text() || "[]";
+                console.log(`[${barcode}] AI raw →`, raw);
+                aiAllergens = safeJsonArray(raw).map(canon);
+                console.log(`[${barcode}] AI parsed →`, aiAllergens);
+            } catch (e) {
+                console.warn("[Gemini] JSON parse error", e.message);
+            }
+        }
+
+        const merged = [...new Set([...offAllergens, ...aiAllergens])];
+
+        const allergens = merged.map((name) => ({
+          name,
+          source: offAllergens.includes(name) ? "off"
+                 : aiAllergens.includes(name) ? "ai"
+                 : "off",
+        }));
+
+        const addedByAI = allergens
+            .filter((a) => a.source === "ai")
+            .map((a) => a.name);
+        console.log(`[${barcode}] FINAL →`, merged, "| AI added:", addedByAI);
+
+        /* 4) 응답 --------------------------------------------------------------------------- */
+        res.json({
+            barcode,
+            productName: prod.product_name || "",
+            brand: (prod.brands || "").split(",")[0],
+            thumbUrl:
+                prod.image_thumb_url ||
+                prod.image_front_thumb_url ||
+                prod.image_front_small_url ||
+                prod.image_front_url ||
+                "",
+            allergens,
+            nutriments: prod.nutriments || {},
+            ingredients: prod.ingredients || [],
+            ingredientsText,
+        });
+    } catch (err) {
+        console.error("[GET /product/:barcode]", err.message);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+module.exports = router;
 
 ```
 
@@ -139,6 +340,7 @@ async function main() {
 
     // Feature routers (keep logic in separate files)
     app.use("/scan", require("./scan")); // → backend/scan.js
+    app.use("/product", require("./product"));
 
     // Start HTTP server
     app.listen(PORT, () => {
@@ -150,6 +352,138 @@ main();
 
 ```
 
+# backend\testGemini.js
+
+```js
+// test script
+require("dotenv").config();
+const fetch = require("node-fetch");
+
+async function pingGemini() {
+    const endpoint =
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
+
+    const payload = {
+        contents: [{ parts: [{ text: "ping" }] }],
+        generationConfig: { temperature: 0 },
+    };
+
+    const url = `${endpoint}?key=${process.env.GEMINI_API_KEY}`;
+    try {
+        const res = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+        });
+        const json = await res.json();
+
+        if (!res.ok) {
+            throw new Error(
+                `${res.status} ${res.statusText}\n${JSON.stringify(
+                    json,
+                    null,
+                    2
+                )}`
+            );
+        }
+        const reply = json.candidates?.[0]?.content?.parts?.[0]?.text || "";
+        console.log("[Gemini ping] OK →", reply.slice(0, 60), "…");
+    } catch (err) {
+        console.error("[Gemini ping] ERROR:", err.message);
+        process.exitCode = 1;
+    }
+}
+
+pingGemini();
+
+```
+
+# frontend\alternative-details.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="header">
+        <div class="back-button-section">
+          <img
+            src="/images/back-button.svg"
+            alt="Back to previous button"
+            class="back-button"
+          />
+        </div>
+        <div class="menu-button-section">
+          <img
+            src="/images/menu-button.svg"
+            alt="Menu icon"
+            class="menu-button"
+          />
+        </div>
+        <h1 class="title" id="title">Alternatives</h1>
+      </div>
+
+      <div class="section">
+        <div class="card-product-details">
+          <div class="product-image-details">
+            <img src="#" alt="product #1 image" />
+          </div>
+          <div class="product-info-details">
+            <h2>Product #1</h2>
+            <p>brand</p>
+            <p>#sesame</p>
+          </div>
+        </div>
+
+        <div class="ingredients">
+          <h2>Ingredients</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates
+            necessitatibus similique quos magni doloremque reiciendis,
+            voluptatem laborum ipsum pariatur numquam consectetur aliquid a amet
+            accusamus. Error incidunt architecto eligendi repellendus.
+          </p>
+        </div>
+      </div>
+
+      <h2 class="allergen-title">Possible Allergens</h2>
+      <div class="allergens">
+        <img src="#" alt="icon of allergen" class="allergen-icon" />
+        <p>Eggs</p>
+      </div>
+    </div>
+
+    <div class="navbar">
+      <div class="home-button-section">
+        <img
+          src="/images/home-button.svg"
+          alt="Home button"
+          class="home-button"
+        />
+      </div>
+      <div class="scan-button-section">
+        <img
+          src="/images/scanner-button.svg"
+          alt="Scan button"
+          class="scan-button"
+        />
+      </div>
+      <div class="profile-button-section">
+        <img
+          src="/images/profile-button.svg"
+          alt="Profile button"
+          class="profile-button"
+        />
+      </div>
+    </div>
+  </body>
+</html>
+
+```
+
 # frontend\history.js
 
 ```js
@@ -157,6 +491,8 @@ console.log('▶ history.js loaded');
 
 /* ---------- DOM elements ---------- */
 const historyList = document.getElementById("history-list");
+const trashIcon = document.getElementById("trash-icon");
+let checkboxesVisible = false;
 
 // Load scanned products (for history page)
 document.addEventListener("DOMContentLoaded", () => {
@@ -164,6 +500,23 @@ document.addEventListener("DOMContentLoaded", () => {
         loadScannedProducts();
     }
 });
+
+trashIcon.addEventListener("click", toggleCheckboxes);
+
+function saveScanToLocal(scanDoc) {
+    let savedProducts = JSON.parse(localStorage.getItem("scannedProducts")) || [];
+
+    // Prevent duplicate products by barcode
+    const existingProduct = savedProducts.find(product => product.barcode === scanDoc.barcode);
+    if (existingProduct) {
+        console.log("Product already scanned. Skipping duplicate.");
+        return;
+    }
+
+    savedProducts.push(scanDoc);
+    localStorage.setItem("scannedProducts", JSON.stringify(savedProducts));
+}
+
 
 // Load saved products from local storage
 function loadScannedProducts() {
@@ -180,9 +533,14 @@ function loadScannedProducts() {
     savedProducts.reverse().forEach((product) => {
         const item = document.createElement("div");
         item.className = "flex items-center space-x-4";
+        item.setAttribute("data-barcode", product.barcode);
+
         item.innerHTML = `
-            <img src="${product.thumbUrl || 'icons/allergen-placeholder.svg'}" 
-                 class="w-16 h-16 rounded object-cover bg-gray-300 flex-shrink-0" />
+            <div class="flex items-center">
+                <input type="checkbox" class="delete-checkbox hidden mr-3 w-4 h-4" />
+                <img src="${product.thumbUrl || 'icons/allergen-placeholder.svg'}" 
+                    class="w-16 h-16 rounded object-cover bg-gray-300 flex-shrink-0" />
+            </div>
             <div class="flex-1">
                 <p class="font-semibold leading-tight truncate">${product.productName || "Unknown Product"}</p>
                 <p class="text-sm text-gray-500 truncate">${product.brand || "Unknown Brand"}</p>
@@ -193,16 +551,56 @@ function loadScannedProducts() {
     });
 }
 
+function toggleCheckboxes() {
+    const checkboxes = document.querySelectorAll(".delete-checkbox");
+    checkboxesVisible = !checkboxesVisible;
 
+    checkboxes.forEach(checkbox => {
+        checkbox.classList.toggle("hidden", !checkboxesVisible)
+    })
 
-// Clear history
-function clearHistory() {
-    if (confirm("Are you sure you want to clear history?")) {
-        localStorage.removeItem("scannedProducts");
-        loadScannedProducts(); // Reload to clear the list
+    if (checkboxesVisible) {
+        // Create a red delete button with white text
+        trashIcon.innerHTML = `
+            <button id="delete-button" 
+                    class="bg-red-500 text-white px-2 py-1 rounded-md text-sm hover:bg-red-600 transition">
+                Delete
+            </button>
+        `;
+
+        // Attach click event to the delete button
+        document.getElementById("delete-button").onclick = deleteSelectedItems;
+    } else {
+        trashIcon.innerHTML = '';
+        trashIcon.appendChild(createTrashIcon());
     }
 }
 
+// Delete selected items
+function deleteSelectedItems() {
+    const checkboxes = document.querySelectorAll(".delete-checkbox");
+    let savedProducts = JSON.parse(localStorage.getItem("scannedProducts")) || [];
+
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            const productElement = checkbox.closest("div[data-barcode]");
+            const barcode = productElement.getAttribute("data-barcode")
+            
+            // Remove product from localStorage
+            savedProducts = savedProducts.filter(product => product.barcode !== barcode);
+            
+            // Remove product from DOM
+            productElement.remove();
+        }
+    })
+
+    // Update localStorage
+    localStorage.setItem("scannedProducts", JSON.stringify(savedProducts));
+
+    // Reset the icon back to trash
+    toggleCheckboxes();
+
+}
 ```
 
 # frontend\home_page.html
@@ -219,13 +617,13 @@ function clearHistory() {
 
 </head>
 <body class="p-10">
-    <i class="fas fa-trash-alt absolute right-10 text-xl"></i>
+    <i id="trash-icon" class="fas fa-trash-alt absolute right-10 text-xl"></i>
     <h1 class="font-bold text-3xl mt-10">History</h1>
 
     <div id = "history-list" class="mt-5 space-y-4"></div>
 
-    <nav class="fixed bottom-10 left-0 right-0 h-16 bg-white flex justify-around items-center text-black">
-        <a href="homepage.html" class="flex flex-col items-center text-gray-500">
+    <nav class="fixed bottom-0 left-0 right-0 h-16 bg-white flex justify-around items-center text-black">
+        <a href="home_page.html" class="flex flex-col items-center text-gray-500">
             <img src="icons/history-outlined.png" alt="home" class="w-6 h-6 mb-1 object-contain" />
             <span class="text-xs">Home</span>
         </a>
@@ -326,6 +724,155 @@ This is a binary file of the type: Image
 
 This is a binary file of the type: Image
 
+# frontend\index.html
+
+```html
+<html>
+  <head>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="header">
+        <div class="back-button-section">
+          <img
+            src="/images/back-button.svg"
+            alt="Back to previous button"
+            class="back-button"
+          />
+        </div>
+        <div class="menu-button-section">
+          <img
+            src="/images/menu-button.svg"
+            alt="Menu icon"
+            class="menu-button"
+          />
+        </div>
+        <h1 class="title" id="title">Alternatives</h1>
+      </div>
+
+      <div class="section">
+        <div class="card">
+          <div class="product-image">
+            <img src="#" alt="product #1 image" />
+          </div>
+          <div class="product-info">
+            <h2>Product #1</h2>
+            <p>brand</p>
+            <p>#sesame</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="product-image">
+            <img src="#" alt="product #1 image" />
+          </div>
+          <div class="product-info">
+            <h2>Product #2</h2>
+            <p>brand</p>
+            <p>#sesame</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="product-image">
+            <img src="#" alt="product #1 image" />
+          </div>
+          <div class="product-info">
+            <h2>Product #3</h2>
+            <p>brand</p>
+            <p>#sesame</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="product-image">
+            <img src="#" alt="product #1 image" />
+          </div>
+          <div class="product-info">
+            <h2>Product #4</h2>
+            <p>brand</p>
+            <p>#sesame</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="product-image">
+            <img src="#" alt="product #1 image" />
+          </div>
+          <div class="product-info">
+            <h2>Product #4</h2>
+            <p>brand</p>
+            <p>#sesame</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="product-image">
+            <img src="#" alt="product #1 image" />
+          </div>
+          <div class="product-info">
+            <h2>Product #4</h2>
+            <p>brand</p>
+            <p>#sesame</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="product-image">
+            <img src="#" alt="product #1 image" />
+          </div>
+          <div class="product-info">
+            <h2>Product #4</h2>
+            <p>brand</p>
+            <p>#sesame</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="product-image">
+            <img src="#" alt="product #1 image" />
+          </div>
+          <div class="product-info">
+            <h2>Product #4</h2>
+            <p>brand</p>
+            <p>#sesame</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar">
+        <div class="home-button-section">
+          <img
+            src="/images/home-button.svg"
+            alt="Home button"
+            class="home-button"
+          />
+        </div>
+        <div class="scan-button-section">
+          <img
+            src="/images/scanner-button.svg"
+            alt="Scan button"
+            class="scan-button"
+          />
+        </div>
+        <div class="profile-button-section">
+          <img
+            src="/images/profile-button.svg"
+            alt="Profile button"
+            class="profile-button"
+          />
+        </div>
+      </div>
+
+      <!-- <div class="content"></div> -->
+    </div>
+  </body>
+  <script src="app.js"></script>
+</html>
+
+```
+
 # frontend\product_page.html
 
 ```html
@@ -365,8 +912,15 @@ This is a binary file of the type: Image
         </button>
     </nav>
 </body>
-
+<script src="scan.js"></script>
+<script src="history.js"></script>
 </html>
+```
+
+# frontend\product.js
+
+```js
+
 ```
 
 # frontend\scan.html
@@ -379,6 +933,7 @@ This is a binary file of the type: Image
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Scan page</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>.allergen-ai span{color:#ca8a04;font-weight:500}</style>
 </head>
 <body class="bg-black flex flex-col h-screen text-white">
 
@@ -490,6 +1045,7 @@ This is a binary file of the type: Image
 
   <script src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
   <script src="scan.js"></script>
+  <script src="history.js"></script>
 </body>
 </html>
 
@@ -564,7 +1120,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
 /* Bottom-sheet state ---------------------------------------------------- */
 let isExpanded = false;
 function toggleSheet(expand = !isExpanded) {
@@ -612,13 +1167,9 @@ async function startCamera() {
 
 /* ---------- product API ---------- */
 async function fetchProduct(barcode) {
-    const res = await fetch(
-        `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`
-    );
+    const res = await fetch(`http://localhost:3000/product/${barcode}`);
     if (!res.ok) throw new Error(res.statusText);
-    const json = await res.json();
-    if (json.status !== 1) throw new Error("Product not found.");
-    return json.product;
+    return await res.json();
 }
 
 /* ---------- save scan to backend ---------- */
@@ -642,48 +1193,34 @@ async function saveScanToDB(scanDoc) {
     saveScanToLocal(scanDoc);
 }
 
-function saveScanToLocal(scanDoc) {
-    let savedProducts = JSON.parse(localStorage.getItem("scannedProducts")) || [];
-
-    // Prevent duplicate products by barcode
-    const existingProduct = savedProducts.find(product => product.barcode === scanDoc.barcode);
-    if (existingProduct) {
-        console.log("Product already scanned. Skipping duplicate.");
-        return;
-    }
-
-    savedProducts.push(scanDoc);
-    localStorage.setItem("scannedProducts", JSON.stringify(savedProducts));
-}
-
-
-
 /* ---------- scan loop ---------- */
 async function scanLoop() {
-    console.log('🔄 scanning…');
+    console.log("🔄 scanning…");
     try {
-      const result = await codeReader.decodeOnceFromVideoDevice(undefined, video);
-  
-      console.log('✅ Detected:', result.getText());
-      const points = result.getResultPoints(); // [{x,y}, …]
-      const xs = points.map(p => p.x);
-      const ys = points.map(p => p.y);
-      const x = Math.min(...xs),
+        const result = await codeReader.decodeOnceFromVideoDevice(
+            undefined,
+            video
+        );
+
+        console.log("✅ Detected:", result.getText());
+        const points = result.getResultPoints(); // [{x,y}, …]
+        const xs = points.map((p) => p.x);
+        const ys = points.map((p) => p.y);
+        const x = Math.min(...xs),
             y = Math.min(...ys),
             width = Math.max(...xs) - x,
             height = Math.max(...ys) - y;
-  
-      drawBox({ x, y, width, height });
-  
-      await handleCode(result.getText());
-  
-      setTimeout(scanLoop, 2000);
+
+        drawBox({ x, y, width, height });
+
+        await handleCode(result.getText());
+
+        setTimeout(scanLoop, 2000);
     } catch (err) {
-      console.log('❌ no code yet, retrying…');
-      requestAnimationFrame(scanLoop);
+        console.log("❌ no code yet, retrying…");
+        requestAnimationFrame(scanLoop);
     }
-  }
-  
+}
 
 /* ---------- bounding box ---------- */
 function drawBox({ x, y, width, height }) {
@@ -701,25 +1238,20 @@ async function handleCode(barcode) {
         toggleSheet(false); // stay collapsed while loading
 
         const product = await fetchProduct(barcode);
+        console.log(product);
+        
+        const nutr = product.nutriments || {};
         // choose the smallest available photo, fall back to any front image,
         // or keep the placeholder if nothing exists.
-        const thumbURL =
-            product?.image_thumb_url ||
-            product?.image_front_thumb_url ||
-            product?.image_front_small_url ||
-            product?.image_front_url;
-        if (thumbURL) prodThumbEl.src = thumbURL;
 
-        const nutr = product.nutriments || {};
-        const allergens =
-            Array.isArray(product.allergens_tags) &&
-            product.allergens_tags.length
-                ? product.allergens_tags.map((t) => t.split(":")[1])
-                : [];
+        prodThumbEl.src = product.thumbUrl;
+
+
+        const allergens = product.allergens; // [{name,source}]
 
         /* --- Build lookup { allergen → % estimate or null } --- */
         const percentByAllergen = Object.fromEntries(
-            allergens.map((a) => [a, null])
+            allergens.map(({ name }) => [name, null])  // name 필드만 키로
         );
 
         if (Array.isArray(product.ingredients)) {
@@ -727,18 +1259,14 @@ async function handleCode(barcode) {
                 const id = norm(ing.id || "");
                 const text = norm(ing.text || "");
 
-                allergens.forEach((a) => {
-                    const words = allergenMap[a] || [a];
+                allergens.forEach(({ name }) => {
+                    const words = allergenMap[name] || [name];
                     const hit = words.some(
                         (w) => id.includes(w) || text.includes(w)
                     );
-                    if (
-                        hit &&
-                        ing.percent_estimate &&
-                        ing.percent_estimate > 0
-                    ) {
-                        percentByAllergen[a] = Math.max(
-                            percentByAllergen[a] ?? 0,
+                    if (hit && ing.percent_estimate && ing.percent_estimate > 0) {
+                        percentByAllergen[name] = Math.max(
+                            percentByAllergen[name] ?? 0,
                             ing.percent_estimate
                         );
                     }
@@ -747,13 +1275,15 @@ async function handleCode(barcode) {
         }
 
         /* summary */
-        prodNameEl.textContent = product.product_name || "Unknown product";
-        prodBrandEl.textContent = (product.brands || "Unknown").split(",")[0];
-        prodTagsEl.textContent = allergens.map((a) => `#${a}`).join(" ");
+        prodNameEl.textContent = product.productName || "Unknown product";
+        prodBrandEl.textContent = product.brand || "Unknown";
+        prodTagsEl.textContent = allergens
+            .map(({ name }) => `#${name}`)
+            .join(" ");
 
         /* allergen list */
         allergensListEl.innerHTML = "";
-        allergens.forEach((name) => {
+        allergens.forEach(({ name, source }) => {
             const gKey = `${name.replace(/\s+/g, "_").toLowerCase()}_100g`;
             const grams = nutr[gKey]; // e.g. “16 g per 100 g”
             const pct = percentByAllergen[name]; // e.g. “3 % of recipe”
@@ -777,7 +1307,13 @@ async function handleCode(barcode) {
                   <img src="${iconSrc}"
                        alt="${name} icon"
                        class="w-6 h-6 flex-shrink-0"/>
-                  <span>${name}</span>
+                          <span class="${
+                              source === "ai"
+                                  ? "text-yellow-600 font-medium"
+                                  : ""
+                          }">
+                          ${name}${source === "ai" ? "*" : ""}
+                        </span>
                 </div>
                 <!-- Right: percent, never shrinks or wraps -->
                 <div class="flex-shrink-0">
@@ -796,11 +1332,11 @@ async function handleCode(barcode) {
 
         const scanDoc = {
             barcode,
-            productName: product.product_name || "",
-            brand: (product.brands || "").split(",")[0],
-            allergens,
+            productName: product.productName || "",
+            brand: product.brand || "",
+            allergens: allergens.map(({ name }) => name),
             allergenPercents: percentByAllergen,
-            thumbUrl: thumbURL || "",
+            thumbUrl: product.thumbUrl,
         };
         saveScanToDB(scanDoc);
 
@@ -818,10 +1354,204 @@ startCamera().then(() => {
 
 ```
 
+# images\back-button.svg
+
+This is a file of the type: SVG Image
+
+# images\home-button.svg
+
+This is a file of the type: SVG Image
+
+# images\menu-button.svg
+
+This is a file of the type: SVG Image
+
+# images\profile-button.svg
+
+This is a file of the type: SVG Image
+
+# images\scanner-button.svg
+
+This is a file of the type: SVG Image
+
 # README.md
 
 ```md
 # 2800-202510-DTC11
+
+```
+
+# style.css
+
+```css
+body {
+  font-family: Calibri, "Segoe UI", Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* justify-content: space-between; */
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  height: 15%;
+}
+
+.back-button-section {
+  width: 50%;
+  font-size: 5rem;
+}
+
+.back-button {
+  width: 5rem;
+  display: flex;
+  /* margin: 5rem; */
+  margin: 0rem 5rem 0rem 5rem;
+}
+
+.menu-button-section {
+  width: 50%;
+  display: flex;
+  justify-content: end;
+}
+
+.menu-button {
+  width: 5rem;
+  display: flex;
+  margin: 0rem 5rem 0rem 5rem;
+}
+
+.title {
+  width: 100%;
+  font-size: 5rem;
+}
+
+.section {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  /* height: 100%; */
+  padding-bottom: 100px;
+}
+
+.card {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  margin-bottom: 5rem;
+  margin-top: 5rem;
+  border-bottom: 1px solid black;
+  padding-bottom: 8rem;
+}
+
+.product-image {
+  width: 40%;
+  /* height: 100%; */
+  background-color: grey;
+  margin-right: 2rem;
+}
+
+.navbar {
+  display: flex;
+  width: 100%;
+  background-color: rgba(210, 210, 210, 0.341);
+  justify-content: space-around;
+  height: 10rem;
+  align-self: end;
+  height: 10%;
+  position: fixed;
+  bottom: 0;
+  opacity: 1;
+}
+
+.home-button-section {
+  align-self: center;
+}
+
+.home-button {
+  height: 6rem;
+  border: 3px solid black;
+  border-radius: 10%;
+}
+
+.scan-button-section {
+  align-self: center;
+}
+
+.scan-button {
+  height: 6rem;
+  border: 3px solid black;
+  border-radius: 10%;
+}
+
+.profile-button-section {
+  align-self: center;
+}
+
+.profile-button {
+  height: 6rem;
+  border: 3px solid black;
+  border-radius: 10%;
+}
+
+.card-product-details {
+  display: flex;
+  width: 100%;
+  margin: 2rem;
+}
+
+.product-image-details {
+  width: 40%;
+  /* height: 100%; */
+  background-color: grey;
+  margin-right: 2rem;
+}
+
+.product-info-details {
+  font-size: 2rem;
+}
+
+.ingredients {
+  width: 100%;
+  margin: 2rem;
+}
+
+.allergen-title {
+  width: 100%;
+  margin-left: 2rem;
+  margin-bottom: 0rem;
+}
+
+.allergens {
+  display: flex;
+  width: 100%;
+  margin: 2rem;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  align-items: center;
+}
+
+.allergen-icon {
+  margin-right: 1rem;
+}
+
+/* .content {
+    margin: 0 auto;
+    width: 800px;
+    text-align: center;
+  } */
 
 ```
 
