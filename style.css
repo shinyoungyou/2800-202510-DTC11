@@ -1,0 +1,168 @@
+body {
+  font-family: Calibri, "Segoe UI", Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* justify-content: space-between; */
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  height: 15%;
+}
+
+.back-button-section {
+  width: 50%;
+  font-size: 5rem;
+}
+
+.back-button {
+  width: 5rem;
+  display: flex;
+  /* margin: 5rem; */
+  margin: 0rem 5rem 0rem 5rem;
+}
+
+.menu-button-section {
+  width: 50%;
+  display: flex;
+  justify-content: end;
+}
+
+.menu-button {
+  width: 5rem;
+  display: flex;
+  margin: 0rem 5rem 0rem 5rem;
+}
+
+.title {
+  width: 100%;
+  font-size: 5rem;
+}
+
+.section {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  /* height: 100%; */
+  padding-bottom: 100px;
+}
+
+.card {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  margin-bottom: 5rem;
+  margin-top: 5rem;
+  border-bottom: 1px solid black;
+  padding-bottom: 8rem;
+}
+
+.product-image {
+  width: 40%;
+  /* height: 100%; */
+  background-color: grey;
+  margin-right: 2rem;
+}
+
+.navbar {
+  display: flex;
+  width: 100%;
+  background-color: rgba(210, 210, 210, 0.341);
+  justify-content: space-around;
+  height: 10rem;
+  align-self: end;
+  height: 10%;
+  position: fixed;
+  bottom: 0;
+  opacity: 1;
+}
+
+.home-button-section {
+  align-self: center;
+}
+
+.home-button {
+  height: 6rem;
+  border: 3px solid black;
+  border-radius: 10%;
+}
+
+.scan-button-section {
+  align-self: center;
+}
+
+.scan-button {
+  height: 6rem;
+  border: 3px solid black;
+  border-radius: 10%;
+}
+
+.profile-button-section {
+  align-self: center;
+}
+
+.profile-button {
+  height: 6rem;
+  border: 3px solid black;
+  border-radius: 10%;
+}
+
+.card-product-details {
+  display: flex;
+  width: 100%;
+  margin: 2rem;
+}
+
+.product-image-details {
+  width: 40%;
+  /* height: 100%; */
+  background-color: grey;
+  margin-right: 2rem;
+}
+
+.product-info-details {
+  font-size: 2rem;
+}
+
+.ingredients {
+  width: 100%;
+  margin: 2rem;
+}
+
+.allergen-title {
+  width: 100%;
+  margin-left: 2rem;
+  margin-bottom: 0rem;
+}
+
+.allergens {
+  display: flex;
+  width: 100%;
+  margin: 2rem;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  align-items: center;
+}
+
+.allergen-icon {
+  margin-right: 1rem;
+}
+
+/* .content {
+    margin: 0 auto;
+    width: 800px;
+    text-align: center;
+  } */

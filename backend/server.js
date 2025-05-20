@@ -34,6 +34,7 @@ async function main() {
 
     // Feature routers (keep logic in separate files)
     app.use("/scan", require("./scan")); // → backend/scan.js
+    app.use("/product", require("./product"));
 
     // Start HTTP server
     app.listen(PORT, () => {
