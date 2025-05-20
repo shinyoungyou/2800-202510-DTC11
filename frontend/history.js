@@ -10,6 +10,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+function saveScanToLocal(scanDoc) {
+    let savedProducts = JSON.parse(localStorage.getItem("scannedProducts")) || [];
+
+    // Prevent duplicate products by barcode
+    const existingProduct = savedProducts.find(product => product.barcode === scanDoc.barcode);
+    if (existingProduct) {
+        console.log("Product already scanned. Skipping duplicate.");
+        return;
+    }
+
+    savedProducts.push(scanDoc);
+    localStorage.setItem("scannedProducts", JSON.stringify(savedProducts));
+}
+
+
 // Load saved products from local storage
 function loadScannedProducts() {
     if (!historyList) return;

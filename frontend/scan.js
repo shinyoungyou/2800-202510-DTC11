@@ -142,21 +142,6 @@ async function saveScanToDB(scanDoc) {
     saveScanToLocal(scanDoc);
 }
 
-function saveScanToLocal(scanDoc) {
-    let savedProducts = JSON.parse(localStorage.getItem("scannedProducts")) || [];
-
-    // Prevent duplicate products by barcode
-    const existingProduct = savedProducts.find(product => product.barcode === scanDoc.barcode);
-    if (existingProduct) {
-        console.log("Product already scanned. Skipping duplicate.");
-        return;
-    }
-
-    savedProducts.push(scanDoc);
-    localStorage.setItem("scannedProducts", JSON.stringify(savedProducts));
-}
-
-
 
 /* ---------- scan loop ---------- */
 async function scanLoop() {
@@ -204,7 +189,7 @@ async function handleCode(barcode) {
         // choose the smallest available photo, fall back to any front image,
         // or keep the placeholder if nothing exists.
         const thumbURL =
-            product?.image_thumb_url ||
+            product?.iFl ||
             product?.image_front_thumb_url ||
             product?.image_front_small_url ||
             product?.image_front_url;
