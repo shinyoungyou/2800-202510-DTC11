@@ -24,13 +24,15 @@ const allergenIcons = {
     soybeans: "icons/soy.png",
     sulphites: "icons/sulphite.png",
 };
+
 backBtn.addEventListener("click", () => (window.location.href = "index.html"));
 deleteBtn.addEventListener("click", async () => {
     if (window.confirm("Are you sure you want to delete this?")) {
         await fetch(`${API_BASE}/${id}`, { method: "DELETE" });
-        window.location.href = "index.html";
+        window.location.href = "home_page.html";
     }
 });
+
 async function loadDetail() {
     const res = await fetch(`${API_BASE}/${id}`);
     const p = await res.json();

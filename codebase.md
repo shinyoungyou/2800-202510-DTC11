@@ -881,45 +881,130 @@ This is a binary file of the type: Image
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 </head>
 
-<body class="p-10">
-    <div class = "flex items-center justify-betweeen">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor" stroke-width="4">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-        </svg>
-        <i class="fas fa-trash-alt absolute right-10 text-xl"></i>
+<body class="bg-white flex flex-col h-screen text-black pb-16">
+    <div class="flex items-center justify-between px-4 py-2">
+        <button id="back-btn" class="text-2xl">
+            </button>
+                <button id="delete-btn" class="fas fa-trash-alt text-xl"></button>
     </div>
-    <nav
-        class="h-16 bg-white flex justify-between items-center text-black fixed bottom-10 left-10 right-10 mx-auto max-w-[500px]">
-        <button class="flex flex-col items-center text-gray-500">
-            <img src="icons/history-outlined.png" alt="home" class="w-6 h-6 mb-1 object-contain" />
-            <span class="text-xs">Home</span>
-        </button>
-        <button class="flex flex-col items-center text-blue-600">
-            <img src="icons/scan-outlined.png" alt="scan" class="w-6 h-6 mb-1 object-contain" />
-            <span class="text-xs">Scan</span>
-        </button>
-        <button class="flex flex-col items-center text-gray-500">
-            <img src="icons/profile-outlined.png" alt="profile" class="w-6 h-6 mb-1 object-contain" />
-            <span class="text-xs">Profile</span>
-        </button>
-    </nav>
+    <div class="px-4 flex items-center space-x-4">
+        <img id="detail-thumb" class="w-16 h-16 rounded object-cover bg-gray-200 flex-shrink-0" />
+        <div class="flex-1 space-y-1">
+            <h2 id="detail-name" class="font-bold text-lg leading-tight truncate"></h2>
+            <p id="detail-brand" class="text-gray-500 truncate"></p>
+            <p id="detail-tags" class="text-xs text-gray-400 truncate"></p>
+        </div>
+    </div>
+    <div class="px-4 pt-6">
+        <h3 class="font-semibold">Allergens</h3>
+        <ul id="detail-list" class="divide-y divide-gray-200 mt-2"></ul>
+    </div>
+    <div class="px-4 pt-6">
+        <div class="flex items-baseline justify-between mb-3">
+            <h3 class="font-semibold">Alternatives</h3>
+            <button id="see-all" class="text-sm text-blue-600 whitespace-nowrap">See all</button>
+        </div>
+        <ul id="alt-list" class="flex overflow-x-auto pb-2 space-x-8 snap-x snap-mandatory scrollbar-hide">
+            <li class="flex-shrink-0 snap-start w-56">
+                <div class="flex space-x-4">
+                    <div class="w-20 h-20 bg-gray-300 rounded flex-shrink-0"></div>
+                    <div class="flex flex-col justify-center min-w-0">
+                        <p class="font-medium truncate">Product #1</p>
+                        <p class="text-xs text-gray-500 truncate">Brand #1</p>
+                        <p class="text-xs text-gray-400 truncate">#Sesame</p>
+                    </div>
+                </div>
+            </li>
+            <li class="flex-shrink-0 snap-start w-56">
+                <div class="flex space-x-4">
+                    <div class="w-20 h-20 bg-gray-300 rounded flex-shrink-0"></div>
+                    <div class="flex flex-col justify-center min-w-0">
+                        <p class="font-medium truncate">Product #2</p>
+                        <p class="text-xs text-gray-500 truncate">Brand #2</p>
+                        <p class="text-xs text-gray-400 truncate">#Peanuts</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="navbar-container"></div>
+    <script src="product.js"></script>
+    <script src="history.js"></script>
 </body>
-<script src="scan.js"></script>
-<script src="history.js"></script>
+
 </html>
 ```
 
 # frontend\product.js
 
 ```js
+const API_BASE = "http://localhost:3000/scan";
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+const backBtn = document.getElementById("back-btn");
+const deleteBtn = document.getElementById("delete-btn");
+const thumb = document.getElementById("detail-thumb");
+const nameEl = document.getElementById("detail-name");
+const brandEl = document.getElementById("detail-brand");
+const tagsEl = document.getElementById("detail-tags");
+const listEl = document.getElementById("detail-list");
+const allergenIcons = {
+    celery: "icons/celery.png",
+    crustaceans: "icons/shrimp.png",
+    eggs: "icons/egg.png",
+    fish: "icons/fish.png",
+    gluten: "icons/wheat.png",
+    lupin: "icons/lupin.png",
+    milk: "icons/milk.png",
+    molluscs: "icons/mussel.png",
+    mustard: "icons/mustard.png",
+    nuts: "icons/nut.png",
+    peanuts: "icons/peanut.png",
+    sesameseeds: "icons/sesame.png",
+    soybeans: "icons/soy.png",
+    sulphites: "icons/sulphite.png",
+};
+
+backBtn.addEventListener("click", () => (window.location.href = "index.html"));
+deleteBtn.addEventListener("click", async () => {
+    if (window.confirm("Are you sure you want to delete this?")) {
+        await fetch(`${API_BASE}/${id}`, { method: "DELETE" });
+        window.location.href = "index.html";
+    }
+});
+
+async function loadDetail() {
+    const res = await fetch(`${API_BASE}/${id}`);
+    const p = await res.json();
+    thumb.src = p.thumbUrl || "icons/allergen-placeholder.svg";
+    nameEl.textContent = p.productName || "";
+    brandEl.textContent = p.brand || "";
+    tagsEl.textContent = (p.allergens || []).map((a) => `#${a}`).join(" ");
+    listEl.innerHTML = "";
+    const percents = p.allergenPercents || {};
+    p.allergens.forEach((name) => {
+        const iconSrc = allergenIcons[name] || "icons/allergen-placeholder.svg";
+        const percent = percents[name];
+        const percentText = percent != null ? `${percent.toFixed(1)} %` : "";
+        const li = document.createElement("li");
+        li.className = "flex items-center justify-between py-3";
+        li.innerHTML = `
+      <div class="flex items-center space-x-2">
+        <img src="${iconSrc}" class="w-6 h-6 flex-shrink-0"/>
+        <span>${name}</span>
+      </div>
+      <span>${percentText}</span>
+    `;
+        listEl.appendChild(li);
+    });
+}
+loadDetail();
 
 ```
 

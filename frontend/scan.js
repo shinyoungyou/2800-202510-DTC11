@@ -291,6 +291,32 @@ async function handleCode(barcode) {
     }
 }
 
+// GET /scan/:barcode → get one item
+router.get("/:barcode", async (req, res) => {
+    try {
+        const scan = await Scan.findOne({ barcode: req.params.barcode });
+        if (!scan) return res.status(404).json({ error: "Not found" });
+        res.json(scan);
+    } catch (err) {
+        console.error("[GET /scan/:barcode]", err.message);
+        res.status(500).json({ error: "Failed to fetch scan" });
+    }
+});
+
+// DELETE /scan/:barcode → delete one item
+router.delete("/:barcode", async (req, res) => {
+    try {
+        const result = await Scan.deleteOne({ barcode: req.params.barcode });
+        if (result.deletedCount === 0)
+            return res.status(404).json({ error: "Not found" });
+        res.json({ success: true });
+    } catch (err) {
+        console.error("[DELETE /scan/:barcode]", err.message);
+        res.status(500).json({ error: "Failed to delete scan" });
+    }
+});
+
+
 /* ---------- init ---------- */
 startCamera().then(() => {
     scanLoop();

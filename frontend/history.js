@@ -46,6 +46,12 @@ function loadScannedProducts() {
         item.className = "flex items-center space-x-4";
         item.setAttribute("data-barcode", product.barcode);
 
+        item.style.cursor = "pointer";
+        item.addEventListener("click", () => {
+            window.location.href = `product_page.html?id=${product.barcode}`;
+        });
+
+
         item.innerHTML = `
             <div class="flex items-center">
                 <input type="checkbox" class="delete-checkbox hidden mr-3 w-4 h-4" />
