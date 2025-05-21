@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detail</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-white flex flex-col h-screen text-black pb-16">
+  <div class="flex items-center justify-between px-4 py-2">
+    <button id="back-btn" class="text-2xl"><</button>
+    <button id="delete-btn" class="fas fa-trash-alt text-xl"></button>
+  </div>
+  <div class="px-4 flex items-center space-x-4">
+    <img id="detail-thumb" class="w-16 h-16 rounded object-cover bg-gray-200 flex-shrink-0"/>
+    <div class="flex-1 space-y-1">
+      <h2 id="detail-name" class="font-bold text-lg leading-tight truncate"></h2>
+      <p id="detail-brand" class="text-gray-500 truncate"></p>
+      <p id="detail-tags" class="text-xs text-gray-400 truncate"></p>
+    </div>
+  </div>
+  <div class="px-4 pt-6">
+    <h3 class="font-semibold">Allergens</h3>
+    <ul id="detail-list" class="divide-y divide-gray-200 mt-2"></ul>
+  </div>
+  <div class="px-4 pt-6">
+    <div class="flex items-baseline justify-between mb-3">
+      <h3 class="font-semibold">Alternatives</h3>
+      <button id="see-all" class="text-sm text-blue-600 whitespace-nowrap">See all</button>
+    </div>
+    <ul id="alt-list" class="flex overflow-x-auto pb-2 space-x-8 snap-x snap-mandatory scrollbar-hide"></ul>
+  </div>
+  <div id="navbar-container"></div>
+  <script src="detail.js"></script>
+  <script src="navbar.js"></script>
+</body>
+</html>
