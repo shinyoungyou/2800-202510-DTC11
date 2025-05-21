@@ -10,7 +10,6 @@ const brandEl = document.getElementById("detail-brand");
 const tagsEl = document.getElementById("detail-tags");
 const listEl = document.getElementById("detail-list");
 const altListEl = document.getElementById("alt-list");
-const seeAllBtn = document.getElementById("see-all");
 const allergenIcons = {
     celery: "icons/celery.png",
     crustaceans: "icons/shrimp.png",
@@ -62,32 +61,27 @@ async function loadDetail() {
         const percentText = percent != null ? `${percent.toFixed(1)} %` : "";
         const li = document.createElement("li");
         li.className = "flex items-center justify-between py-3";
-        li.innerHTML = `<div class="flex items-center space-x-2"><img src="${iconSrc}" class="w-6 h-6"/><span>${name}</span></div><span>${percentText}</span>`;
+        li.innerHTML = `<div class="flex items-center space-x-2"><img src="${iconSrc}" class="w-6 h-6 flex-shrink-0"/><span>${name}</span></div><span>${percentText}</span>`;
         listEl.appendChild(li);
     });
+    altListEl.innerHTML = "";
     if (p.alternatives && p.alternatives.length) {
-        altListEl.innerHTML = "";
         p.alternatives.forEach((palt) => {
             const li = document.createElement("li");
             li.className = "flex-shrink-0 snap-start w-56 cursor-pointer";
             li.addEventListener("click", () => {
-                window.location.href = `detail.html?barcode=${palt.barcode}`;
+                window.location.href = `alternatives_detail.html?barcode=${palt.barcode}`;
             });
             li.innerHTML = `<div class="flex space-x-4"><img src="${
                 palt.thumbUrl
-            }" class="w-20 h-20 rounded"/><div class="flex flex-col justify-center"><p class="truncate">${
+            }" class="w-20 h-20 rounded flex-shrink-0"/><div class="flex flex-col justify-center"><p class="font-medium truncate">${
                 palt.productName
-            }</p><p class="text-xs truncate">${
+            }</p><p class="text-xs text-gray-500 truncate">${
                 palt.brand
-            }</p><p class="text-xs truncate">${palt.allergens
+            }</p><p class="text-xs text-gray-400 truncate">${palt.allergens
                 .map((a) => `#${a}`)
                 .join(" ")}</p></div></div>`;
             altListEl.appendChild(li);
-        });
-    }
-    if (seeAllBtn && p.barcode) {
-        seeAllBtn.addEventListener("click", () => {
-            window.location.href = `alternatives.html?barcode=${p.barcode}`;
         });
     }
 }
