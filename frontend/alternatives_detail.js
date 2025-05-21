@@ -39,12 +39,20 @@ async function loadAlternativeDetail() {
         .join(", ");
     allergensListEl.innerHTML = "";
     const names = p.allergens.map((a) => a.name);
-    names.forEach((name) => {
+    if (names.length === 0) {
         const li = document.createElement("li");
-        li.className = "flex items-center space-x-2 py-3";
-        const icon = allergenIcons[name] || "icons/allergen-placeholder.svg";
-        li.innerHTML = `<img src="${icon}" class="w-6 h-6 flex-shrink-0"/><span>${name}</span>`;
+        li.className = "py-3 text-gray-500";
+        li.textContent = "None";
         allergensListEl.appendChild(li);
-    });
+    } else {
+        names.forEach((name) => {
+            const li = document.createElement("li");
+            li.className = "flex items-center space-x-2 py-3";
+            const icon =
+                allergenIcons[name] || "icons/allergen-placeholder.svg";
+            li.innerHTML = `<img src="${icon}" class="w-6 h-6 flex-shrink-0"/><span>${name}</span>`;
+            allergensListEl.appendChild(li);
+        });
+    }
 }
 loadAlternativeDetail();
