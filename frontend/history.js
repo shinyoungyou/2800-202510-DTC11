@@ -3,10 +3,12 @@ const clearBtn = document.getElementById("clear-btn");
 let selectionMode = false;
 let selectedSet = new Set();
 const API_BASE = "http://localhost:3000/scan";
+
 document.addEventListener("DOMContentLoaded", () => {
     clearBtn.addEventListener("click", onClearClick);
     loadScannedProducts();
 });
+
 async function onClearClick() {
     if (!selectionMode) {
         selectionMode = true;
@@ -25,6 +27,7 @@ async function onClearClick() {
         loadScannedProducts();
     }
 }
+
 async function loadScannedProducts() {
     historyList.innerHTML = "";
     const res = await fetch(API_BASE);
@@ -33,11 +36,12 @@ async function loadScannedProducts() {
         historyList.innerHTML = `<p class="text-gray-500">No scanned products yet.</p>`;
         return;
     }
+
     savedProducts
-        .slice()
-        .reverse()
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .forEach((product) => {
             const thumb = product.thumbUrl || "icons/allergen-placeholder.svg";
+            const datetime = new Date(product.createdAt).toLocaleString();
             const aiSummary = product.processedData?.summary;
             const aiLine = aiSummary
                 ? `<p class="text-xs text-gray-500 truncate">${aiSummary}</p>`
@@ -59,8 +63,10 @@ async function loadScannedProducts() {
                     window.location.href = `detail.html?id=${product._id}`;
                 }
             });
+
             const leftContent = document.createElement("div");
             leftContent.className = "flex items-center space-x-4 flex-1";
+
             if (selectionMode) {
                 const checkbox = document.createElement("input");
                 checkbox.type = "checkbox";
@@ -72,11 +78,13 @@ async function loadScannedProducts() {
                 });
                 leftContent.appendChild(checkbox);
             }
+
             const img = document.createElement("img");
             img.src = thumb;
             img.className =
                 "w-16 h-16 rounded object-cover bg-gray-300 flex-shrink-0";
             leftContent.appendChild(img);
+
             const info = document.createElement("div");
             info.className = "flex-1 space-y-1 overflow-hidden";
             info.innerHTML = `
@@ -89,14 +97,17 @@ async function loadScannedProducts() {
       <p class="text-xs text-gray-400 truncate">${product.allergens
           .map((a) => `#${a}`)
           .join(" ")}</p>
+      <p class="text-xs text-gray-400 truncate">${datetime}</p>
       ${aiLine}
     `;
             leftContent.appendChild(info);
             item.appendChild(leftContent);
+
             const arrow = document.createElement("span");
             arrow.className = "text-gray-400 ml-4 flex-shrink-0";
             arrow.textContent = ">";
             item.appendChild(arrow);
+
             historyList.appendChild(item);
         });
 }
