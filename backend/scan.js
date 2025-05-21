@@ -10,6 +10,15 @@ const scanSchema = new mongoose.Schema(
         allergenPercents: { type: Map, of: Number },
         thumbUrl: String,
         processedData: mongoose.Schema.Types.Mixed,
+        alternatives: [
+            {
+                barcode: String,
+                productName: String,
+                brand: String,
+                thumbUrl: String,
+                allergens: [String],
+            },
+        ],
     },
     { timestamps: true }
 );
@@ -37,6 +46,20 @@ router.get("/:id", async (req, res) => {
         res.json(scan);
     } catch (err) {
         res.status(500).json({ error: "Failed to fetch scan" });
+    }
+});
+router.patch("/:id/alternatives", async (req, res) => {
+    try {
+        const { alternatives } = req.body;
+        const scan = await Scan.findByIdAndUpdate(
+            req.params.id,
+            { alternatives },
+            { new: true }
+        );
+        if (!scan) return res.status(404).json({ error: "Not found" });
+        res.json(scan);
+    } catch (err) {
+        res.status(400).json({ error: "Failed to update alternatives" });
     }
 });
 router.delete("/:id", async (req, res) => {

@@ -47,6 +47,7 @@ const allergensListEl = document.getElementById("allergens-list");
 const altListEl = document.getElementById("alt-list");
 const seeAllBtn = document.getElementById("see-all");
 let currentBarcode = "";
+let currentScanId = "";
 document.addEventListener("DOMContentLoaded", () => {
     const scanButton = document.querySelector(".scan-nav");
     if (scanButton) {
@@ -93,10 +94,10 @@ async function fetchProduct(barcode) {
     if (!res.ok) throw new Error(res.statusText);
     return await res.json();
 }
-async function fetchAlternatives(barcode) {
+async function fetchAlternatives(barcode, limit = 2) {
     try {
         const res = await fetch(
-            `http://localhost:3000/alternatives/${barcode}?limit=2`
+            `http://localhost:3000/alternatives/${barcode}?limit=${limit}`
         );
         if (!res.ok) throw new Error();
         return await res.json();
@@ -105,17 +106,16 @@ async function fetchAlternatives(barcode) {
     }
 }
 async function saveScanToDB(scanDoc) {
-    try {
-        const res = await fetch("http://localhost:3000/scan", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(scanDoc),
-        });
-        if (!res.ok) console.warn("Save responded with HTTP", res.status);
-    } catch (err) {
-        console.error("Failed to save scan:", err);
+    const res = await fetch("http://localhost:3000/scan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(scanDoc),
+    });
+    if (!res.ok) console.warn("Save responded with HTTP", res.status);
+    else {
+        const data = await res.json();
+        return data;
     }
-    saveScanToLocal(scanDoc);
 }
 function saveScanToLocal(scanDoc) {
     let savedProducts =
@@ -207,11 +207,7 @@ async function handleCode(barcode) {
             li.className = "flex justify-between py-2";
             const iconSrc =
                 allergenIcons[name] || "icons/allergen-placeholder.svg";
-            li.innerHTML = `<div class="flex items-center space-x-2 flex-1"><img src="${iconSrc}" alt="${name} icon" class="w-6 h-6 flex-shrink-0"/><span class="${
-                source === "ai" ? "text-yellow-600 font-medium" : ""
-            }">${name}${
-                source === "ai" ? "*" : ""
-            }</span></div><div class="flex-shrink-0"><span>${right}</span></div>`;
+            li.innerHTML = `<div class="flex items-center space-x-2 flex-1"><img src="${iconSrc}" class="w-6 h-6"/><span>${name}</span></div><div><span>${right}</span></div>`;
             allergensListEl.appendChild(li);
         });
         if (!allergens.length) {
@@ -236,12 +232,14 @@ async function handleCode(barcode) {
             thumbUrl: product.thumbUrl,
             processedData,
         };
-        saveScanToDB(scanDoc);
+        const saved = await saveScanToDB(scanDoc);
+        currentScanId = saved._id;
+        saveScanToLocal(saved);
         toggleSheet(true);
         currentBarcode = barcode;
-        altListEl.innerHTML = "<p class='text-gray-500'>Loading alternatives...</p>";
-        const altsPromise = fetchAlternatives(barcode);
-        const alts = await altsPromise;
+        altListEl.innerHTML =
+            "<p class='text-gray-500'>Loading alternatives...</p>";
+        const alts = await fetchAlternatives(barcode, 2);
         altListEl.innerHTML = "";
         alts.forEach((p) => {
             const li = document.createElement("li");
@@ -249,20 +247,27 @@ async function handleCode(barcode) {
             li.addEventListener("click", () => {
                 window.location.href = `detail.html?barcode=${p.barcode}`;
             });
-            li.innerHTML = `<div class="flex space-x-4">
-                <img src="${
-                    p.thumbUrl
-                }" class="w-20 h-20 bg-gray-300 rounded flex-shrink-0"/>
-                <div class="flex flex-col justify-center min-w-0">
-                  <p class="font-medium truncate">${p.productName}</p>
-                  <p class="text-xs text-gray-500 truncate">${p.brand}</p>
-                  <p class="text-xs text-gray-400 truncate">${p.allergens
-                      .map((a) => `#${a}`)
-                      .join(" ")}</p>
-                </div>
-              </div>`;
+            li.innerHTML = `<div class="flex space-x-4"><img src="${
+                p.thumbUrl
+            }" class="w-20 h-20 rounded"/><div class="flex flex-col justify-center"><p class="truncate">${
+                p.productName
+            }</p><p class="text-xs truncate">${
+                p.brand
+            }</p><p class="text-xs truncate">${p.allergens
+                .map((a) => `#${a}`)
+                .join(" ")}</p></div></div>`;
             altListEl.appendChild(li);
         });
+        if (currentScanId) {
+            await fetch(
+                `http://localhost:3000/scan/${currentScanId}/alternatives`,
+                {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ alternatives: alts }),
+                }
+            );
+        }
     } catch (err) {
         alert(`Failed to fetch product info:\n${err.message}`);
     }
