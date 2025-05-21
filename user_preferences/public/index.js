@@ -1,28 +1,32 @@
-// public/index.js
-
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('/api/user-preferences')
-    .then(res => res.json())
+  // Auth check
+  fetch('/api/auth/status', { credentials: 'include' })
+    .then(r => r.json())
+    .then(status => {
+      if (!status.authenticated) {
+        window.location = 'signin.html';
+        throw 'redirect';
+      }
+      return fetch('/api/user-preferences', { credentials: 'include' });
+    })
+    .then(r => r.json())
     .then(prefs => {
-      // Avatar
       const avatarEl = document.getElementById('avatarSmall');
       if (prefs.profilePicture) {
         avatarEl.style.backgroundImage = `url(${prefs.profilePicture})`;
       }
-
-      // Name
-      const nameEl = document.getElementById('profileName');
-      nameEl.textContent = prefs.name || 'Your Name';
-
-      // Email
+      document.getElementById('profileName').textContent = prefs.name || '';
       const emailEl = document.getElementById('profileEmail');
-      if (prefs.email) {
-        emailEl.textContent = prefs.email;
-        emailEl.href = `mailto:${prefs.email}`;
-      } else {
-        emailEl.textContent = 'email@example.com';
-        emailEl.href = '#';
-      }
+      emailEl.textContent = prefs.email || '';
+      emailEl.href = prefs.email ? `mailto:${prefs.email}` : '#';
     })
-    .catch(console.error);
+    .catch(e => e !== 'redirect' && console.error(e));
+
+  // Logout
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    fetch('/api/auth/signout', {
+      method: 'POST',
+      credentials: 'include'
+    }).then(() => window.location = 'signin.html');
+  });
 });

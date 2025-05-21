@@ -1,40 +1,36 @@
 const mapping = {
-  notifications:      'notificationsToggle',
-  vibration:          'vibrationToggle',
-  scanNotifications:  'scanNotificationsToggle',
-  camera:             'cameraToggle',
-  location:           'locationToggle'
+  notifications:     'notificationsToggle',
+  vibration:         'vibrationToggle',
+  scanNotifications: 'scanNotificationsToggle',
+  camera:            'cameraToggle',
+  location:          'locationToggle'
 };
 const scanHistoryRow = document.getElementById('scanHistoryRow');
 const scanHistoryVal = document.getElementById('scanHistoryValue');
 
-// Load prefs
-fetch('/api/user-preferences')
-  .then(r => r.json())
-  .then(prefs => {
-    Object.entries(mapping).forEach(([key, id]) => {
-      const cb = document.getElementById(id);
-      cb.checked = !!prefs[key];
-      cb.addEventListener('change', () => updatePref(key, cb.checked));
-    });
-    scanHistoryVal.textContent = prefs.scanHistory || '30 Days';
+(async function loadPrefs() {
+  const res = await fetch('/api/user-preferences', { credentials: 'include' });
+  const prefs = await res.json();
+  Object.entries(mapping).forEach(([key, id]) => {
+    const cb = document.getElementById(id);
+    cb.checked = !!prefs[key];
+    cb.addEventListener('change', () => updatePref(key, cb.checked));
   });
+  scanHistoryVal.textContent = prefs.scanHistory || '30 Days';
+})();
 
-// Change scan history
-scanHistoryRow.addEventListener('click', () => {
-  const current = scanHistoryVal.textContent;
-  const next = prompt('Enter scan history timeframe:', current);
-  if (next) {
-    scanHistoryVal.textContent = next;
-    updatePref('scanHistory', next);
-  }
+scanHistoryRow.addEventListener('click', async () => {
+  const next = prompt('Enter scan history timeframe:', scanHistoryVal.textContent);
+  if (!next) return;
+  scanHistoryVal.textContent = next;
+  await updatePref('scanHistory', next);
 });
 
-// PATCH one preference
-function updatePref(key, value) {
-  fetch('/api/user-preferences', {
+async function updatePref(key, value) {
+  await fetch('/api/user-preferences', {
     method: 'POST',
+    credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ key, value })
-  }).catch(console.error);
+  });
 }

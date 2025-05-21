@@ -1,28 +1,53 @@
-let masterList = [];
-const input   = document.getElementById('allergen-input');
-const suggBox = document.getElementById('suggestions');
-const added   = document.getElementById('added-list');
+// public/script.js
 
-// Load master allergens
-fetch('/api/allergens')
-  .then(r => r.json())
-  .then(list => masterList = list.sort());
+document.addEventListener('DOMContentLoaded', () => {
+  let masterList = [];
+  const input   = document.getElementById('allergen-input');
+  const suggBox = document.getElementById('suggestions');
+  const added   = document.getElementById('added-list');
 
-// Render user’s saved allergens
-function refreshUser() {
-  fetch('/api/user-allergens')
-    .then(r => r.json())
-    .then(arr => {
-      added.innerHTML = 
-        '<h2>Your Allergens:</h2><ul>' +
-        arr.map(a => `<li>${a}</li>`).join('') +
-        '</ul>';
-    });
-}
-refreshUser();
+  // 1) Load master list of valid allergens
+  fetch('/api/allergens', { credentials: 'include' })
+    .then(res => {
+      if (!res.ok) throw new Error(`Allergens load failed (${res.status})`);
+      return res.json();
+    })
+    .then(list => masterList = list.sort())
+    .catch(err => console.error('Error loading allergens:', err));
 
-// Only activate autocomplete if input exists
-if (input) {
+  // 2) Render the user’s allergens from user-preferences.json
+  function refreshUser() {
+    fetch('/api/user-preferences', { credentials: 'include' })
+      .then(res => {
+        if (!res.ok) throw new Error(`Prefs load failed (${res.status})`);
+        return res.json();
+      })
+      .then(prefs => {
+        const arr = Array.isArray(prefs.allergens) ? prefs.allergens : [];
+        const items = arr.map(name =>
+          `<li>
+             <span>${name}</span>
+             <button class="remove-btn" data-name="${name}">×</button>
+           </li>`
+        ).join('');
+
+        added.innerHTML = `
+          <h2>Your Allergens:</h2>
+          <ul>${items}</ul>
+        `;
+
+        // bind remove handlers
+        added.querySelectorAll('.remove-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            removeAllergen(btn.dataset.name);
+          });
+        });
+      })
+      .catch(err => console.error('Error fetching user preferences:', err));
+  }
+  refreshUser();
+
+  // 3) Autocomplete suggestions
   input.addEventListener('input', () => {
     const q = input.value.toLowerCase().trim();
     suggBox.innerHTML = '';
@@ -45,28 +70,39 @@ if (input) {
       if (match) addAllergen(match);
     }
   });
-}
 
-// Post selection and refresh
-function addAllergen(name) {
-  input.value = '';
-  suggBox.innerHTML = '';
-  fetch('/api/user-allergens', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ allergen: name })
-  })
-  .then(r => r.json())
-  .then(() => refreshUser());
-}
+  // 4) Add an allergen (updates both user_allergens.json and prefs)
+  function addAllergen(name) {
+    input.value = '';
+    suggBox.innerHTML = '';
 
-// Remove an allergen
-function removeAllergen(name) {
-  fetch('/api/user-allergens', {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ allergen: name })
-  })
-  .then(r => r.json())
-  .then(() => refreshUser());
-}
+    fetch('/api/user-allergens', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ allergen: name })
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Add failed (${res.status})`);
+      return res.json();
+    })
+    .then(() => refreshUser())
+    .catch(err => console.error('Error adding allergen:', err));
+  }
+
+  // 5) Remove an allergen (syncs both stores)
+  function removeAllergen(name) {
+    fetch('/api/user-allergens', {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ allergen: name })
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Remove failed (${res.status})`);
+      return res.json();
+    })
+    .then(() => refreshUser())
+    .catch(err => console.error('Error removing allergen:', err));
+  }
+});
