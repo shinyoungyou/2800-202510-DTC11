@@ -1,143 +1,18 @@
-<html>
-  <head>
-    <link rel="stylesheet" href="/style.css" />
-  </head>
-  <body>
-    <div class="flex-container">
-      <div class="header">
-        <div class="back-button-section">
-          <img
-            src="/images/back-button.svg"
-            alt="Back to previous button"
-            class="back-button"
-          />
-        </div>
-        <div class="menu-button-section">
-          <img
-            src="/images/menu-button.svg"
-            alt="Menu icon"
-            class="menu-button"
-          />
-        </div>
-        <h1 class="title" id="title">Alternatives</h1>
-      </div>
-
-      <div class="section">
-        <div class="card">
-          <div class="product-image">
-            <img src="#" alt="product #1 image" />
-          </div>
-          <div class="product-info">
-            <h2>Product #1</h2>
-            <p>brand</p>
-            <p>#sesame</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="product-image">
-            <img src="#" alt="product #1 image" />
-          </div>
-          <div class="product-info">
-            <h2>Product #2</h2>
-            <p>brand</p>
-            <p>#sesame</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="product-image">
-            <img src="#" alt="product #1 image" />
-          </div>
-          <div class="product-info">
-            <h2>Product #3</h2>
-            <p>brand</p>
-            <p>#sesame</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="product-image">
-            <img src="#" alt="product #1 image" />
-          </div>
-          <div class="product-info">
-            <h2>Product #4</h2>
-            <p>brand</p>
-            <p>#sesame</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="product-image">
-            <img src="#" alt="product #1 image" />
-          </div>
-          <div class="product-info">
-            <h2>Product #4</h2>
-            <p>brand</p>
-            <p>#sesame</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="product-image">
-            <img src="#" alt="product #1 image" />
-          </div>
-          <div class="product-info">
-            <h2>Product #4</h2>
-            <p>brand</p>
-            <p>#sesame</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="product-image">
-            <img src="#" alt="product #1 image" />
-          </div>
-          <div class="product-info">
-            <h2>Product #4</h2>
-            <p>brand</p>
-            <p>#sesame</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="product-image">
-            <img src="#" alt="product #1 image" />
-          </div>
-          <div class="product-info">
-            <h2>Product #4</h2>
-            <p>brand</p>
-            <p>#sesame</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="navbar">
-        <div class="home-button-section">
-          <img
-            src="/images/home-button.svg"
-            alt="Home button"
-            class="home-button"
-          />
-        </div>
-        <div class="scan-button-section">
-          <img
-            src="/images/scanner-button.svg"
-            alt="Scan button"
-            class="scan-button"
-          />
-        </div>
-        <div class="profile-button-section">
-          <img
-            src="/images/profile-button.svg"
-            alt="Profile button"
-            class="profile-button"
-          />
-        </div>
-      </div>
-
-      <!-- <div class="content"></div> -->
-    </div>
-  </body>
-  <script src="app.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="p-10 pb-4 h-screen flex flex-col">
+  <i id="clear-btn" class="fas fa-trash-alt absolute right-10 text-xl"></i>
+  <h1 class="font-bold text-3xl mt-10">History</h1>
+  <div id="history-list" class="mt-5 flex-1 overflow-y-auto divide-y divide-gray-200"></div>
+  <div id="navbar-container"></div>
+  <script src="history.js"></script>
+  <script src="navbar.js"></script>
+</body>
 </html>
