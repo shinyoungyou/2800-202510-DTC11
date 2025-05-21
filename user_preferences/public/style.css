@@ -1,0 +1,249 @@
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 1rem;
+}
+
+/* ── Auth Form Inputs ─────────────────────────────────── */
+.auth-container .card input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #333;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.auth-container .card input:focus {
+  outline: none;
+  background: #fff;
+  border-color: #00796b;
+  box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.2);
+}
+
+
+
+/* Reset & Base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e0f7fa 0%, #fff 100%);
+  color: #333;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Card Container */
+.card {
+  background: #fff;
+  max-width: 360px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+/* Page Header */
+.page-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem 0;
+}
+.back-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #555;
+  margin-right: 0.5rem;
+}
+.page-header h1 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* Buttons */
+.btn {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  text-align: center;
+  background: #00796b;
+  color: #fff;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  transition: background .3s;
+}
+.btn:hover { background: #004d40; }
+
+/* Profile Small */
+.profile-card .avatar-small {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: #bbb center/cover no-repeat;
+  margin: 0 auto 1rem; cursor: pointer;
+  transition: box-shadow .3s;
+}
+.profile-card .avatar-small:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.profile-card .profile-info {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.profile-card .name {
+  font-size: 1.2rem; font-weight: 600;
+}
+.profile-card .email {
+  font-size: 0.9rem; color: #00796b;
+}
+
+/* Allergens */
+.allergens-card input {
+  width: 100%; padding: 0.75rem; font-size: 1rem;
+  border: 1px solid #ccc; border-radius: 8px;
+  transition: border-color .3s;
+}
+.allergens-card input:focus {
+  outline: none; border-color: #81d4fa;
+  box-shadow: 0 0 0 3px rgba(129,212,250,0.3);
+}
+.allergens-card ul {
+  list-style: none; margin-top: 0.5rem; padding: 0;
+  border: 1px solid #ccc; border-radius: 8px;
+  max-height: 200px; overflow-y: auto;
+}
+.allergens-card li {
+  padding: 0.75rem; cursor: pointer;
+}
+.allergens-card li:hover { background: #e0f7fa; }
+.allergens-card #added-list { margin-top: 1.5rem; }
+.allergens-card #added-list li {
+  margin-left: 1rem; list-style: disc;
+}
+
+/* Settings */
+.settings-card .section-title {
+  font-weight: 600; margin-bottom: 0.5rem;
+}
+.settings-card .setting-row {
+  display: flex; justify-content: space-between;
+  align-items: center; padding: 0.5rem 0;
+  border-top: 1px solid #eee;
+}
+.settings-card .setting-row:first-child { border-top: none; }
+.settings-card .setting-row.link { cursor: pointer; }
+.settings-card .arrow {
+  font-size: 1.2rem; color: #888; margin-left: 0.5rem;
+}
+.switch {
+  position: relative; display: inline-block;
+  width: 40px; height: 20px;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute; inset: 0; background: #ccc;
+  border-radius: 20px; transition: .2s;
+}
+.slider:before {
+  content: ""; position: absolute;
+  height: 16px; width: 16px;
+  left: 2px; bottom: 2px;
+  background: #fff; border-radius: 50%;
+  transition: .2s;
+}
+.switch input:checked + .slider {
+  background: #00796b;
+}
+.switch input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Account */
+.account-card .avatar-large {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #ddd center/cover no-repeat;
+  margin: 0 auto 1rem;
+  cursor: pointer;
+  transition: box-shadow .3s;
+
+  /* ADDED: make room for the overlay icon */
+  position: relative;
+}
+
+/* Centered upload icon overlay on avatar */
+.account-card .avatar-large .avatar-placeholder {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  font-size: 2rem;
+  color: #666;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.account-card .avatar-large:hover .avatar-placeholder {
+  background: rgba(255,255,255,0.8);
+}
+
+.account-card .display-info {
+  text-align: center; margin-bottom: 1.5rem;
+}
+.account-card .display-name {
+  font-size: 1.3rem; font-weight: 600;
+}
+.account-card .display-email {
+  font-size: 0.9rem; color: #00796b; text-decoration: none;
+}
+.account-card .form-row input {
+  width: 100%; padding: 0.75rem;
+  border: 1px solid #ccc; border-radius: 8px;
+  transition: border-color .3s;
+}
+.account-card .form-row input:focus {
+  outline: none; border-color: #81d4fa;
+  box-shadow: 0 0 0 3px rgba(129,212,250,0.3);
+}
+/* Modal */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+.modal-overlay:not(.hidden) {
+  opacity: 1; visibility: visible;
+}
+.modal {
+  background: #fff; border-radius: 12px;
+  padding: 1.5rem; width: 280px;
+  text-align: center; box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  position: relative;
+}
+.modal-close {
+  position: absolute; top: 0.5rem; right: 0.5rem;
+  background: none; border: none; font-size: 1.3rem;
+  cursor: pointer; color: #555;
+}
+.upload-box {
+  width: 64px; height: 64px; margin: 0 auto;
+  background: #f0f0f0; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background .3s;
+}
+.upload-box:hover { background: #e0e0e0; }
+.upload-label { font-size: 2rem; color: #666; }

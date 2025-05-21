@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="auth-container">
+    <div class="card" style="max-width: 320px; width: 100%;">
+      <h1 style="text-align:center; margin-bottom:1.5rem; font-size:1.5rem; color:#00796b;">
+        Create Account
+      </h1>
+      <form id="signupForm">
+        <div class="form-row">
+          <input id="name" type="text" placeholder="Name" required/>
+        </div>
+        <div class="form-row">
+          <input id="email" type="email" placeholder="Email" required/>
+        </div>
+        <div class="form-row">
+          <input id="password" type="password" placeholder="Password" required/>
+        </div>
+        <button type="submit" class="btn">Sign Up</button>
+      </form>
+      <p style="text-align:center; margin-top:1rem; font-size:0.9rem;">
+        Already have an account?
+        <a href="signin.html" style="color:#00796b; text-decoration:underline;">
+          Sign in
+        </a>
+      </p>
+    </div>
+  </div>
+  <script src="signup.js"></script>
+</body>
+</html>
