@@ -18,7 +18,7 @@ async function loadAlts() {
             const item = document.createElement("div");
             item.className = "flex items-center space-x-4 py-4 cursor-pointer";
             item.addEventListener("click", () => {
-                window.location.href = `detail.html?barcode=${p.barcode}`;
+                window.location.href = `alternatives_detail.html?barcode=${p.barcode}`;
             });
             item.innerHTML = `<img src="${
                 p.thumbUrl

@@ -4,6 +4,7 @@ const id = params.get("id");
 const barcodeParam = params.get("barcode");
 const backBtn = document.getElementById("back-btn");
 const deleteBtn = document.getElementById("delete-btn");
+const seeAllBtn = document.getElementById("see-all");
 const thumb = document.getElementById("detail-thumb");
 const nameEl = document.getElementById("detail-name");
 const brandEl = document.getElementById("detail-brand");
@@ -82,6 +83,11 @@ async function loadDetail() {
                 .map((a) => `#${a}`)
                 .join(" ")}</p></div></div>`;
             altListEl.appendChild(li);
+        });
+    }
+    if (seeAllBtn && p.barcode) {
+        seeAllBtn.addEventListener("click", () => {
+            window.location.href = `alternatives.html?barcode=${p.barcode}`;
         });
     }
 }
