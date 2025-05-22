@@ -106,44 +106,24 @@ async function fetchAlternatives(barcode, limit = 2) {
     }
 }
 async function saveScanToDB(scanDoc) {
-    try {
-        const res = await fetch("http://localhost:3000/scan", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(scanDoc),
-        });
-
-        if (res.ok) {
-            console.log("Scan saved successfully:", scanDoc.barcode);
-        } else {
-            console.warn("Save responded with HTTP", res.status);
-        }
-    } catch (err) {
-        console.error("Failed to save scan:", err);
+    const res = await fetch("http://localhost:3000/scan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(scanDoc),
+    });
+    if (!res.ok) console.warn("Save responded with HTTP", res.status);
+    else {
+        const data = await res.json();
+        return data;
     }
-
-    saveScanToLocal(scanDoc);
 }
-
 function saveScanToLocal(scanDoc) {
     let savedProducts =
         JSON.parse(localStorage.getItem("scannedProducts")) || [];
-
-    // Prevent duplicate products by barcode
-    const existingProduct = savedProducts.find(
-        (product) => product.barcode === scanDoc.barcode
-    );
-    if (existingProduct) {
-        console.log("Product already scanned. Skipping duplicate.");
-        return;
-    }
-
+    if (savedProducts.find((p) => p.barcode === scanDoc.barcode)) return;
     savedProducts.push(scanDoc);
     localStorage.setItem("scannedProducts", JSON.stringify(savedProducts));
 }
-
-
-/* ---------- scan loop ---------- */
 async function scanLoop() {
     try {
         const result = await codeReader.decodeOnceFromVideoDevice(
@@ -184,16 +164,8 @@ async function handleCode(barcode) {
         prodTagsEl.textContent = "";
         toggleSheet(false);
         const product = await fetchProduct(barcode);
-        console.log(product);
-        
-        const nutr = product.nutriments || {};
-        // choose the smallest available photo, fall back to any front image,
-        // or keep the placeholder if nothing exists.
         prodThumbEl.src = product.thumbUrl;
-
-        const allergens = product.allergens; // [{name,source}]
-
-        /* --- Build lookup { allergen → % estimate or null } --- */
+        const allergens = product.allergens;
         const percentByAllergen = Object.fromEntries(
             allergens.map(({ name }) => [name, null])
         );
@@ -273,7 +245,7 @@ async function handleCode(barcode) {
             const li = document.createElement("li");
             li.className = "flex-shrink-0 snap-start w-56 cursor-pointer";
             li.addEventListener("click", () => {
-                window.location.href = `detail.html?barcode=${p.barcode}`;
+                window.location.href = `alternatives_detail.html?barcode=${p.barcode}`;
             });
             li.innerHTML = `<div class="flex space-x-4"><img src="${
                 p.thumbUrl

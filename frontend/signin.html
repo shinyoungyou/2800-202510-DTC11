@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Sign In</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex flex-col h-screen pb-16">
+  <div class="flex items-center px-4 py-2 bg-white shadow">
+    <button class="text-2xl" onclick="location.href='signup.html'">×</button>
+    <h1 class="flex-1 text-center font-bold text-lg">Sign In</h1>
+  </div>
+  <div class="p-4">
+    <form id="signinForm" class="space-y-4">
+      <input id="email" type="email" placeholder="Email" required class="w-full p-2 border rounded"/>
+      <input id="password" type="password" placeholder="Password" required class="w-full p-2 border rounded"/>
+      <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded">Sign In</button>
+    </form>
+    <p class="text-center mt-4">Don’t have an account? <a href="signup.html" class="text-blue-600">Sign up</a></p>
+  </div>
+  <div id="navbar-container"></div>
+  <script src="signin.js"></script>
+  <script src="navbar.js"></script>
+</body>
+</html>

@@ -39,6 +39,11 @@ body {
     min-height: 100vh;
     line-height: 1.5;
 }
+body.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* Card Container */
 .card {
@@ -86,6 +91,16 @@ body {
 .btn:hover {
     background: #004d40;
 }
+
+.profile-card {
+    margin: auto;
+    width: min(360px, calc(100% - 2rem));
+    margin: auto;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}ß
 
 /* Profile Small */
 .profile-card .avatar-small {

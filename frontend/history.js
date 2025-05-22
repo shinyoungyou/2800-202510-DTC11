@@ -4,7 +4,6 @@ let selectionMode = false;
 let selectedSet = new Set();
 const API_BASE = "http://localhost:3000/scan";
 
-
 document.addEventListener("DOMContentLoaded", () => {
     clearBtn.addEventListener("click", onClearClick);
     loadScannedProducts();
@@ -111,30 +110,4 @@ async function loadScannedProducts() {
 
             historyList.appendChild(item);
         });
-}
-
-// Delete selected items
-function deleteSelectedItems() {
-    const checkboxes = document.querySelectorAll(".delete-checkbox");
-    let savedProducts = JSON.parse(localStorage.getItem("scannedProducts")) || [];
-
-    checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            const productElement = checkbox.closest("div[data-barcode]");
-            const barcode = productElement.getAttribute("data-barcode")
-            
-            // Remove product from localStorage
-            savedProducts = savedProducts.filter(product => product.barcode !== barcode);
-            
-            // Remove product from DOM
-            productElement.remove();
-        }
-    })
-
-    // Update localStorage
-    localStorage.setItem("scannedProducts", JSON.stringify(savedProducts));
-
-    // Reset the icon back to trash
-    toggleCheckboxes();
-
 }
