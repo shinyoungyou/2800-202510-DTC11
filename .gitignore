@@ -1,6 +1,0 @@
-node_modules/
-backend/.env
-user_preferences/backend/node_modules
-package-lock.json
-user_preferences/backend/package-lock.json
-user_preferences/backend/.env
