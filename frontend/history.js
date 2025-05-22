@@ -1,5 +1,7 @@
 const historyList = document.getElementById("history-list");
 const clearBtn = document.getElementById("clear-btn");
+const resetBtn = document.getElementById("reset-button");
+
 let selectionMode = false;
 let selectedSet = new Set();
 const API_BASE = "http://localhost:3000/scan";
@@ -8,6 +10,34 @@ document.addEventListener("DOMContentLoaded", () => {
     clearBtn.addEventListener("click", onClearClick);
     loadScannedProducts();
 });
+
+resetBtn.addEventListener("click", async () => {
+    const confirmReset = confirm("Are you sure you want to delete all saved items?");
+    if (!confirmReset) return;
+
+    try {
+        // Get all items from backend
+        const res = await fetch(API_BASE);
+        const products = await res.json();
+
+        // Delete all of them
+        await Promise.all(
+            products.map(product =>
+                fetch(`${API_BASE}/${product._id}`, { method: "DELETE" })
+            )
+        );
+
+        // Clear localStorage
+        localStorage.removeItem("scannedProducts");
+
+        // Clear the UI
+        historyList.innerHTML = `<p class="text-gray-500">No scanned products yet.</p>`;
+    } catch (err) {
+        console.error("Failed to reset items:", err);
+        alert("Something went wrong while resetting. Please try again.");
+    }
+});
+
 
 async function onClearClick() {
     if (!selectionMode) {
