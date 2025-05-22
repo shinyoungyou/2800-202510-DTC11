@@ -31,11 +31,36 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   // Update name/email on blur
-  nameInput.addEventListener('blur', e => updatePref('name', e.target.value));
-  emailInput.addEventListener('blur', e => {
-    updatePref('email', e.target.value);
-    dispEmail.textContent = e.target.value;
-    dispEmail.href        = `mailto:${e.target.value}`;
+  const saveBtn = document.getElementById('saveProfileBtn');
+  saveBtn.addEventListener('click', async () => {
+    saveBtn.disabled = true;             // prevent double‑click
+    const newName  = nameInput.value.trim();
+    const newEmail = emailInput.value.trim();
+
+    // Basic client‑side validation
+    if (!newName || !newEmail) {
+      alert('Name and email cannot be blank.');
+      saveBtn.disabled = false;
+      return;
+    }
+
+    try {
+      // Update name
+      await updatePref('name', newName);
+      dispName.textContent = newName;
+
+      // Update email
+      await updatePref('email', newEmail);
+      dispEmail.textContent = newEmail;
+      dispEmail.href        = `mailto:${newEmail}`;
+
+      alert('Profile updated!');
+    } catch (err) {
+      console.error(err);
+      alert('Failed to save changes.');
+    } finally {
+      saveBtn.disabled = false;
+    }
   });
 
   // Change Password: only updates password
