@@ -25,9 +25,9 @@ const EU14 = [
 ];
 
 const CANON = {
-  "sulphur-dioxide-and-sulphites": "sulphites",
-  "sesame-seeds": "sesameseeds",
-  "sesame": "sesameseeds",
+    "sulphur-dioxide-and-sulphites": "sulphites",
+    "sesame-seeds": "sesameseeds",
+    sesame: "sesameseeds",
 };
 const canon = (a) => CANON[a] || a;
 
@@ -76,8 +76,9 @@ router.get("/:barcode", async (req, res) => {
         }
         const prod = offRes.product;
         cloneNutriments(prod.nutriments || {});
-        const offAllergens = (prod.allergens_tags || [])
-          .map((t) => canon(t.split(":")[1]));
+        const offAllergens = (prod.allergens_tags || []).map((t) =>
+            canon(t.split(":")[1])
+        );
 
         /* 2) AI 추출 (필요할 때만) ----------------------------------------------------------- */
         const ingredientsText = prod.ingredients_text || "";
@@ -117,8 +118,7 @@ router.get("/:barcode", async (req, res) => {
                 """${ingredientsText}"""
                 `;
 
-                console.log(prompt);
-                
+            console.log(prompt);
 
             const geminiRes = await genAI
                 .getGenerativeModel({ model: "gemini-2.0-flash" })
@@ -140,10 +140,12 @@ router.get("/:barcode", async (req, res) => {
         const merged = [...new Set([...offAllergens, ...aiAllergens])];
 
         const allergens = merged.map((name) => ({
-          name,
-          source: offAllergens.includes(name) ? "off"
-                 : aiAllergens.includes(name) ? "ai"
-                 : "off",
+            name,
+            source: offAllergens.includes(name)
+                ? "off"
+                : aiAllergens.includes(name)
+                ? "ai"
+                : "off",
         }));
 
         const addedByAI = allergens
@@ -151,7 +153,6 @@ router.get("/:barcode", async (req, res) => {
             .map((a) => a.name);
         console.log(`[${barcode}] FINAL →`, merged, "| AI added:", addedByAI);
 
-        /* 4) 응답 --------------------------------------------------------------------------- */
         res.json({
             barcode,
             productName: prod.product_name || "",

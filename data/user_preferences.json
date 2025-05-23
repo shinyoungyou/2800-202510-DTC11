@@ -1,0 +1,26 @@
+{
+  "1747879399966": {
+    "notifications": true,
+    "vibration": true,
+    "scanNotifications": true,
+    "scanHistory": "30 Days",
+    "camera": true,
+    "location": true,
+    "name": "a@a",
+    "email": "a@a",
+    "allergens": [
+      "Gluten"
+    ]
+  },
+  "1747879628119": {
+    "notifications": false,
+    "vibration": false,
+    "scanNotifications": false,
+    "scanHistory": "30 Days",
+    "camera": false,
+    "location": false,
+    "name": "adam",
+    "email": "adam@gmail.com",
+    "allergens": []
+  }
+}

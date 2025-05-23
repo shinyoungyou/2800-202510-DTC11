@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <button
+            id="reset-button"
+            class="absolute top-4 left-4 text-gray-700 text-sm underline"
+        >
+            Reset
+        </button>
+        <title>History</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+    </head>
+    <body class="p-10 pb-4 h-screen flex flex-col">
+        <i
+            id="clear-btn"
+            class="fas fa-trash-alt absolute right-10 text-xl"
+        ></i>
+        <h1 class="font-bold text-3xl mt-10">History</h1>
+        <div
+            id="history-list"
+            class="mt-5 flex-1 overflow-y-auto divide-y divide-gray-200"
+        ></div>
+        <div id="navbar-container"></div>
+        <script src="js/history.js"></script>
+        <script src="js/navbar.js"></script>
+    </body>
+</html>

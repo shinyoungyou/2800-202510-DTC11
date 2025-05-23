@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Allergens</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <div class="page-header">
+            <button class="back-button" onclick="location.href='profile.html'">
+                ×
+            </button>
+            <h1>Allergens</h1>
+        </div>
+        <div class="card allergens-card">
+            <input
+                id="allergen-input"
+                type="text"
+                placeholder="Start typing…"
+                autocomplete="off"
+            />
+            <ul id="suggestions"></ul>
+            <div id="added-list"></div>
+        </div>
+        <div id="navbar-container"></div>
+        <script src="js/script.js"></script>
+        <script src="js/navbar.js"></script>
+    </body>
+</html>

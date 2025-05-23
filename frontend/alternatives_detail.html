@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Alternatives</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+    </head>
+    <body class="bg-white flex flex-col h-screen text-black pb-16">
+        <div class="flex items-center justify-between px-4 py-2">
+            <button id="back-btn" class="text-2xl"><</button>
+        </div>
+        <h1 class="text-center font-bold text-xl mt-4">Alternatives</h1>
+        <div class="px-4 flex items-start space-x-4 pt-10">
+            <img
+                id="alt-detail-thumb"
+                class="w-24 h-24 rounded object-cover bg-gray-200 flex-shrink-0"
+            />
+            <div class="flex-1 space-y-1">
+                <h2
+                    id="alt-detail-name"
+                    class="font-bold text-lg truncate"
+                ></h2>
+                <p id="alt-detail-brand" class="text-gray-500 truncate"></p>
+                <p
+                    id="alt-detail-tags"
+                    class="text-xs text-gray-400 truncate"
+                ></p>
+            </div>
+        </div>
+        <div class="px-4 pt-6">
+            <h3 class="font-semibold">Ingredients:</h3>
+            <p id="ingredients-text" class="text-sm mt-1"></p>
+        </div>
+        <div class="px-4 pt-6 flex-1 overflow-y-auto">
+            <h3 class="font-semibold">Possible Allergens</h3>
+            <hr class="my-2" />
+            <ul id="allergens-list" class="divide-y divide-gray-200"></ul>
+        </div>
+        <div id="navbar-container"></div>
+        <script src="js/alternatives_detail.js"></script>
+        <script src="js/navbar.js"></script>
+    </body>
+</html>

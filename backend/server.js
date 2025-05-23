@@ -1,45 +1,41 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const session = require("express-session");
+const path = require("path");
 require("dotenv").config();
-
-// ---------------------------------------------------------------------------
-// Config
-// ---------------------------------------------------------------------------
+const authRouter = require("./auth");
+const scanRouter = require("./scan");
+const productRouter = require("./product");
+const alternativesRouter = require("./alternatives");
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/scanapp";
-
-// ---------------------------------------------------------------------------
-// Init function (top‑level await not required on LTS)
-// ---------------------------------------------------------------------------
 async function main() {
-    // Connect database
     try {
-        await await mongoose.connect(MONGO_URI);
-        console.log(`[MongoDB] Connected → ${MONGO_URI}`);
+        await mongoose.connect(MONGO_URI);
+        console.log(`MongoDB connected to ${MONGO_URI}`);
     } catch (err) {
-        console.error("[MongoDB] connection error:", err.message);
+        console.error("MongoDB connection error", err.message);
         process.exit(1);
     }
-
-    // Create Express app + global middleware
     const app = express();
     app.use(cors());
     app.use(express.json());
-
-    // Health‑check root
-    app.get("/", (_req, res) => {
-        res.send("Scanner backend running");
-    });
-
-    // Feature routers (keep logic in separate files)
-    app.use("/scan", require("./scan")); // → backend/scan.js
-    app.use("/product", require("./product"));
-
-    // Start HTTP server
+    app.use(
+        session({
+            secret: "your-very-strong-secret-here",
+            resave: false,
+            saveUninitialized: false,
+            cookie: { secure: false, sameSite: "lax" },
+        })
+    );
+    app.use(express.static(path.join(__dirname, "../frontend")));
+    app.use("/api/auth", authRouter);
+    app.use("/scan", scanRouter);
+    app.use("/product", productRouter);
+    app.use("/alternatives", alternativesRouter);
     app.listen(PORT, () => {
-        console.log(`[Express] listening on http://localhost:${PORT}`);
+        console.log(`Express listening on http://localhost:${PORT}`);
     });
 }
-
 main();

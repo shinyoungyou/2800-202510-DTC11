@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Main Menu</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body class="home">
+        <div class="card profile-card">
+            <div id="avatarSmall" class="avatar-small"></div>
+            <div class="profile-info">
+                <div id="profileName" class="name">Your Name</div>
+                <a id="profileEmail" class="email" href="#"
+                    >email@example.com</a
+                >
+            </div>
+            <a href="account.html" class="btn">Account</a>
+            <a href="allergens.html" class="btn">Allergens</a>
+            <a href="settings.html" class="btn">Settings</a>
+            <button id="logoutBtn" class="btn">Logout</button>
+        </div>
+        <div id="navbar-container"></div>
+        <script src="js/profile.js"></script>
+        <script src="js/navbar.js"></script>
+    </body>
+</html>

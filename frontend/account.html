@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Profile</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <div class="page-header">
+            <button class="back-button" onclick="location.href='profile.html'">
+                ×
+            </button>
+            <h1>Profile</h1>
+        </div>
+        <div class="card account-card">
+            <div id="avatar" class="avatar-large">
+                <span class="avatar-placeholder">
+                    <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#666"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M12 5v14M5 12h14" />
+                    </svg>
+                </span>
+            </div>
+            <div class="display-info">
+                <div id="displayName" class="display-name">Your Name</div>
+                <a id="displayEmail" href="#" class="display-email"
+                    >email@example.com</a
+                >
+            </div>
+            <button id="changePasswordBtn" class="btn-wide">
+                Change Password
+            </button>
+            <div class="form-row">
+                <input id="nameInput" type="text" placeholder="Name" />
+            </div>
+            <div class="form-row">
+                <input id="emailInput" type="email" placeholder="Email" />
+            </div>
+
+            <div class="form-row">
+                <button id="saveProfileBtn" class="btn-wide">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+
+        <!-- Upload Photo Modal -->
+        <div id="modalOverlay" class="modal-overlay hidden">
+            <div class="modal">
+                <button id="modalClose" class="modal-close">×</button>
+                <h2>Upload Photo</h2>
+                <div class="upload-box">
+                    <label for="fileInput" class="upload-label">⇪</label>
+                    <input id="fileInput" type="file" accept="image/*" hidden />
+                </div>
+            </div>
+        </div>
+        <div id="navbar-container"></div>
+
+        <script src="js/account.js"></script>
+        <script src="js/navbar.js"></script>
+    </body>
+</html>
