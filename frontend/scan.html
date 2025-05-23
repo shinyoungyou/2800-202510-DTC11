@@ -1,52 +1,98 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Scan page</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>.allergen-ai span{color:#ca8a04;font-weight:500}</style>
-</head>
-<body class="bg-black flex flex-col h-screen text-white pb-16">
-  <div class="relative flex-1 overflow-hidden">
-    <video id="video" autoplay playsinline class="w-full h-full object-cover"></video>
-    <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
-      <div class="relative w-3/4 max-w-[22rem] aspect-square">
-        <div class="absolute top-0 left-0 w-10 h-10 border-t-4 border-l-4 border-white"></div>
-        <div class="absolute top-0 right-0 w-10 h-10 border-t-4 border-r-4 border-white"></div>
-        <div class="absolute bottom-0 left-0 w-10 h-10 border-b-4 border-l-4 border-white"></div>
-        <div class="absolute bottom-0 right-0 w-10 h-10 border-b-4 border-r-4 border-white"></div>
-      </div>
-      <div id="barcode-box" class="absolute border-2 border-green-400 hidden"></div>
-    </div>
-  </div>
-  <div id="bottom-sheet" class="fixed bottom-16 left-0 right-0 bg-white text-black transition-all duration-300 h-24 overflow-hidden z-10">
-    <div class="w-full flex justify-center py-1">
-      <div class="w-12 h-1.5 bg-gray-300 rounded"></div>
-    </div>
-    <div id="summary-row" class="flex items-center px-4 space-x-4">
-      <img id="prod-thumb" class="w-16 h-16 rounded object-cover bg-gray-300 flex-shrink-0"/>
-      <div class="flex-1">
-        <p id="prod-name" class="font-semibold leading-tight truncate">Chocolate milk</p>
-        <p id="prod-brand" class="text-sm text-gray-500 truncate">Brand #3</p>
-        <p id="prod-tags" class="text-xs text-gray-400 truncate">#Peanuts  #Milk</p>
-      </div>
-    </div>
-    <div id="details" class="px-4 pt-4 space-y-4">
-      <h3 class="font-semibold">Allergens</h3>
-      <ul id="allergens-list" class="divide-y divide-gray-200"></ul>
-    </div>
-    <div class="px-4 pt-4 space-y-4">
-      <div class="flex items-baseline justify-between mb-3">
-        <h3 class="font-semibold">Alternatives</h3>
-        <button id="see-all" class="text-sm text-blue-600 whitespace-nowrap">See all</button>
-      </div>
-      <ul id="alt-list" class="flex overflow-x-auto pb-2 space-x-8 snap-x snap-mandatory scrollbar-hide"></ul>
-    </div>
-  </div>
-  <div id="navbar-container"></div>
-  <script src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
-  <script src="scan.js"></script>
-  <script src="navbar.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Scan page</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            .allergen-ai span {
+                color: #ca8a04;
+                font-weight: 500;
+            }
+        </style>
+    </head>
+    <body class="bg-black flex flex-col h-screen text-white pb-16">
+        <div class="relative flex-1 overflow-hidden">
+            <video
+                id="video"
+                autoplay
+                playsinline
+                class="w-full h-full object-cover"
+            ></video>
+            <div
+                class="absolute inset-0 pointer-events-none flex items-center justify-center"
+            >
+                <div class="relative w-3/4 max-w-[22rem] aspect-square">
+                    <div
+                        class="absolute top-0 left-0 w-10 h-10 border-t-4 border-l-4 border-white"
+                    ></div>
+                    <div
+                        class="absolute top-0 right-0 w-10 h-10 border-t-4 border-r-4 border-white"
+                    ></div>
+                    <div
+                        class="absolute bottom-0 left-0 w-10 h-10 border-b-4 border-l-4 border-white"
+                    ></div>
+                    <div
+                        class="absolute bottom-0 right-0 w-10 h-10 border-b-4 border-r-4 border-white"
+                    ></div>
+                </div>
+                <div
+                    id="barcode-box"
+                    class="absolute border-2 border-green-400 hidden"
+                ></div>
+            </div>
+        </div>
+        <div
+            id="bottom-sheet"
+            class="fixed bottom-16 left-0 right-0 bg-white text-black transition-all duration-300 h-24 overflow-hidden z-10"
+        >
+            <div class="w-full flex justify-center py-1">
+                <div class="w-12 h-1.5 bg-gray-300 rounded"></div>
+            </div>
+            <div id="summary-row" class="flex items-center px-4 space-x-4">
+                <img
+                    id="prod-thumb"
+                    class="w-16 h-16 rounded object-cover bg-gray-300 flex-shrink-0"
+                />
+                <div class="flex-1">
+                    <p
+                        id="prod-name"
+                        class="font-semibold leading-tight truncate"
+                    >
+                        Chocolate milk
+                    </p>
+                    <p id="prod-brand" class="text-sm text-gray-500 truncate">
+                        Brand #3
+                    </p>
+                    <p id="prod-tags" class="text-xs text-gray-400 truncate">
+                        #Peanuts #Milk
+                    </p>
+                </div>
+            </div>
+            <div id="details" class="px-4 pt-4 space-y-4">
+                <h3 class="font-semibold">Allergens</h3>
+                <ul id="allergens-list" class="divide-y divide-gray-200"></ul>
+            </div>
+            <div class="px-4 pt-4 space-y-4">
+                <div class="flex items-baseline justify-between mb-3">
+                    <h3 class="font-semibold">Alternatives</h3>
+                    <button
+                        id="see-all"
+                        class="text-sm text-blue-600 whitespace-nowrap"
+                    >
+                        See all
+                    </button>
+                </div>
+                <ul
+                    id="alt-list"
+                    class="flex overflow-x-auto pb-2 space-x-8 snap-x snap-mandatory scrollbar-hide"
+                ></ul>
+            </div>
+        </div>
+        <div id="navbar-container"></div>
+        <script src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
+        <script src="js/scan.js"></script>
+        <script src="js/navbar.js"></script>
+    </body>
 </html>
