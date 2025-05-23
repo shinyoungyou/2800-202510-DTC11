@@ -7,7 +7,7 @@ async function loadAlts() {
     if (!barcode) return;
     altsList.innerHTML = "<p class='text-gray-500'>Loading alternatives...</p>";
     const res = await fetch(
-        `http://localhost:3000/alternatives/${barcode}?limit=8`
+        `https://two800-202510-dtc11.onrender.com/alternatives/${barcode}?limit=8`
     );
     const alts = res.ok ? await res.json() : [];
     if (alts.length === 0) {
@@ -31,15 +31,20 @@ async function loadAlts() {
                 .join(" ")}</p></div>`;
             altsList.appendChild(item);
         });
-        const scansRes = await fetch("http://localhost:3000/scan");
+        const scansRes = await fetch(
+            "https://two800-202510-dtc11.onrender.com/scan"
+        );
         const scans = await scansRes.json();
         const scan = scans.find((s) => s.barcode === barcode);
         if (scan) {
-            await fetch(`http://localhost:3000/scan/${scan._id}/alternatives`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ alternatives: alts }),
-            });
+            await fetch(
+                `https://two800-202510-dtc11.onrender.com/scan/${scan._id}/alternatives`,
+                {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ alternatives: alts }),
+                }
+            );
         }
     }
 }

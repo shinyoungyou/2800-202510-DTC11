@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000/scan";
+const API_BASE = "https://two800-202510-dtc11.onrender.com/scan";
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 const backBtn = document.getElementById("back-btn");

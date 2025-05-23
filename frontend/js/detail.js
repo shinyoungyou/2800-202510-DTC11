@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000/scan";
+const API_BASE = "https://two800-202510-dtc11.onrender.com/scan";
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 const barcodeParam = params.get("barcode");
@@ -38,7 +38,7 @@ async function loadDetail() {
     let p;
     if (barcodeParam) {
         const res = await fetch(
-            `http://localhost:3000/product/${barcodeParam}`
+            `https://two800-202510-dtc11.onrender.com/product/${barcodeParam}`
         );
         p = await res.json();
         p.allergens = p.allergens.map((a) => a.name);

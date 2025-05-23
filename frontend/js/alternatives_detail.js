@@ -26,7 +26,9 @@ const allergenIcons = {
 backBtn.addEventListener("click", () => window.history.back());
 async function loadAlternativeDetail() {
     if (!barcode) return;
-    const res = await fetch(`http://localhost:3000/product/${barcode}`);
+    const res = await fetch(
+        `https://two800-202510-dtc11.onrender.com/product/${barcode}`
+    );
     const p = await res.json();
     thumb.src = p.thumbUrl || "icons/allergen-placeholder.svg";
     nameEl.textContent = p.productName || "";

@@ -4,7 +4,7 @@ const resetBtn = document.getElementById("reset-button");
 
 let selectionMode = false;
 let selectedSet = new Set();
-const API_BASE = "http://localhost:3000/scan";
+const API_BASE = "https://two800-202510-dtc11.onrender.com/scan";
 
 document.addEventListener("DOMContentLoaded", () => {
     clearBtn.addEventListener("click", onClearClick);

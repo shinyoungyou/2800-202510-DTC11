@@ -35,7 +35,9 @@ async function main() {
     app.use("/product", productRouter);
     app.use("/alternatives", alternativesRouter);
     app.listen(PORT, () => {
-        console.log(`Express listening on http://localhost:${PORT}`);
+        console.log(
+            `Express listening on https://two800-202510-dtc11.onrender.com:${PORT}`
+        );
     });
 }
 main();

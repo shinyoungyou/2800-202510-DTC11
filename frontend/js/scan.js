@@ -90,14 +90,16 @@ async function startCamera() {
   }
 }
 async function fetchProduct(barcode) {
-  const res = await fetch(`http://localhost:3000/product/${barcode}`);
+  const res = await fetch(
+      `https://two800-202510-dtc11.onrender.com/product/${barcode}`
+  );
   if (!res.ok) throw new Error(res.statusText);
   return await res.json();
 }
 async function fetchAlternatives(barcode, limit = 2) {
   try {
     const res = await fetch(
-      `http://localhost:3000/alternatives/${barcode}?limit=${limit}`
+        `https://two800-202510-dtc11.onrender.com/alternatives/${barcode}?limit=${limit}`
     );
     if (!res.ok) throw new Error();
     return await res.json();
@@ -106,10 +108,10 @@ async function fetchAlternatives(barcode, limit = 2) {
   }
 }
 async function saveScanToDB(scanDoc) {
-  const res = await fetch("http://localhost:3000/scan", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(scanDoc),
+  const res = await fetch("https://two800-202510-dtc11.onrender.com/scan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(scanDoc),
   });
   if (!res.ok) console.warn("Save responded with HTTP", res.status);
   else {
@@ -145,10 +147,10 @@ function drawBox({ x, y, width, height }) {
   barcodeBox.classList.remove("hidden");
 }
 async function getProcessedData(text) {
-  const res = await fetch("http://localhost:3000/process", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ text }),
+  const res = await fetch("https://two800-202510-dtc11.onrender.com/process", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
   });
   if (!res.ok) throw new Error(res.statusText);
   return await res.json();
@@ -252,11 +254,14 @@ async function handleCode(barcode) {
       altListEl.appendChild(li);
     });
     if (currentScanId) {
-      await fetch(`http://localhost:3000/scan/${currentScanId}/alternatives`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ alternatives: alts }),
-      });
+      await fetch(
+          `https://two800-202510-dtc11.onrender.com/scan/${currentScanId}/alternatives`,
+          {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ alternatives: alts }),
+          }
+      );
     }
   } catch (err) {
     alert(`Failed to fetch product info:\n${err.message}`);
