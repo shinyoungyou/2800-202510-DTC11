@@ -126,4 +126,4 @@ The functions or tasks that the app can perform to deliver value to its users.
 - Gemini AI API — missing allergen checks.
 - Tailwind Labs — Tailwind CSS framework.
 - Zxing Library — scanning barcodes.
-- 14 EU allergens — the list of allergens that manufacturers of food sold in the European Union must label 14 allergens under EU law
+- 14 EU allergens — the list of allergens that manufacturers of food sold in the European Union must label under EU law
