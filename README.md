@@ -1,51 +1,16 @@
-# AllergyPal
+# Project Title: AllergyPal
 
 ## Team DTC-11:
 
 Adam Kenny, Shinyoung You, Derek Jang, Ryan Song
 
-## Overview
+## Project Description
 
 A summary of the app’s aim and the context that inspired its creation.
 
 We created an allergy scanning app that allows users to quickly check products if they contain specific ingredients by scanning a product's label or barcode. This app is designed for people with allergies or health-conscious consumers so that they can save time and reduce the potential for user error when checking ingredients.
 
-## Setup
-
-Follow these steps to set up the project on your machine:
-
-1. **Install tools**  
-   - [Node.js 18.17.0](https://nodejs.org/) (includes npm)  
-   - [MongoDB Community 6.0](https://www.mongodb.com/try/download/community)  
-
-2. **Clone repository**  
-   ```bash
-   git clone https://github.com/your-org/allergypal.git
-   cd allergypal
-3. **How to run the project**
-```
-cd backend
-npm install
-npm start
-```
-then create a `.env` file and add a Gemini API key.
-
-## Usage
-
-1. Open http://localhost:3000 on your phone or browser.
-2. Scan a barcode or enter one manually.
-3. View allergens, get safe alternative suggestions, and save scans to your history.
-
-## Features
-
-The functions or tasks that the app can perform to deliver value to its users.
-
-- Barcode scanning
-- Allergen highlighting
-- Alternative product recommendations
-- Personalized history of previous scans
-
-## Technology Stack
+## Project Technologies
 
 The collection of front-end, back-end, and database tools used to build and run the application.
 
@@ -67,14 +32,7 @@ The collection of front-end, back-end, and database tools used to build and run 
 - MongoDB
 - External data from OpenFoodFacts and Allergen datasets
 
-### Credits
-OpenFoodFacts API — product data.
-
-Gemini AI API — missing-allergen checks.
-
-Tailwind Labs — Tailwind CSS framework.
-
-## Files
+## List of Files
 
 Content of the project folder:
 
@@ -125,4 +83,48 @@ Top level of project folder:
 │   └── scanner-button.svg # Icon to open or start scanning
 ├── package-lock.json      # Top-level project lock file for dependencies
 └── style.css              # Global stylesheet applied across frontend pages
+
+```
+
+## Installation
+
+Follow these steps to set up the project on your machine:
+
+1. **Install tools**  
+   - [Node.js 18.17.0](https://nodejs.org/) (includes npm)  
+   - [MongoDB Community 6.0](https://www.mongodb.com/try/download/community)  
+
+2. **Clone repository**  
+   ```bash
+   git clone https://github.com/your-org/allergypal.git
+   cd allergypal
+3. **How to run the project**
+    ```
+    cd backend
+    npm install
+    npm start
+    ```
+    then create a `.env` file and add a Gemini API key.
+
+## Usage
+
+1. Open http://localhost:3000 on your phone or browser.
+2. Scan a barcode or enter one manually.
+3. View allergens, get safe alternative suggestions, and save scans to your history.
+
+## Features
+
+The functions or tasks that the app can perform to deliver value to its users.
+
+- Barcode scanning
+- Allergen highlighting
+- Alternative product recommendations
+- Personalized history of previous scans
+
+### Credits
+OpenFoodFacts API — product data.
+
+Gemini AI API — missing-allergen checks.
+
+Tailwind Labs — Tailwind CSS framework.
 
