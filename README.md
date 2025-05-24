@@ -122,9 +122,7 @@ The functions or tasks that the app can perform to deliver value to its users.
 - Personalized history of previous scans
 
 ### Credits
-OpenFoodFacts API — product data.
-
-Gemini AI API — missing-allergen checks.
-
-Tailwind Labs — Tailwind CSS framework.
+- OpenFoodFacts API — product data.
+- Gemini AI API — missing-allergen checks.
+- Tailwind Labs — Tailwind CSS framework.
 
