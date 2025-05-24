@@ -12,15 +12,29 @@ We created an allergy scanning app that allows users to quickly check products i
 
 ## Setup
 
-The basic setup instructions to prepare your device to use the app.
+Follow these steps to set up the project on your machine:
 
-Install Visual Studio Code, clone the repository from GitHub, navigate to the backend directory, run `npm install` to fetch dependencies, then create a `.env` file and add a Gemini API key.
+1. **Install tools**  
+   - [Node.js 18.17.0](https://nodejs.org/) (includes npm)  
+   - [MongoDB Community 6.0](https://www.mongodb.com/try/download/community)  
+
+2. **Clone repository**  
+   ```bash
+   git clone https://github.com/your-org/allergypal.git
+   cd allergypal
+3. **How to run the project**
+```
+cd backend
+npm install
+npm start
+```
+then create a `.env` file and add a Gemini API key.
 
 ## Usage
 
-The typical workflow or commands required to use the app.
-
-Run the backend server, open the app on your mobile device, and scan or search a product to see real-time allergen insights.
+1. Open http://localhost:3000 on your phone or browser.
+2. Scan a barcode or enter one manually.
+3. View allergens, get safe alternative suggestions, and save scans to your history.
 
 ## Features
 
@@ -52,6 +66,13 @@ The collection of front-end, back-end, and database tools used to build and run 
 
 - MongoDB
 - External data from OpenFoodFacts and Allergen datasets
+
+### Credits
+OpenFoodFacts API — product data.
+
+Gemini AI API — missing-allergen checks.
+
+Tailwind Labs — Tailwind CSS framework.
 
 ## Files
 
